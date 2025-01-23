@@ -1,0 +1,97 @@
+/*
+*   Palette :
+*       - #59D5E0
+*       - #F5DD61
+*       - #FAA300
+*       - #F4538A
+*/
+
+nav {
+  padding: 5px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f4538a;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  z-index: 1;
+}
+
+nav ul li a:hover {
+  background-color: #f5dd61;
+  transform: scale(1.1);
+  transition: 0.3s;
+}
+
+body {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  background-color: #59d5e0;
+}
+
+#container {
+  display: flex;
+  justify-content: space-between;
+  width: 85%;
+  margin: auto;
+}
+
+.linkMiniJeux {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 25%;
+  border-radius: 20px;
+  padding: 20px;
+  margin: 20px;
+  height: fit-content;
+  background-color: #f5dd61;
+  color: white;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  animation: wave 1.5s ease-in-out infinite;
+  transition: transform 0.6s ease-in-out;
+}
+
+.linkMiniJeux img {
+  width: 150px;
+}
+
+.linkMiniJeux h3 {
+  font-size: larger;
+  text-align: center;
+}
+
+@keyframes wave {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-30px) rotate(1deg); }
+}
+
+.linkMiniJeux:nth-child(1) { animation-delay: 0s; }
+.linkMiniJeux:nth-child(2) { animation-delay: 0.2s; }
+.linkMiniJeux:nth-child(3) { animation-delay: 0.5s; }
+.linkMiniJeux:nth-child(4) { animation-delay: 0.8s; }
+
+/* 🎯 Effet de pirouette au survol */
+.linkMiniJeux:hover {
+  transform: rotateY(360deg) scale(1.1);
+  cursor: pointer;
+}
+
+#app h1,
+#app h2 {
+  color: white;
+  text-align: center;
+  margin-top: 20px;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+#app h1 {
+  font-size: 60px;
+}
+
+#app h2 {
+  font-size: 40px;
+  margin: 40px 0;
+}

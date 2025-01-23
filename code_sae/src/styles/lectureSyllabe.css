@@ -1,0 +1,89 @@
+/* Conteneur principal pour les exercices */
+.exercice-syllabe {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  max-width: 90%; /* Réduction de la largeur du contenu */
+  max-height: 70vh; /* Limite la hauteur totale à 70% de la hauteur visible */
+  overflow-y: auto; /* Ajoute un défilement vertical si nécessaire */
+}
+
+/* Les titres et instructions */
+.exercice-syllabe h2,
+.exercice-syllabe p {
+  margin: 0;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+/* Section pour chaque exercice */
+.section-exercice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Images des exercices */
+.image-exercice {
+  width: 80px; /* Taille plus petite des images */
+  height: 80px;
+  border-radius: 10px;
+  border: 3px solid #ccc; /* Bordure pour styliser */
+  object-fit: cover;
+}
+
+/* Conteneur des boutons de choix */
+.choix-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  max-width: 100%;
+}
+
+/* Boutons des mots */
+.mot-button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: #f0f0f0;
+  transition: transform 0.2s ease-in-out, background-color 0.2s;
+}
+
+.mot-button:hover {
+  background-color: #ddd;
+  transform: scale(1.05);
+}
+
+/* Score et niveau */
+.score-container {
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+/* Bouton suivant */
+.next-button {
+  padding: 10px 20px;
+  background-color: #59d5e0;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.next-button:hover {
+  background-color: #48b1c0;
+}

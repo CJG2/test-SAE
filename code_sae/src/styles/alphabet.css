@@ -1,0 +1,50 @@
+#alphabet {
+    font-family: "Joti-One", Arial, Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(245, 245, 245);
+    width: 100%;
+    margin-top: 40px;
+    min-height: 450px;
+    height: 70%;
+    font-size: 2000%;
+    border: 5px solid #FAA300;
+    color: #FAA300;
+    cursor: pointer;
+}
+
+#alphabet:hover {
+    background-color: #FAA300;
+    color: white;
+    transition: 0.2s ease-in;
+}
+
+#convertImage {
+    padding: 10px;
+    width: 70px;
+    background-color: #FAA300;
+    cursor: pointer;
+    margin: 0 20px;
+}
+
+#convertImage:hover {
+    background-color: #F5DD61;
+}
+
+#buttonEmplacement {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#buttonEmplacement button{
+    width: 100%;
+    font-size: large;
+    border: 0;
+    cursor: pointer;
+}
+
+#buttonEmplacement button:hover {
+    background-color: #F5DD61;
+    transition: 0.2s;
+}

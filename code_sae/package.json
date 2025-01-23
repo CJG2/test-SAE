@@ -1,0 +1,59 @@
+{
+  "name": "code_sae",
+  "version": "1.0.0",
+  "description": "Application Web pour l'apprentissage de la lecture",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "start": "webpack serve --mode development",
+    "docs": "jsdoc ./src/*.js ./backend/*.js ./src/**/*.js ./backend/**/*.js -d ./../annexes/Livrables_SAE/R3.04_Documentation-S.Thon"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^7.1.2",
+    "dotenv-webpack": "^8.1.0",
+    "env-loader": "^0.0.3",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.6.0",
+    "jsdoc": "^4.0.4",
+    "mini-css-extract-plugin": "^2.9.1",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.95.0",
+    "webpack-bundle-analyzer": "^4.10.2",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codesandbox-app/static-template.git"
+  },
+  "homepage": "https://github.com/codesandbox-app/static-template#readme",
+  "dependencies": {
+    "assert": "^2.1.0",
+    "axios": "^1.7.7",
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "browserify-zlib": "^0.2.0",
+    "buffer": "^6.0.3",
+    "cors": "^2.8.5",
+    "crypto-browserify": "^3.12.1",
+    "crypto-js": "^4.2.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.11.4",
+    "os-browserify": "^0.3.0",
+    "path-browserify": "^1.0.1",
+    "pg": "^8.13.1",
+    "process": "^0.11.10",
+    "stream-browserify": "^3.0.0",
+    "string-similarity": "^4.0.4",
+    "tesseract.js": "^5.1.1",
+    "timers-browserify": "^2.0.12",
+    "url": "^0.11.4",
+    "util": "^0.12.5",
+    "vm-browserify": "^1.1.2"
+  }
+}

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Royaume des Lettres - Apprendre</title>
+  </head>
+
+  <body>
+    <header>
+      <!-- Navigation -->
+      <nav>
+        <div class="logoApplication">
+          <img alt="Logo Application" id="logoApplication" />
+          <h1>Le Royaume des Lettres</h1>
+        </div>
+        <ul>
+          <!-- Bouton pour accéder aux pages -->
+          <li>
+            <a href="accueil.html">
+              <img alt="Accueil" id="home-navigation" />
+              Accueil
+            </a>
+          </li>
+          <li>
+            <a href="apprendre.html">
+              <img alt="Apprendre" id="learn-navigation" />
+              Apprendre
+            </a>
+          </li>
+          <li>
+            <a href="miniJeux.html">
+              <img alt="Mini-jeux" id="miniGames-navigation" />
+              Mini-jeux
+            </a>
+          </li>
+          <li>
+            <a href="#" id="logout-link">
+              <img alt="Déconnexion" id="logOut-navigation" />
+              Se déconnecter
+            </a>
+          </li>
+        </ul>
+        <!-- Bouton dépliant -->
+        <div class="hamburger">
+          <span class="line"></span>
+          <span class="line"></span>
+          <span class="line"></span>
+        </div>
+      </nav>
+      <!-- Menu dépliant -->
+      <div class="menubar">
+        <ul>
+          <li>
+            <a href="accueil.html">
+              <img alt="Accueil" id="home-nav" />
+              Accueil
+            </a>
+          </li>
+          <li>
+            <a href="apprendre.html">
+              <img alt="Apprendre" id="learn-nav" />
+              Apprendre
+            </a>
+          </li>
+          <li>
+            <a href="miniJeux.html">
+              <img alt="Mini-jeux" id="miniGames-nav" />
+              Mini-jeux
+            </a>
+          </li>
+          <li>
+            <a href="#" id="logout-link">
+              <img alt="Déconnexion" id="logOut-nav" />
+              Se déconnecter
+            </a>
+          </li>
+        </ul>
+      </div>
+    </header>
+
+    <div id="app">
+      <h1>Le Royaume des Lettres</h1>
+
+      <!-- Carrousel de l'alphabet -->
+      <div id="alphabet-carousel">
+        <button id="prev-button">&lt;</button>
+        <!-- Bouton précédent -->
+        <div id="letter-container">
+          <ul id="carousel-list">
+            <li id="letter"></li>
+            <!-- Les lettres seront ajoutées ici par JavaScript -->
+          </ul>
+        </div>
+        <button id="next-button">&gt;</button>
+        <!-- Bouton suivant -->
+      </div>
+
+      <h2>Mini-jeux</h2>
+      <div id="container">
+        <!-- liste des 3 liens vers les 3 autres pages -->
+        <div id="minijeuxAssociation" class="linkMiniJeux">
+          <img id="logoAssociation" alt="Association" />
+          <div id="description">
+            <hr />
+            <h3>1 Mot 1 Image</h3>
+          </div>
+        </div>
+
+        <div id="minijeuxMotsATrou" class="linkMiniJeux">
+          <img id="logoMotsATrou" alt="MotsATrou" />
+          <div id="description">
+            <hr />
+            <h3>Mots à Trou</h3>
+          </div>
+        </div>
+
+        <div id="minijeuxMotsCroises" class="linkMiniJeux">
+          <img id="logoMotsCroises" alt="MotsCroises" />
+          <div id="description">
+            <hr />
+            <h3>Mots Croisés</h3>
+          </div>
+        </div>
+
+        <div id="minijeuxMotsListe" class="linkMiniJeux">
+          <img id="logoMotsListe" alt="MotsListe" />
+          <div id="description">
+            <hr />
+            <h3>Liste de mots</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <div id="modal-body">
+          <!-- JavaScript pour le modal -->
+          <script></script>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

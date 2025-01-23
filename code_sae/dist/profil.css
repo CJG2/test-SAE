@@ -1,0 +1,412 @@
+/*
+*   Palette :
+*       - #59D5E0
+*       - #F5DD61
+*       - #FAA300
+*       - #F4538A
+*/
+
+@font-face {
+  /* importation de la font */
+  font-family: "Joti-One";
+  src: url(614a43a74ffe8cf87adf.ttf) format("truetype");
+}
+
+h1,
+h2,
+h3,
+#alphabet-carousel {
+  font-family: "Joti-One";
+}
+
+#app h1 {
+  text-align: center;
+  color: white;
+  margin: 30px 0;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+  font-size: 50px;
+}
+
+#app h2 {
+  text-align: center;
+  color: white;
+  margin: 30px 0;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+  font-size: 40px;
+}
+
+#app h3 {
+  text-align: center;
+  color: white;
+  margin: 30px 0;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+  font-size: 22px;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/*
+*   Palette :
+*       - #59D5E0
+*       - #F5DD61
+*       - #FAA300
+*       - #F4538A
+*/
+
+#prev-button,
+#next-button {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 75px;
+  height: 75px;
+  border: 5px solid #faa300;
+  border-radius: 100%;
+  font-size: 50px;
+}
+
+#prev-button:hover,
+#next-button:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#letter-container {
+  font-size: 100px;
+  color : white;
+}
+
+#letter-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#carousel-list {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: fit-content;
+}
+
+#carousel-list li {
+  list-style: none;
+}
+
+/*
+*   Palette :
+*       - #59D5E0
+*       - #F5DD61
+*       - #FAA300
+*       - #F4538A
+*/
+
+/* Partie Navigation */
+
+.logoApplication {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.logoApplication img {
+  margin-right: 10px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+}
+
+nav ul li {
+  margin-left: 1rem;
+}
+
+nav ul li a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  font-size: 95%;
+  font-weight: 400;
+  padding: 7px;
+  border-radius: 5px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+nav ul li img {
+  width: 40px;
+  height: auto;
+  margin: 8px;
+}
+
+header img {
+  width: 45px;
+  height: auto;
+}
+
+/* partie responsive */
+.hamburger {
+  display: none;
+  cursor: pointer;
+}
+
+.hamburger .line {
+  width: 25px;
+  height: 1px;
+  background-color: #1f1f1f;
+  display: block;
+  margin: 7px auto;
+  transition: all 0.3s ease-in-out;
+}
+
+.hamburger-active {
+  transition: all 0.3s ease-in-out;
+  transition-delay: 0.6s;
+  transform: rotate(45deg);
+}
+
+.hamburger-active .line:nth-child(2) {
+  width: 0px;
+}
+
+.hamburger-active .line:nth-child(1),
+.hamburger-active .line:nth-child(3) {
+  transition-delay: 0.3s;
+}
+
+.hamburger-active .line:nth-child(1) {
+  transform: translateY(12px);
+}
+
+.hamburger-active .line:nth-child(3) {
+  transform: translateY(-5px) rotate(90deg);
+}
+
+.menubar {
+  position: absolute;
+  top: 0;
+  left: -60%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 60%;
+  height: 100vh;
+  padding: 20% 0;
+  background: #59d5e0;
+  transition: all 0.5s ease-in;
+  z-index: 2;
+}
+
+.active {
+  left: 0;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.menubar ul {
+  padding: 0;
+  list-style: none;
+}
+
+.menubar ul li {
+  margin-bottom: 32px;
+}
+
+.menubar ul li a {
+  text-decoration: none;
+  color: #000;
+  font-size: 95%;
+  font-weight: 400;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.menubar ul li a:hover {
+  background-color: #f4538a;
+}
+
+@media screen and (max-width: 790px) {
+  .hamburger {
+    display: block;
+  }
+
+  nav ul {
+    display: none;
+  }
+}
+
+/*
+*   Palette :
+*       - #59D5E0
+*       - #F5DD61
+*       - #FAA300
+*       - #F4538A
+*/
+
+@font-face {
+  /* Importation de la font */
+  font-family: "Joti-One";
+  src: url(614a43a74ffe8cf87adf.ttf) format("truetype");
+}
+
+nav {
+  padding: 5px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f4538a;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  z-index: 1;
+}
+
+nav ul li a:hover {
+  background-color: #f5dd61;
+  transform: scale(1.1);
+  transition: 0.3s;
+}
+
+body {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  background-color: #59d5e0;
+}
+
+h1,
+h2 {
+  color: white;
+  text-align: center;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+h2 {
+  font-size: 40px;
+  margin: 30px 0;
+}
+
+#profil {
+  background-color: #f5dd61;
+  border: 10px solid #faa300;
+  border-radius: 20px;
+  width: 50%;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 8% auto;
+}
+
+#profil h3 {
+  font-family: "Joti-One";
+  color: white;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+#profil label {
+  font-family: "Joti-One";
+  font-size: 20px;
+  color: #333;
+}
+
+#profil input,
+#profil select {
+  width: 100%;
+  height: 35px;
+  border-radius: 20px;
+  border: 3px solid #f4538a;
+  padding: 5px 15px;
+  margin: 10px 0;
+}
+
+#profil input:focus,
+#profil select:focus {
+  border: 5px solid #f4538a;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+.date_naissance_enfant,
+.date_naissance_parent_tuteur {
+  display: flex;
+  gap: 5px;
+}
+
+.date_naissance_enfant input,
+.date_naissance_parent_tuteur input {
+  width: 30%;
+  text-align: center;
+}
+
+#profil #civilite,
+#profil #email,
+#profil #telephone,
+#profil #pays {
+  margin-top: 15px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+/* Pour les éléments d'action de la page */
+.resetPasswordButton {
+  border-radius: 50px;
+  padding: 7px;
+  background-color: #f4538a;
+  color: white;
+  font-family: "Joti-One";
+  font-size: 16px;
+}
+
+.buttonInscrConnect {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin: 25px auto 0px;
+}
+
+.buttonInscrConnect button {
+  border-radius: 15px;
+  padding: 10px;
+  width: 30%;
+  background-color: white;
+  font-family: "Joti-One";
+  font-size: 13px;
+}
+
+.buttonInscrConnect button:hover {
+  transform: rotate(-0.02turn);
+  border: 5px solid #59d5e0;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+  transition: 0.3s;
+}
+
+.resetPswd_return,
+.envoyerMailRecup {
+  border-radius: 15px;
+  padding: 10px;
+  width: fit-content;
+  background-color: white;
+  font-family: "Joti-One";
+  font-size: 13px;
+  margin: 8px;
+}
+
+.resetPswd_return:hover,
+.envoyerMailRecup:hover {
+  transform: scale(1.1);
+  border: 3px solid #59d5e0;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+}
+

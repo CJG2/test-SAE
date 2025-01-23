@@ -1,0 +1,7 @@
+# Fichiers de configuration sensibles
+.env
+
+# Dépendances Node.js
+/node_modules
+/code_sae/backend/node_modules
+/code_sae/node_modules

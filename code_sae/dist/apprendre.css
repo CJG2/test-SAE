@@ -1,0 +1,527 @@
+#alphabet {
+    font-family: "Joti-One", Arial, Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(245, 245, 245);
+    width: 100%;
+    margin-top: 40px;
+    min-height: 450px;
+    height: 70%;
+    font-size: 2000%;
+    border: 5px solid #FAA300;
+    color: #FAA300;
+}
+
+#convertImage {
+    padding: 10px;
+    width: 70px;
+    background-color: #FAA300;
+    cursor: pointer;
+    margin: 0 20px;
+}
+
+#convertImage:hover {
+    background-color: #F5DD61;
+}
+
+#buttonEmplacement {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#buttonEmplacement button{
+    width: 100%;
+    font-size: large;
+    border: 0;
+    cursor: pointer;
+}
+
+#buttonEmplacement button:hover {
+    background-color: #F5DD61;
+    transition: 0.2s;
+}
+@font-face {
+  font-family: "Cursive";
+  src: url(35933034c522df190207.ttf) format("truetype");
+}
+
+/*
+*   Palette :
+*       - #59D5E0
+*       - #F5DD61
+*       - #FAA300
+*       - #F4538A
+*/
+
+@font-face {
+  /* importation de la font */
+  font-family: "Joti-One";
+  src: url(614a43a74ffe8cf87adf.ttf) format("truetype");
+}
+
+h1,
+h2,
+h3,
+#alphabet-carousel {
+  font-family: "Joti-One";
+}
+
+#app h1 {
+  text-align: center;
+  color: white;
+  margin: 30px 0;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+  font-size: 50px;
+}
+
+#app h2 {
+  text-align: center;
+  color: white;
+  margin: 30px 0;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+  font-size: 40px;
+}
+
+#app h3 {
+  text-align: center;
+  color: white;
+  margin: 30px 0;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+  font-size: 22px;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/*
+*   Palette :
+*       - #59D5E0
+*       - #F5DD61
+*       - #FAA300
+*       - #F4538A
+*/
+
+#prev-button,
+#next-button {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 75px;
+  height: 75px;
+  border: 5px solid #faa300;
+  border-radius: 100%;
+  font-size: 50px;
+}
+
+#prev-button:hover,
+#next-button:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#letter-container {
+  font-size: 100px;
+  color : white;
+}
+
+#letter-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#carousel-list {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: fit-content;
+}
+
+#carousel-list li {
+  list-style: none;
+}
+
+/*
+*   Palette :
+*       - #59D5E0
+*       - #F5DD61
+*       - #FAA300
+*       - #F4538A
+*/
+
+/* Partie Navigation */
+
+.logoApplication {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.logoApplication img {
+  margin-right: 10px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+}
+
+nav ul li {
+  margin-left: 1rem;
+}
+
+nav ul li a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  font-size: 95%;
+  font-weight: 400;
+  padding: 7px;
+  border-radius: 5px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+nav ul li img {
+  width: 40px;
+  height: auto;
+  margin: 8px;
+}
+
+header img {
+  width: 45px;
+  height: auto;
+}
+
+/* partie responsive */
+.hamburger {
+  display: none;
+  cursor: pointer;
+}
+
+.hamburger .line {
+  width: 25px;
+  height: 1px;
+  background-color: #1f1f1f;
+  display: block;
+  margin: 7px auto;
+  transition: all 0.3s ease-in-out;
+}
+
+.hamburger-active {
+  transition: all 0.3s ease-in-out;
+  transition-delay: 0.6s;
+  transform: rotate(45deg);
+}
+
+.hamburger-active .line:nth-child(2) {
+  width: 0px;
+}
+
+.hamburger-active .line:nth-child(1),
+.hamburger-active .line:nth-child(3) {
+  transition-delay: 0.3s;
+}
+
+.hamburger-active .line:nth-child(1) {
+  transform: translateY(12px);
+}
+
+.hamburger-active .line:nth-child(3) {
+  transform: translateY(-5px) rotate(90deg);
+}
+
+.menubar {
+  position: absolute;
+  top: 0;
+  left: -60%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 60%;
+  height: 100vh;
+  padding: 20% 0;
+  background: #59d5e0;
+  transition: all 0.5s ease-in;
+  z-index: 2;
+}
+
+.active {
+  left: 0;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.menubar ul {
+  padding: 0;
+  list-style: none;
+}
+
+.menubar ul li {
+  margin-bottom: 32px;
+}
+
+.menubar ul li a {
+  text-decoration: none;
+  color: #000;
+  font-size: 95%;
+  font-weight: 400;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.menubar ul li a:hover {
+  background-color: #f4538a;
+}
+
+@media screen and (max-width: 790px) {
+  .hamburger {
+    display: block;
+  }
+
+  nav ul {
+    display: none;
+  }
+}
+
+/*
+*   Palette :
+*       - #59D5E0 cyan
+*       - #F5DD61 jaune
+*       - #FAA300 orange
+*       - #F4538A rose
+*/
+
+#alphabet-carousel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 30%;
+  height: 100px;
+  padding: 15px;
+  margin: auto;
+  background-color: #f4538a;
+  border-radius: 100px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+nav {
+  padding: 5px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f4538a;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  z-index: 1;
+}
+
+nav ul li a:hover {
+  background-color: #f5dd61;
+  transform: scale(1.1);
+  transition: 0.3s;
+}
+
+body {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  background-color: #59d5e0;
+}
+
+#container {
+  display: flex;
+  justify-content: space-between;
+  width: 85%;
+  margin: auto;
+}
+
+.linkExercice {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 25%;
+  border-radius: 20px;
+  padding: 20px;
+  margin: 20px;
+  height: fit-content;
+  background-color: #f5dd61;
+  color: white;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+.linkExercice img {
+  width: 150px;
+}
+
+.linkExercice h3 {
+  text-align: center;
+  font-size: larger;
+}
+
+.linkExercice:hover {
+  transform: scale(1.1);
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.syllabe-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.syllabe-display {
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+  min-width: 100px;
+}
+
+.syllabe-button {
+  font-size: 2rem;
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.syllabe-button:hover {
+  background-color: #45a049;
+}
+
+/* Style de base pour le modal */
+.modal {
+    display: none; /* Masqué par défaut */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Fond semi-transparent */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    min-height: 600px;
+    max-width: 1500px;
+    position: relative;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 50px;
+    cursor: pointer;
+}
+/* Conteneur principal pour les exercices */
+.exercice-syllabe {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  max-width: 90%; /* Réduction de la largeur du contenu */
+  max-height: 70vh; /* Limite la hauteur totale à 70% de la hauteur visible */
+  overflow-y: auto; /* Ajoute un défilement vertical si nécessaire */
+}
+
+/* Les titres et instructions */
+.exercice-syllabe h2,
+.exercice-syllabe p {
+  margin: 0;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+/* Section pour chaque exercice */
+.section-exercice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Images des exercices */
+.image-exercice {
+  width: 80px; /* Taille plus petite des images */
+  height: 80px;
+  border-radius: 10px;
+  border: 3px solid #ccc; /* Bordure pour styliser */
+  object-fit: cover;
+}
+
+/* Conteneur des boutons de choix */
+.choix-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  max-width: 100%;
+}
+
+/* Boutons des mots */
+.mot-button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: #f0f0f0;
+  transition: transform 0.2s ease-in-out, background-color 0.2s;
+}
+
+.mot-button:hover {
+  background-color: #ddd;
+  transform: scale(1.05);
+}
+
+/* Score et niveau */
+.score-container {
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+/* Bouton suivant */
+.next-button {
+  padding: 10px 20px;
+  background-color: #59d5e0;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.next-button:hover {
+  background-color: #48b1c0;
+}
+

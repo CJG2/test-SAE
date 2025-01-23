@@ -1,0 +1,252 @@
+/* Style pour le conteneur du mot croisé */
+#crossword-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+/* Style de la table et des cellules */
+table {
+  border-collapse: collapse;
+  margin: 20px auto;
+}
+
+td {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2em;
+  border: 1px solid #333;
+}
+
+/* Styles pour les cellules remplies et vides */
+.filled {
+  background-color: #11b7e0c9;
+  color: #f1f1f1;
+}
+
+.empty {
+  background-color: #c665d3a2;
+}
+
+.empty:hover {
+  background-color: #e0e0e0;  
+}
+
+/* Style pour les boutons sous l'image */
+.game-header button,
+.game-header select {
+  background-color: #11b7e0c9; /* Bleu utilisé pour les cellules remplies */
+  color: white; /* Texte blanc */
+  border: none; /* Pas de bordure */
+  border-radius: 15px; /* Coins arrondis */
+  padding: 10px 20px; /* Espacement interne */
+  font-size: 1.1em; /* Texte légèrement plus grand */
+  font-family: "Arial", sans-serif; /* Police moderne et lisible */
+  cursor: pointer; /* Curseur en pointeur */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Ombre subtile pour relief */
+  transition: background-color 0.2s, transform 0.2s; /* Animation douce */
+  margin: 5px; /* Espacement entre les boutons */
+  text-align: center;
+}
+
+/* Effet au survol pour les boutons */
+.game-header button:hover,
+.game-header select:hover {
+  background-color: #0fa7d1; /* Couleur légèrement plus sombre */
+  transform: scale(1.05); /* Légère mise en relief */
+}
+
+/* Style spécifique pour le menu déroulant */
+.game-header select {
+  appearance: none; /* Supprimer le style par défaut du menu */
+  background-color: #11b7e0c9; /* Même bleu que les boutons */
+  color: white; /* Texte blanc */
+  border: none; /* Pas de bordure */
+  border-radius: 15px; /* Coins arrondis */
+  padding: 10px 40px 10px 20px; /* Espacement interne avec plus à droite */
+  font-size: 1.1em; /* Taille du texte */
+  font-family: "Arial", sans-serif; /* Police moderne */
+  cursor: pointer; /* Curseur pointeur */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Ombre subtile */
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 140'%3E%3Cpolygon fill='%23FFF' points='70,105 105,35 35,35'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 15px center; /* Triangle bien aligné */
+  background-size: 12px;
+}
+
+/* Style de la popup */
+.popup {
+  display: block; 
+  position: fixed; 
+  z-index: 1001; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  background-color: rgba(0, 0, 0, 0.7); 
+  justify-content: center; 
+  align-items: center; 
+  display: flex; 
+}
+
+/* Contenu de la popup */
+.popup-content {
+  background-color: #11b7e0c9; 
+  margin: auto; 
+  padding: 20px; 
+  border: 1px solid #888; 
+  width: 300px; 
+  text-align: center; 
+}
+
+.close-button {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.success {
+  color: green;
+}
+
+.error {
+  color: red;
+}
+
+.missing-letter {
+  background-color: #11b7e0c9; 
+  color: transparent; 
+}
+
+.help-icon {
+  cursor: pointer;
+  font-size: 30px; 
+  margin-left: 10px; 
+}
+
+.hidden {
+  opacity: 0; 
+}
+
+/* Style pour la popup de félicitations */
+#congratulations-popup,
+#error-popup,
+#game-over-popup {
+  display: flex;
+  position: fixed;
+  z-index: 1001;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Fond semi-transparent */
+  justify-content: center;
+  align-items: center;
+}
+
+#congratulations-popup .popup-content,
+#error-popup .popup-content,
+#game-over-popup .popup-content {
+  background-color: #11b7e0c9; /* Même bleu que les boutons */
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  width: 300px;
+  position: relative;
+}
+
+#congratulations-popup h2 {
+  margin-bottom: 20px;
+  color: white;
+  font-size: 1.5em;
+}
+
+/* Style de la croix pour fermer */
+#congratulations-popup .close-button {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+}
+
+#congratulations-popup .close-button:hover {
+  color: black;
+}
+
+/* Style du bouton "Rejouer" */
+#congratulations-popup .replay-button {
+  background-color: #c665d3a2; /* Rose des cases vides */
+  color: white;
+  border: none;
+  border-radius: 15px;
+  padding: 10px 20px;
+  font-size: 1.1em;
+  font-family: "Arial", sans-serif;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+#congratulations-popup .replay-button:hover {
+  background-color: #b055c0; /* Rose plus foncé au survol */
+  transform: scale(1.05);
+}
+
+
+.error-icon {
+  width: 30px; /* Taille des icônes */
+  height: 30px;
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+.error-icon.inactive {
+  opacity: 0.3; /* Icônes désactivées */
+}
+
+/* Conteneur pour la liste et le compteur */
+.list-counter-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px; /* Espacement entre la liste et le compteur */
+  margin-top: 20px;
+}
+
+/* Conteneur de la liste */
+.word-list {
+  flex: 3; /* La liste occupe plus de place */
+}
+
+/* Conteneur du compteur d'erreurs */
+.error-container {
+  flex: 1; /* Le compteur occupe moins de place */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centrer les icônes horizontalement */
+  gap: 10px; /* Espacement entre les icônes */
+}
+
+.error-icon {
+  width: 30px;
+  height: 30px;
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+.error-icon.inactive {
+  opacity: 0.3; /* Icônes désactivées */
+}

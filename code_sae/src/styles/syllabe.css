@@ -1,0 +1,28 @@
+.syllabe-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.syllabe-display {
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+  min-width: 100px;
+}
+
+.syllabe-button {
+  font-size: 2rem;
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.syllabe-button:hover {
+  background-color: #45a049;
+}

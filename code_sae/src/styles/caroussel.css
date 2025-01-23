@@ -1,0 +1,69 @@
+/*
+*   Palette :
+*       - #59D5E0
+*       - #F5DD61
+*       - #FAA300
+*       - #F4538A
+*/
+
+#alphabet-carousel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 40%;
+  padding: 15px;
+  margin: auto;
+  background-color: #f4538a;
+  border-radius: 100px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+#prev-button,
+#next-button {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 85px;
+  height: 85px;
+  border: 5px solid #faa300;
+  border-radius: 100%;
+  font-size: 60px;
+}
+
+#prev-button:hover,
+#next-button:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#letter-container {
+  text-align: center;
+  font-size: 100px;
+  color : white;
+}
+
+#letter-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #F5DD61;
+  width: 25%;
+  border-radius: 100%;
+  border: 5px solid #faa300;
+  cursor: pointer;
+}
+
+#carousel-list {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: fit-content;
+}
+
+#carousel-list li {
+  list-style: none;
+}

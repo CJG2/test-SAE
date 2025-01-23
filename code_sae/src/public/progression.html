@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Le Royaume des Lettres - Progression</title>
+  </head>
+  <body>
+    <header>
+      <!-- Navigation -->
+      <nav>
+        <div class="logoApplication">
+          <img alt="Logo Application" id="logoApplication" />
+          <h1>Le Royaume des Lettres</h1>
+        </div>
+        <ul>
+          <!-- Bouton pour accéder aux pages -->
+          <li>
+            <a href="progression.html">
+              <img alt="Progression" id="progress-navigation" />
+              Progression
+            </a>
+          </li>
+          <li>
+            <a href="profil.html">
+              <img alt="Profil" id="profil-navigation" />
+              Profil
+            </a>
+          </li>
+          <li>
+            <a href="feedback.html">
+              <img alt="Feedback" id="feedback-nav" />
+              Feedback
+            </a>
+          </li>
+          <li>
+            <a href="#" id="logout-link">
+              <img alt="Déconnexion" id="logOut-navigation" />
+              Se déconnecter
+            </a>
+          </li>
+        </ul>
+        <!-- Bouton dépliant -->
+        <div class="hamburger">
+          <span class="line"></span>
+          <span class="line"></span>
+          <span class="line"></span>
+        </div>
+      </nav>
+      <!-- Menu dépliant -->
+      <div class="menubar">
+        <ul>
+          <li>
+            <a href="progression.html">
+              <img alt="Progression" id="progress-nav" />
+              Progression
+            </a>
+          </li>
+          <li>
+            <a href="profil.html">
+              <img alt="Profil" id="profil-nav" />
+              Profil
+            </a>
+          </li>
+          <li>
+            <a href="feedback.html">
+              <img alt="Feedback" id="feedback-nav" />
+              Feedback
+            </a>
+          </li>
+          <li>
+            <a href="#" id="logout-link">
+              <img alt="Déconnexion" id="logOut-nav" />
+              Se déconnecter
+            </a>
+          </li>
+        </ul>
+      </div>
+    </header>
+
+    <div id="app">
+      <h1>Le Royaume des Lettres</h1>
+      <div id="button_container"></div>
+      <h2>Progression de l'Enfant</h2>
+      <div id="container">
+        <!-- Liste les progressions et les résultats des évaluations -->
+
+        <!-- Exemple de structure de progression
+                        <div class="progression">  //Élément de la liste
+                            <h2>Évaluation Initiale</h2> //Intitulé de l'évaluation
+                            <div class="progress-card">
+                                <h3>Score: 71%</h3> //Score de l'évaluation
+                                <p>Durée de l'évaluation: 33 min 20 s</p> //Temps de l'évaluation
+                            </div>
+                        </div>
+                    -->
+
+        <!-- Niveau de l'enfant -->
+        <section id="chrono"></section>
+
+        <!-- Conteneur principal -->
+        <div id="sections-container">
+          <!-- Liste de Mots -->
+          <div id="conteneur-gauche">
+            <section id="liste-de-mots"></section>
+          </div>
+
+          <!-- Mots à trou -->
+          <div id="conteneur-droite">
+            <section id="Mot-a-trou"></section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

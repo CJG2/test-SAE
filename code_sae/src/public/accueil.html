@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Royaume des Lettres - Accueil</title>
+  </head>
+
+  <body>
+    <header>
+      <!-- Navigation -->
+      <nav>
+        <div class="logoApplication">
+          <img alt="Logo Application" id="logoApplication" />
+          <h1>Le Royaume des Lettres</h1>
+        </div>
+        <ul>
+          <!-- Bouton pour accéder aux pages -->
+          <li>
+            <a href="accueil.html">
+              <img alt="Accueil" id="home-navigation" />
+              Accueil
+            </a>
+          </li>
+          <li>
+            <a href="apprendre.html">
+              <img alt="Apprendre" id="learn-navigation" />
+              Apprendre
+            </a>
+          </li>
+          <li>
+            <a href="miniJeux.html">
+              <img alt="Mini-jeux" id="miniGames-navigation" />
+              Mini-jeux
+            </a>
+          </li>
+          <li>
+            <a href="#" id="logout-link">
+              <img alt="Déconnexion" id="logOut-navigation" />
+              Se déconnecter
+            </a>
+          </li>
+        </ul>
+        <!-- Bouton dépliant -->
+        <div class="hamburger">
+          <span class="line"></span>
+          <span class="line"></span>
+          <span class="line"></span>
+        </div>
+      </nav>
+      <!-- Menu dépliant -->
+      <div class="menubar">
+        <ul>
+          <li>
+            <a href="accueil.html">
+              <img alt="Accueil" id="home-nav" />
+              Accueil
+            </a>
+          </li>
+          <li>
+            <a href="apprendre.html">
+              <img alt="Apprendre" id="learn-nav" />
+              Apprendre
+            </a>
+          </li>
+          <li>
+            <a href="miniJeux.html">
+              <img alt="Mini-jeux" id="miniGames-nav" />
+              Mini-jeux
+            </a>
+          </li>
+          <li>
+            <a href="#" id="logout-link">
+              <img alt="Déconnexion" id="logOut-nav" />
+              Se déconnecter
+            </a>
+          </li>
+        </ul>
+      </div>
+    </header>
+
+    <div id="app">
+      <h1>Le Royaume des Lettres</h1>
+
+      <!-- Carrousel de l'alphabet -->
+      <div id="alphabet-carousel">
+        <button id="prev-button">&lt;</button>
+        <!-- Bouton précédent -->
+        <div id="letter-container">
+          <ul id="carousel-list">
+            <li id="letter"></li>
+            <!-- Les lettres seront ajoutées ici par JavaScript -->
+          </ul>
+        </div>
+        <button id="next-button">&gt;</button>
+        <!-- Bouton suivant -->
+      </div>
+
+      <h2>Accueil</h2>
+      <div id="container">
+        <!-- liste des 4 liens vers les 4 autres pages -->
+      </div>
+    </div>
+  </body>
+</html>
