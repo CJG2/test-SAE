@@ -297,7 +297,7 @@ export function choixCompte(adulte) {
             localStorage.setItem("chronoStart", startTime.toString());
 
             // Rediriger vers la page d'accueil
-            window.location.href = "/test-SAE/code_sae/dist/accueil.html";
+            window.location.href = "accueil.html";
         });
 
         // Ajouter le bouton dans le conteneur parent
