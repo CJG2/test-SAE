@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chargement</title>
+    <style>
+        @font-face {
+            /* importation de la font */
+            font-family: "Joti-One";
+            src: url("./code_sae/src/assets/fonts/JotiOne-Regular.ttf") format("truetype");
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-size: cover;
+            background-color: #59D5E0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Joti-One', sans-serif;
+            color: white;
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Chargement ...</h1>
+    <div class="loader"></div>
+
+    <script>
+        setTimeout(function() {
+            window.location.href = "./code_sae/dist/connexion.html";
+        }, 3000); // 10000 millisecondes = 5 secondes
+    </script>
+
+</body>
+</html>
