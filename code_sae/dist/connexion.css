@@ -262,6 +262,16 @@ button:hover {
     margin-top: 30px;
 }
 
+#bloc_connexion .passwordContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#bloc_connexion .Ipassword {
+    margin: 0
+}
+
 
 
 /*

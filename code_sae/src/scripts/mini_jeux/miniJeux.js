@@ -8,14 +8,13 @@ import { jeuListeDeMots } from "./listeDeMots/listeDeMots.js";
 import { stopChrono } from "../connexion/connexion.js";
 
 //importation des styles
-import "./../styles"
-import "./../styles/main.css"; // feuille de style générale
-import "./../styles/caroussel.css";
-import "./../styles/navigation.css";
-import "./../styles/miniJeux.css";
-import "./../styles/modal.css";
-import "./../styles/associationGame.css";
-import "./../styles/motscroises.css";
+import "./../../styles/main.css"; // feuille de style générale
+import "./../../styles/caroussel.css";
+import "./../../styles/navigation.css";
+import "./../../styles/miniJeux.css";
+import "./../../styles/modal.css";
+import "./../../styles/associationGame.css";
+import "./../../styles/motscroises.css";
 
 // Initialisation du carrousel quand le DOM est chargé
 document.addEventListener("DOMContentLoaded", initAlphabetCarousel);

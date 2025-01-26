@@ -1,54 +1,3 @@
-/*
-*   Palette :
-*       - #59D5E0
-*       - #F5DD61
-*       - #FAA300
-*       - #F4538A
-*/
-
-@font-face {
-  /* importation de la font */
-  font-family: "Joti-One";
-  src: url(614a43a74ffe8cf87adf.ttf) format("truetype");
-}
-
-h1,
-h2,
-h3,
-#alphabet-carousel {
-  font-family: "Joti-One";
-}
-
-#app h1 {
-  text-align: center;
-  color: white;
-  margin: 30px 0;
-  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
-  font-size: 50px;
-}
-
-#app h2 {
-  text-align: center;
-  color: white;
-  margin: 30px 0;
-  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
-  font-size: 40px;
-}
-
-#app h3 {
-  text-align: center;
-  color: white;
-  margin: 30px 0;
-  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
-  font-size: 22px;
-}
-
-* {
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 .jeu-listedemot {
     display: flex;
     flex-direction: column;
@@ -166,6 +115,416 @@ h3,
 *       - #F4538A
 */
 
+#bloc_connexion .inscrireTitle {
+    font-size: 40px;
+    text-align: center;
+    margin: 0;
+}
+
+#bloc_connexion div {
+    margin-bottom: 25px;
+}
+
+#bloc_connexion .responsableEnfantLabel {
+    font-size: 30px;
+    margin-top: 50px auto 50px;
+}
+
+#bloc_connexion .divNom, .divPrenom, .genreDiv, .emailDiv, .confirmEmailDiv, .passwordDiv, .confirmPasswordDiv, .telephoneDiv, .paysDiv {
+    display: flex;
+    flex-direction: column;
+}
+
+#bloc_connexion .divNaissanceParent select, #bloc_connexion .genreDiv select {
+    padding: 20px;
+}
+
+#bloc_connexion .selectsNaissanceParent select{
+    margin: 0;
+}
+
+#bloc_connexion .selectsNaissanceParent label {
+    font-size: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#bloc_connexion .selectsNaissanceParent {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#bloc_connexion #champsObligatoires{
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 20px 0px;
+    font-size: 15px;
+}
+
+#bloc_connexion .buttonsInscriptionDiv{
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-evenly;
+
+}
+
+#bloc_connexion .buttonsInscriptionDiv button{
+    border-radius: 15px;
+    padding: 10px;
+    width: 45%;
+    background-color: white;
+    font-size: 13px;
+    margin: 0 5px;
+}
+
+#bloc_connexion .buttonsInscriptionDiv .inscrireButton{
+    background-color: #F4538A;
+    color: white;
+}
+/*
+*   Palette :
+*       - #59D5E0
+*       - #F5DD61
+*       - #FAA300
+*       - #F4538A
+*/
+
+@font-face {
+  /* importation de la font */
+  font-family: "Joti-One";
+  src: url(614a43a74ffe8cf87adf.ttf) format("truetype");
+}
+
+h1,
+h2,
+h3,
+#alphabet-carousel {
+  font-family: "Joti-One";
+}
+
+#app h1 {
+  text-align: center;
+  color: white;
+  margin: 30px 0;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+  font-size: 50px;
+}
+
+#app h2 {
+  text-align: center;
+  color: white;
+  margin: 30px 0;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+  font-size: 40px;
+}
+
+#app h3 {
+  text-align: center;
+  color: white;
+  margin: 30px 0;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+  font-size: 22px;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/*
+*   Palette :
+*       - #59D5E0
+*       - #F5DD61
+*       - #FAA300
+*       - #F4538A
+*/
+@font-face {
+    /* importation de la font */
+    font-family: "Joti-One";
+    src: url(614a43a74ffe8cf87adf.ttf) format("truetype");
+}
+
+body{
+    margin: 8% auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #59D5E0;
+}
+
+h1{
+    color: white;
+    margin: 20px 0;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+    font-size: 60px;
+}
+
+#bloc_connexion {
+    background-color: #F5DD61;
+    border: 10px solid #FAA300;
+    border-radius: 20px;
+    width: 45%;
+    margin: auto;
+    padding: 25px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+}
+
+#bloc_connexion label {
+    font-family: "Joti-One";  
+    font-size: 20px;  
+}
+
+#lJour, #lMois, #lAnnee {
+    padding : 70px;  
+}
+
+#bloc_connexion input {
+    width: 100%;
+    height: 35px;
+    border-radius: 20px;
+    border: 3px solid #F4538A;
+    padding: 20px;
+}
+
+#bloc_connexion .Imail, #bloc_connexion .Ipassword {
+    margin-bottom: 20px;
+}
+
+#bloc_connexion select {
+    width: 30%;
+    height: 35px;
+    border-radius: 20px;
+    border: 3px solid #F4538A;
+    padding: 5px;
+}
+
+#bloc_connexion input:focus, select:focus {
+    border: 5px solid #F4538A;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+#bloc_connexion .resetPasswordButton {
+    border-radius: 50px;
+    padding: 7px;
+    margin: auto 10px;
+    background-color: #F4538A;
+    color: white;
+}
+
+#bloc_connexion .buttonInscrConnect{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 10px;
+}
+
+#bloc_connexion .buttonInscrConnect button{
+    border-radius: 15px;
+    padding: 10px;
+    width: 45%;
+    background-color: white;
+    font-size: 13px;
+    margin: 0 5px;
+}
+
+#bloc_connexion .buttonInscrConnect button:hover{
+    transform: rotate(-0.02turn);
+    border: 5px solid #59D5E0;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+    transition: 0.3s;
+}
+
+#bloc_connexion .resetPswd_return, #bloc_connexion .envoyerMailRecup {
+    border-radius: 15px;
+    padding: 10px;
+    width: fit-content;
+    background-color: white;
+    font-size: 13px;  
+    margin: 8px; 
+}
+
+#bloc_connexion .resetPswd_return:hover, #bloc_connexion .envoyerMailRecup:hover {
+    transform: scale(1.1);
+    border: 3px solid #59D5E0;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+#bloc_connexion .buttonMailRecupOrReturn{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#bloc_connexion .buttonMailRecupOrReturn button, #bloc_connexion .buttonInscrConnect button{
+    width: 50%;
+}
+
+#bloc_connexion .buttonMailRecupOrReturn .envoyerMailRecup {
+    background-color: #F4538A;
+    color: white;
+}
+
+#bloc_connexion .buttonMailRecupOrReturn{
+    margin-top: 30px;
+}
+
+#bloc_connexion .passwordContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#bloc_connexion .Ipassword {
+    margin: 0
+}
+
+
+
+/*
+================================================================================================================================
+Partie ChoixCompte
+================================================================================================================================
+*/
+
+#bloc_connexion .compteAdult {
+    display: flex;
+    width: 30%;
+    min-height: 40px;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 15px;
+}
+
+h3 {
+    margin: 0px auto 10px;
+}
+
+#bloc_connexion hr {
+    margin: 20px auto;
+}
+
+#bloc_connexion .enfantListeDiv{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+#bloc_connexion .enfantListeDiv .boutonCompteEnfant {
+    width: 30%;
+    min-height: 100px;
+    margin: 10px;
+    padding: 10px;
+    background-color: white;
+    font-size: 18px;
+    border-radius: 25px;
+    border: 3px solid #F4538A
+}
+
+#bloc_connexion .enfantListeDiv .boutonCompteEnfant:hover {
+    color: white;
+    background-color: #F4538A;
+    transition: 0.3s;
+}
+
+#bloc_connexion #divButton{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+}
+
+#bloc_connexion #divButton button{
+    width: 50%;
+    min-height: 30px;
+    margin: 10px;
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 20px;
+}
+
+
+
+/*
+================================================================================================================================
+Partie Responsive
+================================================================================================================================
+*/
+
+/*
+Responsive pour Ipad, tourné coté paysage
+*/
+
+@media only screen and (max-width: 1400px) {
+    body {
+        margin: 15% auto;
+    }
+
+    h1 {
+        font-size: 55px;
+    }
+
+    #bloc_connexion {
+        width: 70%;
+    }
+
+    #bloc_connexion label {
+        font-size: 25px;
+    }
+
+    #bloc_connexion .resetPasswordButton {
+        width: fit-content;
+        padding: 10px;
+        font-size: 20px;
+    }
+
+    #bloc_connexion input{
+        font-size: 20px;
+        height: 60px;
+    }
+
+    #bloc_connexion input::placeholder {
+        font-size: 20px;
+    }
+
+    #bloc_connexion .buttonInscrConnect button {
+        font-size: 20px;
+    }
+
+    #bloc_connexion .Imail, #bloc_connexion .Ipassword {
+        height: 60px;
+    }
+
+    #bloc_connexion .Imail, #bloc_connexion .Ipassword {
+        height: 60px;
+    }
+}
+/*
+*   Palette :
+*       - #59D5E0
+*       - #F5DD61
+*       - #FAA300
+*       - #F4538A
+*/
+
+#alphabet-carousel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 40%;
+  padding: 15px;
+  margin: auto;
+  background-color: #f4538a;
+  border-radius: 100px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
 #prev-button,
 #next-button {
   padding: 0;
@@ -173,11 +532,11 @@ h3,
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 75px;
-  height: 75px;
+  width: 85px;
+  height: 85px;
   border: 5px solid #faa300;
   border-radius: 100%;
-  font-size: 50px;
+  font-size: 60px;
 }
 
 #prev-button:hover,
@@ -188,6 +547,7 @@ h3,
 }
 
 #letter-container {
+  text-align: center;
   font-size: 100px;
   color : white;
 }
@@ -196,6 +556,12 @@ h3,
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px;
+  background-color: #F5DD61;
+  width: 25%;
+  border-radius: 100%;
+  border: 5px solid #faa300;
+  cursor: pointer;
 }
 
 #carousel-list {
@@ -362,19 +728,6 @@ header img {
 *       - #F4538A
 */
 
-#alphabet-carousel {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 30%;
-  height: 100px;
-  padding: 15px;
-  margin: auto;
-  background-color: #f4538a;
-  border-radius: 100px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-}
-
 nav {
   padding: 5px 5%;
   display: flex;
@@ -407,10 +760,11 @@ body {
 
 .linkMiniJeux {
   display: flex;
+  flex-wrap: nowrap;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  width: 30%;
+  align-items: center;
+  width: 25%;
   border-radius: 20px;
   padding: 20px;
   margin: 20px;
@@ -418,7 +772,8 @@ body {
   background-color: #f5dd61;
   color: white;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s;
+  animation: wave 1.5s ease-in-out infinite;
+  transition: transform 0.6s ease-in-out;
 }
 
 .linkMiniJeux img {
@@ -430,8 +785,19 @@ body {
   text-align: center;
 }
 
+@keyframes wave {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-30px) rotate(1deg); }
+}
+
+.linkMiniJeux:nth-child(1) { animation-delay: 0s; }
+.linkMiniJeux:nth-child(2) { animation-delay: 0.2s; }
+.linkMiniJeux:nth-child(3) { animation-delay: 0.5s; }
+.linkMiniJeux:nth-child(4) { animation-delay: 0.8s; }
+
+/* 🎯 Effet de pirouette au survol */
 .linkMiniJeux:hover {
-  transform: scale(1.1);
+  transform: rotateY(360deg) scale(1.1);
   cursor: pointer;
 }
 
@@ -513,7 +879,7 @@ body {
   border-radius: 20px;
   padding: 20px;
   width: 100%;
-  height: 100%;
+  max-height: 80vh;
   overflow-y: auto;
   position: relative;
 }
@@ -640,7 +1006,7 @@ body {
   z-index: 1000;
 }
 
-/* Style pour le conteneur du mot croisé */
+/* Conteneur du mot croisé */
 #crossword-container {
   display: flex;
   justify-content: center;
@@ -648,7 +1014,7 @@ body {
   margin: auto;
 }
 
-/* Style de la table et des cellules */
+/* Table et cellules */
 table {
   border-collapse: collapse;
   margin: 20px auto;
@@ -663,7 +1029,7 @@ td {
   border: 1px solid #333;
 }
 
-/* Styles pour les cellules remplies et vides */
+/* Cellules remplies et vides */
 .filled {
   background-color: #11b7e0c9;
   color: #f1f1f1;
@@ -674,163 +1040,13 @@ td {
 }
 
 .empty:hover {
-  background-color: #e0e0e0;  
+  background-color: #e0e0e0;
 }
 
-/* Style pour les boutons sous l'image */
+/* Boutons et menu déroulant */
 .game-header button,
 .game-header select {
-  background-color: #11b7e0c9; /* Bleu utilisé pour les cellules remplies */
-  color: white; /* Texte blanc */
-  border: none; /* Pas de bordure */
-  border-radius: 15px; /* Coins arrondis */
-  padding: 10px 20px; /* Espacement interne */
-  font-size: 1.1em; /* Texte légèrement plus grand */
-  font-family: "Arial", sans-serif; /* Police moderne et lisible */
-  cursor: pointer; /* Curseur en pointeur */
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Ombre subtile pour relief */
-  transition: background-color 0.2s, transform 0.2s; /* Animation douce */
-  margin: 5px; /* Espacement entre les boutons */
-  text-align: center;
-}
-
-/* Effet au survol pour les boutons */
-.game-header button:hover,
-.game-header select:hover {
-  background-color: #0fa7d1; /* Couleur légèrement plus sombre */
-  transform: scale(1.05); /* Légère mise en relief */
-}
-
-/* Style spécifique pour le menu déroulant */
-.game-header select {
-  appearance: none; /* Supprimer le style par défaut du menu */
-  background-color: #11b7e0c9; /* Même bleu que les boutons */
-  color: white; /* Texte blanc */
-  border: none; /* Pas de bordure */
-  border-radius: 15px; /* Coins arrondis */
-  padding: 10px 40px 10px 20px; /* Espacement interne avec plus à droite */
-  font-size: 1.1em; /* Taille du texte */
-  font-family: "Arial", sans-serif; /* Police moderne */
-  cursor: pointer; /* Curseur pointeur */
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Ombre subtile */
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 140 140%27%3E%3Cpolygon fill=%27%23FFF%27 points=%2770,105 105,35 35,35%27/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 15px center; /* Triangle bien aligné */
-  background-size: 12px;
-}
-
-/* Style de la popup */
-.popup {
-  display: block; 
-  position: fixed; 
-  z-index: 1001; 
-  left: 0;
-  top: 0;
-  width: 100%; 
-  height: 100%; 
-  background-color: rgba(0, 0, 0, 0.7); 
-  justify-content: center; 
-  align-items: center; 
-  display: flex; 
-}
-
-/* Contenu de la popup */
-.popup-content {
-  background-color: #11b7e0c9; 
-  margin: auto; 
-  padding: 20px; 
-  border: 1px solid #888; 
-  width: 300px; 
-  text-align: center; 
-}
-
-.close-button {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close-button:hover,
-.close-button:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.success {
-  color: green;
-}
-
-.error {
-  color: red;
-}
-
-.missing-letter {
-  background-color: #11b7e0c9; 
-  color: transparent; 
-}
-
-.help-icon {
-  cursor: pointer;
-  font-size: 30px; 
-  margin-left: 10px; 
-}
-
-.hidden {
-  opacity: 0; 
-}
-
-/* Style pour la popup de félicitations */
-#congratulations-popup,
-#error-popup,
-#game-over-popup {
-  display: flex;
-  position: fixed;
-  z-index: 1001;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7); /* Fond semi-transparent */
-  justify-content: center;
-  align-items: center;
-}
-
-#congratulations-popup .popup-content,
-#error-popup .popup-content,
-#game-over-popup .popup-content {
-  background-color: #11b7e0c9; /* Même bleu que les boutons */
-  padding: 20px;
-  border-radius: 15px;
-  text-align: center;
-  width: 300px;
-  position: relative;
-}
-
-#congratulations-popup h2 {
-  margin-bottom: 20px;
-  color: white;
-  font-size: 1.5em;
-}
-
-/* Style de la croix pour fermer */
-#congratulations-popup .close-button {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 24px;
-  color: white;
-  cursor: pointer;
-}
-
-#congratulations-popup .close-button:hover {
-  color: black;
-}
-
-/* Style du bouton "Rejouer" */
-#congratulations-popup .replay-button {
-  background-color: #c665d3a2; /* Rose des cases vides */
+  background-color: #11b7e0c9;
   color: white;
   border: none;
   border-radius: 15px;
@@ -840,46 +1056,103 @@ td {
   cursor: pointer;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   transition: background-color 0.2s, transform 0.2s;
+  margin: 5px;
+  text-align: center;
 }
 
-#congratulations-popup .replay-button:hover {
-  background-color: #b055c0; /* Rose plus foncé au survol */
+.game-header button:hover,
+.game-header select:hover {
+  background-color: #0fa7d1;
   transform: scale(1.05);
 }
 
-
-.error-icon {
-  width: 30px; /* Taille des icônes */
-  height: 30px;
-  opacity: 1;
-  transition: opacity 0.3s;
+.game-header select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 140 140%27%3E%3Cpolygon fill=%27%23FFF%27 points=%2770,105 105,35 35,35%27/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 12px;
+  padding-right: 40px;
 }
 
-.error-icon.inactive {
-  opacity: 0.3; /* Icônes désactivées */
+/* Popup */
+.popup {
+  display: flex;
+  position: fixed;
+  z-index: 1001;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
 }
 
-/* Conteneur pour la liste et le compteur */
+.popup-content {
+  background-color: #11b7e0c9;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  width: 300px;
+  position: relative;
+}
+
+.close-button {
+  color: white;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.close-button:hover {
+  color: black;
+}
+
+/* Styles supplémentaires */
+.success {
+  color: green;
+}
+
+.error {
+  color: red;
+}
+
+.missing-letter {
+  background-color: #11b7e0c9;
+  color: transparent;
+}
+
+.help-icon {
+  cursor: pointer;
+  font-size: 30px;
+  margin-left: 10px;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+/* Liste et compteur */
 .list-counter-container {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  gap: 20px; /* Espacement entre la liste et le compteur */
+  gap: 20px;
   margin-top: 20px;
 }
 
-/* Conteneur de la liste */
 .word-list {
-  flex: 3; /* La liste occupe plus de place */
+  flex: 3;
 }
 
-/* Conteneur du compteur d'erreurs */
 .error-container {
-  flex: 1; /* Le compteur occupe moins de place */
+  flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centrer les icônes horizontalement */
-  gap: 10px; /* Espacement entre les icônes */
+  align-items: center;
+  gap: 10px;
 }
 
 .error-icon {
@@ -890,40 +1163,6 @@ td {
 }
 
 .error-icon.inactive {
-  opacity: 0.3; /* Icônes désactivées */
-}
-
-/*
-*   Palette :
-*       - #59D5E0 cyan
-*       - #F5DD61 jaune
-*       - #FAA300 orange
-*       - #F4538A rose
-*/
-
-#listesMots {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding: 10px;
-  border-radius: 15px;
-}
-
-#gauche, #droite {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
-#gauche .boutonList, #droite .boutonList {
-  text-align: center;
-  margin: 15px auto;
-  width: 50%;
-  height: 55px;
-  cursor: pointer;
-  border: 3px solid #FAA300;
-  background-color: #F5DD61;
-  font-size: 220%;
+  opacity: 0.3;
 }
 

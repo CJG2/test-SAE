@@ -56,6 +56,365 @@ h3,
 *       - #FAA300
 *       - #F4538A
 */
+@font-face {
+    /* importation de la font */
+    font-family: "Joti-One";
+    src: url(614a43a74ffe8cf87adf.ttf) format("truetype");
+}
+
+body{
+    margin: 8% auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #59D5E0;
+}
+
+h1{
+    color: white;
+    margin: 20px 0;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+    font-size: 60px;
+}
+
+#bloc_connexion {
+    background-color: #F5DD61;
+    border: 10px solid #FAA300;
+    border-radius: 20px;
+    width: 45%;
+    margin: auto;
+    padding: 25px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+}
+
+#bloc_connexion label {
+    font-family: "Joti-One";  
+    font-size: 20px;  
+}
+
+#lJour, #lMois, #lAnnee {
+    padding : 70px;  
+}
+
+#bloc_connexion input {
+    width: 100%;
+    height: 35px;
+    border-radius: 20px;
+    border: 3px solid #F4538A;
+    padding: 20px;
+}
+
+#bloc_connexion .Imail, #bloc_connexion .Ipassword {
+    margin-bottom: 20px;
+}
+
+#bloc_connexion select {
+    width: 30%;
+    height: 35px;
+    border-radius: 20px;
+    border: 3px solid #F4538A;
+    padding: 5px;
+}
+
+#bloc_connexion input:focus, select:focus {
+    border: 5px solid #F4538A;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+#bloc_connexion .resetPasswordButton {
+    border-radius: 50px;
+    padding: 7px;
+    margin: auto 10px;
+    background-color: #F4538A;
+    color: white;
+}
+
+#bloc_connexion .buttonInscrConnect{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 10px;
+}
+
+#bloc_connexion .buttonInscrConnect button{
+    border-radius: 15px;
+    padding: 10px;
+    width: 45%;
+    background-color: white;
+    font-size: 13px;
+    margin: 0 5px;
+}
+
+#bloc_connexion .buttonInscrConnect button:hover{
+    transform: rotate(-0.02turn);
+    border: 5px solid #59D5E0;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+    transition: 0.3s;
+}
+
+#bloc_connexion .resetPswd_return, #bloc_connexion .envoyerMailRecup {
+    border-radius: 15px;
+    padding: 10px;
+    width: fit-content;
+    background-color: white;
+    font-size: 13px;  
+    margin: 8px; 
+}
+
+#bloc_connexion .resetPswd_return:hover, #bloc_connexion .envoyerMailRecup:hover {
+    transform: scale(1.1);
+    border: 3px solid #59D5E0;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+#bloc_connexion .buttonMailRecupOrReturn{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#bloc_connexion .buttonMailRecupOrReturn button, #bloc_connexion .buttonInscrConnect button{
+    width: 50%;
+}
+
+#bloc_connexion .buttonMailRecupOrReturn .envoyerMailRecup {
+    background-color: #F4538A;
+    color: white;
+}
+
+#bloc_connexion .buttonMailRecupOrReturn{
+    margin-top: 30px;
+}
+
+#bloc_connexion .passwordContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#bloc_connexion .Ipassword {
+    margin: 0
+}
+
+
+
+/*
+================================================================================================================================
+Partie ChoixCompte
+================================================================================================================================
+*/
+
+#bloc_connexion .compteAdult {
+    display: flex;
+    width: 30%;
+    min-height: 40px;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 15px;
+}
+
+h3 {
+    margin: 0px auto 10px;
+}
+
+#bloc_connexion hr {
+    margin: 20px auto;
+}
+
+#bloc_connexion .enfantListeDiv{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+#bloc_connexion .enfantListeDiv .boutonCompteEnfant {
+    width: 30%;
+    min-height: 100px;
+    margin: 10px;
+    padding: 10px;
+    background-color: white;
+    font-size: 18px;
+    border-radius: 25px;
+    border: 3px solid #F4538A
+}
+
+#bloc_connexion .enfantListeDiv .boutonCompteEnfant:hover {
+    color: white;
+    background-color: #F4538A;
+    transition: 0.3s;
+}
+
+#bloc_connexion #divButton{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+}
+
+#bloc_connexion #divButton button{
+    width: 50%;
+    min-height: 30px;
+    margin: 10px;
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 20px;
+}
+
+
+
+/*
+================================================================================================================================
+Partie Responsive
+================================================================================================================================
+*/
+
+/*
+Responsive pour Ipad, tourné coté paysage
+*/
+
+@media only screen and (max-width: 1400px) {
+    body {
+        margin: 15% auto;
+    }
+
+    h1 {
+        font-size: 55px;
+    }
+
+    #bloc_connexion {
+        width: 70%;
+    }
+
+    #bloc_connexion label {
+        font-size: 25px;
+    }
+
+    #bloc_connexion .resetPasswordButton {
+        width: fit-content;
+        padding: 10px;
+        font-size: 20px;
+    }
+
+    #bloc_connexion input{
+        font-size: 20px;
+        height: 60px;
+    }
+
+    #bloc_connexion input::placeholder {
+        font-size: 20px;
+    }
+
+    #bloc_connexion .buttonInscrConnect button {
+        font-size: 20px;
+    }
+
+    #bloc_connexion .Imail, #bloc_connexion .Ipassword {
+        height: 60px;
+    }
+
+    #bloc_connexion .Imail, #bloc_connexion .Ipassword {
+        height: 60px;
+    }
+}
+/*
+*   Palette :
+*       - #59D5E0
+*       - #F5DD61
+*       - #FAA300
+*       - #F4538A
+*/
+
+#bloc_connexion .inscrireTitle {
+    font-size: 40px;
+    text-align: center;
+    margin: 0;
+}
+
+#bloc_connexion div {
+    margin-bottom: 25px;
+}
+
+#bloc_connexion .responsableEnfantLabel {
+    font-size: 30px;
+    margin-top: 50px auto 50px;
+}
+
+#bloc_connexion .divNom, .divPrenom, .genreDiv, .emailDiv, .confirmEmailDiv, .passwordDiv, .confirmPasswordDiv, .telephoneDiv, .paysDiv {
+    display: flex;
+    flex-direction: column;
+}
+
+#bloc_connexion .divNaissanceParent select, #bloc_connexion .genreDiv select {
+    padding: 20px;
+}
+
+#bloc_connexion .selectsNaissanceParent select{
+    margin: 0;
+}
+
+#bloc_connexion .selectsNaissanceParent label {
+    font-size: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#bloc_connexion .selectsNaissanceParent {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#bloc_connexion #champsObligatoires{
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 20px 0px;
+    font-size: 15px;
+}
+
+#bloc_connexion .buttonsInscriptionDiv{
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-evenly;
+
+}
+
+#bloc_connexion .buttonsInscriptionDiv button{
+    border-radius: 15px;
+    padding: 10px;
+    width: 45%;
+    background-color: white;
+    font-size: 13px;
+    margin: 0 5px;
+}
+
+#bloc_connexion .buttonsInscriptionDiv .inscrireButton{
+    background-color: #F4538A;
+    color: white;
+}
+/*
+*   Palette :
+*       - #59D5E0
+*       - #F5DD61
+*       - #FAA300
+*       - #F4538A
+*/
+
+#alphabet-carousel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 40%;
+  padding: 15px;
+  margin: auto;
+  background-color: #f4538a;
+  border-radius: 100px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
 
 #prev-button,
 #next-button {
@@ -64,11 +423,11 @@ h3,
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 75px;
-  height: 75px;
+  width: 85px;
+  height: 85px;
   border: 5px solid #faa300;
   border-radius: 100%;
-  font-size: 50px;
+  font-size: 60px;
 }
 
 #prev-button:hover,
@@ -79,6 +438,7 @@ h3,
 }
 
 #letter-container {
+  text-align: center;
   font-size: 100px;
   color : white;
 }
@@ -87,6 +447,12 @@ h3,
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px;
+  background-color: #F5DD61;
+  width: 25%;
+  border-radius: 100%;
+  border: 5px solid #faa300;
+  cursor: pointer;
 }
 
 #carousel-list {
@@ -282,6 +648,193 @@ body {
   background-color: #59d5e0;
 }
 
+h1,
+h2 {
+  color: white;
+  text-align: center;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+h2 {
+  font-size: 40px;
+  margin: 30px 0;
+}
+
+#profil {
+  background-color: #f5dd61;
+  border: 10px solid #faa300;
+  border-radius: 20px;
+  width: 50%;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 8% auto;
+}
+
+#profil h3 {
+  font-family: "Joti-One";
+  color: white;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+#profil label {
+  font-family: "Joti-One";
+  font-size: 20px;
+  color: #333;
+}
+
+#profil input,
+#profil select {
+  width: 100%;
+  height: 35px;
+  border-radius: 20px;
+  border: 3px solid #f4538a;
+  padding: 5px 15px;
+  margin: 10px 0;
+}
+
+#profil input:focus,
+#profil select:focus {
+  border: 5px solid #f4538a;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+.date_naissance_enfant,
+.date_naissance_parent_tuteur {
+  display: flex;
+  gap: 5px;
+}
+
+.date_naissance_enfant input,
+.date_naissance_parent_tuteur input {
+  width: 30%;
+  text-align: center;
+}
+
+#profil #civilite,
+#profil #email,
+#profil #telephone,
+#profil #pays {
+  margin-top: 15px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+/* Pour les éléments d'action de la page */
+.resetPasswordButton {
+  border-radius: 50px;
+  padding: 7px;
+  background-color: #f4538a;
+  color: white;
+  font-family: "Joti-One";
+  font-size: 16px;
+}
+
+button {
+  width: auto;
+  min-height: 100px;
+  margin: 10px;
+  padding: 10px;
+  background-color: white;
+  font-size: 18px;
+  border-radius: 25px;
+  border: 3px solid #F4538A
+}
+
+#profil button {
+  width: 40%;
+  min-height: 100px;
+  margin: 10px;
+  padding: 10px;
+  background-color: white;
+  font-size: 18px;
+  border-radius: 25px;
+  border: 3px solid #F4538A
+}
+
+button:hover {
+  color: white;
+  background-color: #F4538A;
+  transition: 0.3s;
+}
+
+#profil button:hover {
+  color: white;
+  background-color: #F4538A;
+  transition: 0.3s;
+}
+
+.resetPswd_return,
+.envoyerMailRecup {
+  border-radius: 15px;
+  padding: 10px;
+  width: fit-content;
+  background-color: white;
+  font-family: "Joti-One";
+  font-size: 13px;
+  margin: 8px;
+}
+
+.resetPswd_return:hover,
+.envoyerMailRecup:hover {
+  transform: scale(1.1);
+  border: 3px solid #59d5e0;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+.compteEnfantProfil {
+  width: 150px;
+}
+
+#changerProfil .compteParentProfil {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 30px;
+}
+/*
+*   Palette :
+*       - #59D5E0
+*       - #F5DD61
+*       - #FAA300
+*       - #F4538A
+*/
+
+@font-face {
+  /* Importation de la font */
+  font-family: "Joti-One";
+  src: url(614a43a74ffe8cf87adf.ttf) format("truetype");
+}
+
+nav {
+  padding: 5px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f4538a;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  z-index: 1;
+}
+
+nav ul li a:hover {
+  background-color: #f5dd61;
+  transform: scale(1.1);
+  transition: 0.3s;
+}
+
+body {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  background-color: #59d5e0;
+}
+
 #container {
   display: flex;
   flex-direction: column;
@@ -304,7 +857,7 @@ h1 {
 }
 
 /* Jauge horizontale */
-#niveau-enfant {
+#chrono {
   background-color: #f5dd61;
   border: 10px solid #faa300;
   border-radius: 20px;
@@ -313,6 +866,12 @@ h1 {
   width: 80%;
   margin-bottom: 30px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+#chronoDisplay{
+  color : white;
+  font-size : 32px;
+  font-family: "Joti-One";
 }
 
 #jauge-niveau {
@@ -332,10 +891,14 @@ h1 {
   left: 0;
 }
 
+section {
+  margin: 20px;
+}
+
 /* Conteneur principal */
 #sections-container {
   display: flex;
-  width: 80%;
+  width: 100%;
   gap: 20px;
   justify-content: space-between;
 }
@@ -347,9 +910,9 @@ h1 {
   gap: 20px;
 }
 
-#exercices-recents,
-#erreurs-recentes,
-#exercices-suggeres {
+#liste-de-mots,
+#association-game,
+#Mot-a-trou {
   background-color: #f5dd61;
   border: 10px solid #faa300;
   border-radius: 20px;
@@ -357,7 +920,7 @@ h1 {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
-#exercices-suggeres {
+#Mot-a-trou {
   flex: 1;
 }
 
@@ -374,5 +937,26 @@ li {
   margin: 10px 0;
   font-size: 16px;
   color: #333;
+}
+
+#button_container {
+  text-align: center;
+}
+
+button {
+  width: auto;
+  min-height: 100px;
+  margin: 10px;
+  padding: 10px;
+  background-color: white;
+  font-size: 18px;
+  border-radius: 25px;
+  border: 3px solid #f4538a;
+}
+
+button:hover {
+  color: white;
+  background-color: #f4538a;
+  transition: 0.3s;
 }
 
