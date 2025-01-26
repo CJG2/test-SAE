@@ -16,7 +16,6 @@ import "./../styles/miniJeux.css";
 import "./../styles/modal.css";
 import "./../styles/associationGame.css";
 import "./../styles/motscroises.css";
-import "./../styles/listeDeMots.css";
 
 // Initialisation du carrousel quand le DOM est chargé
 document.addEventListener("DOMContentLoaded", initAlphabetCarousel);
