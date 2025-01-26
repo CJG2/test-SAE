@@ -28,7 +28,7 @@ export function jeuMotsCroises(modalBody) {
     }
 
     async loadWordBank() {
-      const response = await fetch("http://localhost:3000/api/mot");
+      const response = await fetch("https://test-sae.onrender.com/api/mot");
       const words = await response.json();
 
       console.log("Mots récupérés depuis l'API :");

@@ -235,7 +235,7 @@ export function choixCompte(adulte) {
   divAdult.appendChild(compteAdult);
   emplacement.appendChild(divAdult);
   
-  fetch("http://localhost:3000/api/enfant")
+  fetch("https://test-sae.onrender.com/api/enfant")
     .then((response) => {
       if (!response.ok) {
         throw new Error("Erreur de serveur");

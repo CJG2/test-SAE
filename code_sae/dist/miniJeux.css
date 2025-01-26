@@ -1166,3 +1166,37 @@ td {
   opacity: 0.3;
 }
 
+/*
+*   Palette :
+*       - #59D5E0 cyan
+*       - #F5DD61 jaune
+*       - #FAA300 orange
+*       - #F4538A rose
+*/
+
+#listesMots {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+  border-radius: 15px;
+}
+
+#gauche, #droite {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+#gauche .boutonList, #droite .boutonList {
+  text-align: center;
+  margin: 15px auto;
+  width: 50%;
+  height: 55px;
+  cursor: pointer;
+  border: 3px solid #FAA300;
+  background-color: #F5DD61;
+  font-size: 220%;
+}
+

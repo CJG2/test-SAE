@@ -36,7 +36,7 @@ export async function jeuAssociation(modalBody) {
      */
     async loadWordBank() {
       try {
-        const response = await fetch("http://localhost:3000/api/mot");
+        const response = await fetch("https://test-sae.onrender.com/api/mot");
         if (!response.ok)
           throw new Error("Erreur lors du chargement des mots.");
         const data = await response.json();
@@ -277,7 +277,7 @@ export async function jeuAssociation(modalBody) {
         }, 1000);
 
         async function recupererDernierExerciceFait(id_enfant, id_exercice) {
-          const reponse = await fetch("http://localhost:3000/api/realiser");
+          const reponse = await fetch("https://test-sae.onrender.com/api/realiser");
           const exercicesRealiser = await reponse.json();
           const tabExosRealiser = exercicesRealiser.filter(
             (exerciceRealiser) =>
@@ -301,7 +301,7 @@ export async function jeuAssociation(modalBody) {
             });
 
             const response = await fetch(
-              "http://localhost:3000/api/realiser/create",
+              "https://test-sae.onrender.com/api/realiser/create",
               {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },

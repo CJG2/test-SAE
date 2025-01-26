@@ -709,7 +709,7 @@ function effacerParent(
 function ajouterAdulte(email, password, nom, prenom, jour, mois, annee, civilite, pays, sel, telephone) {
   console.log('Données envoyées :', { email, password, nom, prenom, jour, mois, annee, civilite, pays, sel, telephone });
 
-  fetch('http://localhost:3000/api/create', {
+  fetch('https://test-sae.onrender.com/api/create', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, password, nom, prenom, jour, mois, annee, civilite, pays, sel, telephone }),

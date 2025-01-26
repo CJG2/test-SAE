@@ -817,7 +817,7 @@ function modifierMotDePasse() {
  * @async
  */
 export async function recupererEnfantsDUnResponsable() {
-  const reponse = await fetch("http://localhost:3000/api/enfant");
+  const reponse = await fetch("https://test-sae.onrender.com/api/enfant");
 
   const enfants = await reponse.json();
   const tabenfants = enfants.filter(
@@ -834,7 +834,7 @@ export async function recupererEnfantsDUnResponsable() {
  */
 export async function recupererResponsable(nouveauMail) {
   try {
-    const response = await fetch("http://localhost:3000/api/responsable");
+    const response = await fetch("https://test-sae.onrender.com/api/responsable");
     const responsables = await response.json();
 
     const leResponsable = responsables.find(
@@ -885,7 +885,7 @@ async function miseAJourEnfant(newNom, newPrenom, newDateNaiss, newGenre, id) {
     id,
   });
   try {
-    const response = await fetch("http://localhost:3000/api/enfant/update", {
+    const response = await fetch("https://test-sae.onrender.com/api/enfant/update", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ newNom, newPrenom, newDateNaiss, newGenre, id }),
@@ -925,7 +925,7 @@ async function miseAJourEnfant(newNom, newPrenom, newDateNaiss, newGenre, id) {
 async function miseAJourUsernameEnfant(newUsername, username) {
   console.log("Données envoyées :", { newUsername, username });
 
-  fetch("http://localhost:3000/api/enfant/updateUsername", {
+  fetch("https://test-sae.onrender.com/api/enfant/updateUsername", {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ newUsername, username }),
@@ -1056,7 +1056,7 @@ async function miseAJourAdulte(
 function miseAJourMDPAdulte(newPassword, newSel, username) {
   console.log("Données envoyées :", { newPassword, newSel, username });
 
-  fetch("http://localhost:3000/api/responsable/updateMDP", {
+  fetch("https://test-sae.onrender.com/api/responsable/updateMDP", {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ newPassword, newSel, username }),

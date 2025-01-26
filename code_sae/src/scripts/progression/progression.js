@@ -28,7 +28,7 @@ let chronoStartTime;
  * @returns {Promise<Object>} - Un objet contenant les informations sur l'exercice à récupérer.
 */ 
 async function recupererExercice() {
-  const reponse = await fetch("http://localhost:3000/api/exercice");
+  const reponse = await fetch("https://test-sae.onrender.com/api/exercice");
   const exercices = await reponse.json();
 
   tabExos = exercices.filter(
@@ -48,7 +48,7 @@ async function recupererExercice() {
  * @returns {Promise<Object>} - Un objet contenant les informations du dernier exercice effectué.
 */ 
 export async function recupererDernierExerciceFait(enfant, idExercice) {
-  const reponse = await fetch("http://localhost:3000/api/realiser");
+  const reponse = await fetch("https://test-sae.onrender.com/api/realiser");
   const exercicesRealiser = await reponse.json();
   return exercicesRealiser.filter(
     (exerciceRealiser) =>

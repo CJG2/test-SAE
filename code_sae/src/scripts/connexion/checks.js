@@ -12,7 +12,7 @@ import { hachage } from "./hachage.js";
  */
  export function verifConnexion(identifiant, mdp) {
     // On effectue une requête pour obtenir tous les adultes
-    fetch("http://localhost:3000/api/responsable")
+    fetch("https://test-sae.onrender.com/api/responsable")
         .then(response => {
             if (!response.ok) {
                 throw new Error("Erreur de serveur");

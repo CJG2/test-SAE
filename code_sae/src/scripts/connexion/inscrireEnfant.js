@@ -345,7 +345,7 @@ export function effacerEnfant(
  * @param {*} username
  */
 function ajouterEnfant(nom, prenom, jour, mois, annee, genre, username) {
-  fetch('http://localhost:3000/api/enfant/create', {
+  fetch('https://test-sae.onrender.com/api/enfant/create', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ nom, prenom, jour, mois, annee, genre, username }),

@@ -65,7 +65,7 @@ function normalizeString(str)
 async function motsExo(nbMot) {
   let motsAleatoires = [];
   try {
-    const response = await fetch("http://localhost:3000/api/mot");
+    const response = await fetch("https://test-sae.onrender.com/api/mot");
     if (!response.ok) {
       throw new Error("Erreur de serveur");
     }
@@ -453,7 +453,7 @@ export async function jeuMotAtrou()
  */
 async function recupererExercice() 
 {
-    const reponse = await fetch("http://localhost:3000/api/exercice");
+    const reponse = await fetch("https://test-sae.onrender.com/api/exercice");
 
     const exercices = await reponse.json();
 
@@ -470,7 +470,7 @@ async function recupererExercice()
  */
 async function recupererDernierExerciceFait() 
 {
-  const reponse = await fetch("http://localhost:3000/api/realiser");
+  const reponse = await fetch("https://test-sae.onrender.com/api/realiser");
 
   const exercicesRealiser = await reponse.json();
   const tabExosRealiser = exercicesRealiser.filter(exerciceRealiser => exerciceRealiser.id_enfant === enfantConnecte.id && exerciceRealiser.id_exercice === idExo);

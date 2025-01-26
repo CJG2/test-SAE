@@ -191,7 +191,7 @@ function selectMot(motSelected)
  */
 export async function recupererMots() 
 {
-    const reponse = await fetch("http://localhost:3000/api/mot");
+    const reponse = await fetch("https://test-sae.onrender.com/api/mot");
 
     const words = await reponse.json();
 
@@ -364,7 +364,7 @@ function melange(mots)
  */
 async function recupererExercice(libelle) 
 {
-    const reponse = await fetch("http://localhost:3000/api/exercice");
+    const reponse = await fetch("https://test-sae.onrender.com/api/exercice");
 
     const exercices = await reponse.json();
 
@@ -383,7 +383,7 @@ async function recupererExercice(libelle)
  */
 export async function recupererDernierExerciceFait(id_enfant, id_exo) 
 {
-    const reponse = await fetch("http://localhost:3000/api/realiser");
+    const reponse = await fetch("https://test-sae.onrender.com/api/realiser");
 
     const exercicesRealiser = await reponse.json();
     const tabExosRealiser = exercicesRealiser.filter(exerciceRealiser => exerciceRealiser.id_enfant === id_enfant && exerciceRealiser.id_exercice === id_exo);

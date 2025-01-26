@@ -20,7 +20,7 @@ export async function exerciceLectureSyllabe(modalBody) {
 
   const loadWordBank = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/mot");
+      const response = await fetch("https://test-sae.onrender.com/api/mot");
       if (!response.ok) throw new Error("Erreur lors du chargement des mots.");
       return await response.json();
     } catch (error) {
