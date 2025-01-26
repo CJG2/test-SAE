@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
       sessionStorage.clear(); // Supprimer les données de session
 
       // Rediriger vers la page de connexion
-      window.location.href = "/connexion.html";
+      window.location.href = "/code_sae/dist/connexion.html";
     });
   }
 
