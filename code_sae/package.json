@@ -4,7 +4,7 @@
   "description": "Application Web pour l'apprentissage de la lecture",
   "main": "index.js",
   "scripts": {
-    "build": "webpack serve --mode development",
+    "build": "npm install && webpack --mode production",
     "start": "webpack serve --mode development",
     "docs": "jsdoc ./src/*.js ./backend/*.js ./src/**/*.js ./backend/**/*.js -d ./../annexes/Livrables_SAE/R3.04_Documentation-S.Thon"
   },
