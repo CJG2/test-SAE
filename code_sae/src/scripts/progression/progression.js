@@ -376,7 +376,7 @@ document.addEventListener("DOMContentLoaded", () => {
       sessionStorage.removeItem("enfantConnecte");
       sessionStorage.removeItem("adulteConnecte");
 
-      window.location.href = "/code_sae/dist/connexion.html";
+      window.location.href = "/test-SAE/code_sae/dist/connexion.html";
     });
   }
 });
