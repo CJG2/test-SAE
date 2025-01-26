@@ -20,7 +20,7 @@ app.use('/api', exerciceRoutes); // route vers le json de la table exercice
 app.use('/api', realiserRoutes); // route vers le json de la table realiser
 app.use('/api', contenirRoutes); // route vers le json de la table contenir
 
-const PORT = process.env.PORT || 8100;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Serveur démarré sur http://localhost:${PORT}`);
 });

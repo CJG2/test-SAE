@@ -1,5 +1,6 @@
-const connection = require('../config/db'); // Importer la connexion à la DB
+// motController.js
 
+const db = require('../config/db'); // Importer le pool de connexions
 
 /**
  * Exemple de fonction pour récupérer tous les mots
@@ -7,14 +8,14 @@ const connection = require('../config/db'); // Importer la connexion à la DB
  * @param {*} req
  * @param {*} res
  */
-const getMot = (req, res) => {
-  connection.query('SELECT * FROM Mot', (err, results) => {
-    if (err) {
-      console.error('Erreur lors de la récupération des mots:', err);  // Correction du message
-      return res.status(500).json({ error: 'Erreur de serveur' });
-    }
+const getMot = async (req, res) => {
+  try {
+    const [results] = await db.execute('SELECT * FROM Mot');
     res.json(results); // Retourner les résultats en JSON
-  });
+  } catch (err) {
+    console.error('Erreur lors de la récupération des mots:', err);
+    return res.status(500).json({ error: 'Erreur de serveur' });
+  }
 };
 
 module.exports = { getMot };

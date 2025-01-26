@@ -1,5 +1,6 @@
-const connection = require('../config/db'); // Importer la connexion à la base de données
+// enfantController.js
 
+const db = require('../config/db'); // Importer le pool de connexions
 
 /**
  * Fonction pour récupérer tous les enfants
@@ -7,17 +8,16 @@ const connection = require('../config/db'); // Importer la connexion à la base 
  * @param {*} req
  * @param {*} res
  */
-const getEnfant = (req, res) => {
+const getEnfant = async (req, res) => {
   const query = 'SELECT * FROM Enfant';
-  connection.query(query, (err, results) => {
-    if (err) {
-      console.error('Erreur lors de la récupération des enfants:', err);
-      return res.status(500).json({ error: 'Erreur de serveur' });
-    }
+  try {
+    const [results] = await db.execute(query);
     res.json(results); // Retourner les résultats en JSON
-  });
+  } catch (err) {
+    console.error('Erreur lors de la récupération des enfants:', err);
+    return res.status(500).json({ error: 'Erreur de serveur' });
+  }
 };
-
 
 /**
  * Fonction pour récupérer un enfant spécifique par son ID
@@ -25,19 +25,20 @@ const getEnfant = (req, res) => {
  * @param {*} req
  * @param {*} res
  */
-const getEnfantById = (req, res) => {
+const getEnfantById = async (req, res) => {
   const { id } = req.params; // Récupérer l'ID de l'enfant depuis les paramètres de l'URL
   const query = 'SELECT * FROM Enfant WHERE id_enfant = ?';
-  connection.query(query, [id], (err, results) => {
-    if (err) {
-      console.error('Erreur lors de la récupération de l\'enfant:', err);
-      return res.status(500).json({ error: 'Erreur de serveur' });
-    }
+  
+  try {
+    const [results] = await db.execute(query, [id]);
     if (results.length === 0) {
       return res.status(404).json({ error: 'Enfant non trouvé' });
     }
     res.json(results[0]); // Retourner l'enfant trouvé
-  });
+  } catch (err) {
+    console.error('Erreur lors de la récupération de l\'enfant:', err);
+    return res.status(500).json({ error: 'Erreur de serveur' });
+  }
 };
 
 /**
@@ -46,21 +47,21 @@ const getEnfantById = (req, res) => {
  * @param {*} req
  * @param {*} res
  */
-const getEnfantByResponsableId = (req, res) => {
-  const { username } = req.params; // Récupérer l'ID de l'enfant depuis les paramètres de l'URL
+const getEnfantByResponsableId = async (req, res) => {
+  const { username } = req.params; // Récupérer le username de l'enfant depuis les paramètres de l'URL
   const query = 'SELECT * FROM Enfant WHERE username = ?';
-  connection.query(query, [username], (err, results) => {
-    if (err) {
-      console.error('Erreur lors de la récupération de l\'enfant:', err);
-      return res.status(500).json({ error: 'Erreur de serveur' });
-    }
+  
+  try {
+    const [results] = await db.execute(query, [username]);
     if (results.length === 0) {
       return res.status(404).json({ error: 'Enfant non trouvé' });
     }
     res.json(results[0]); // Retourner l'enfant trouvé
-  });
+  } catch (err) {
+    console.error('Erreur lors de la récupération de l\'enfant:', err);
+    return res.status(500).json({ error: 'Erreur de serveur' });
+  }
 };
-
 
 /**
  * Fonction pour créer un nouvel enfant
@@ -68,114 +69,74 @@ const getEnfantByResponsableId = (req, res) => {
  * @param {*} req
  * @param {*} res
  */
-function createEnfant(nom, prenom, jour, mois, annee, genre, username) {
+const createEnfant = async (req, res) => {
+  const { nom, prenom, jour, mois, annee, genre, username } = req.body;
   const query = `
     INSERT INTO Enfant (nom_enfant, prenom_enfant, date_naissance, genre, username, date_creation)
     VALUES (?, ?, ?, ?, ?, DEFAULT)
   `;
-
-  return new Promise((resolve, reject) => {
-    connection.query(
-      query,
-      [nom, prenom, `${annee}-${mois}-${jour}`, genre, username],
-      (err, results) => {
-        if(err) {
-          console.error('Erreur SQL:', err.message); // Log détaillé
-          console.error('Données insérées:', { nom, prenom, jour, mois, annee, genre, username });
-          return reject(err);
-        }
-        resolve(results);
-      }
-    );
-  });
-}
-
+  
+  try {
+    const [results] = await db.execute(query, [nom, prenom, `${annee}-${mois}-${jour}`, genre, username]);
+    res.json({ message: 'Enfant créé avec succès', id_enfant: results.insertId });
+  } catch (err) {
+    console.error('Erreur lors de la création de l\'enfant:', err);
+    return res.status(500).json({ error: 'Erreur de serveur' });
+  }
+};
 
 /**
  * Fonction pour mettre à jour un enfant
  *
- * @param {*} newNom
- * @param {*} newPrenom
- * @param {*} newDateNaiss
- * @param {*} newGenre
- * @param {*} newNationalite
- * @param {*} id
+ * @param {*} req
+ * @param {*} res
  */
-function updateEnfant(newNom, newPrenom, newDateNaiss, newGenre, id) 
-{
+const updateEnfant = async (req, res) => {
+  const { id } = req.params;
+  const { newNom, newPrenom, newDateNaiss, newGenre } = req.body;
   const query = `
-      UPDATE Enfant
-      SET nom_enfant = ?,
-      prenom_enfant = ?,
-      date_naissance = ?,
-      genre = ?
-      WHERE id_enfant = ?
+    UPDATE Enfant
+    SET nom_enfant = ?, prenom_enfant = ?, date_naissance = ?, genre = ?
+    WHERE id_enfant = ?
   `;
-
-  return new Promise((resolve, reject) => {
-    connection.query(
-      query,
-      [newNom, newPrenom, newDateNaiss, newGenre, id],
-      (err, results) => {
-        if (err) 
-        {
-          console.error('Erreur SQL:', err.message); // Log détaillé
-          console.error('Données utilisées:', { newNom, newPrenom, newDateNaiss, newGenre, id });
-          return reject(err);
-        }
-
-        if (results.affectedRows === 0) 
-        {
-          console.warn('Aucun enfant trouvé avec cet identifiant :', id);
-          return reject(new Error("Aucun enfant trouvé avec cet identifiant."));
-        }
-
-        resolve(results);
-      }
-    );
-  });
-}
-
+  
+  try {
+    const [results] = await db.execute(query, [newNom, newPrenom, newDateNaiss, newGenre, id]);
+    if (results.affectedRows === 0) {
+      return res.status(404).json({ error: 'Enfant non trouvé' });
+    }
+    res.json({ message: 'Enfant mis à jour avec succès' });
+  } catch (err) {
+    console.error('Erreur lors de la mise à jour de l\'enfant:', err);
+    return res.status(500).json({ error: 'Erreur de serveur' });
+  }
+};
 
 /**
  * Fonction pour modifier le username d'un Enfant
  * 
- * @param {*} newUsername
- * @param {*} username 
- * @returns 
+ * @param {*} req
+ * @param {*} res
  */
-function updateUsernameEnfant(newUsername, username) 
-{
+const updateUsernameEnfant = async (req, res) => {
+  const { newUsername, username } = req.body;
   const query = `
-      UPDATE Enfant
-      SET username = ?
-      WHERE username = ?
+    UPDATE Enfant
+    SET username = ?
+    WHERE username = ?
   `;
-
-  return new Promise((resolve, reject) => {
-    connection.query(
-      query,
-      [newUsername, username],
-      (err, results) => {
-        if (err) 
-        {
-          console.error('Erreur SQL:', err.message); // Log détaillé
-          console.error('Données utilisées:', { newUsername, username });
-          return reject(err);
-        }
-
-        if (results.affectedRows === 0) 
-        {
-          console.warn('Aucun responsable trouvé avec ce username:', username);
-          return reject(new Error("Aucun utilisateur trouvé avec ce username."));
-        }
-
-        resolve(results);
-      }
-    );
-  });
-}
-
+  
+  try {
+    const [results] = await db.execute(query, [newUsername, username]);
+    if (results.affectedRows === 0) {
+      return res.status(404).json({ error: 'Enfant non trouvé' });
+    }
+    res.json({ message: 'Username mis à jour avec succès' });
+  } catch (err) {
+    console.error('Erreur lors de la mise à jour du username de l\'enfant:', err);
+    return res.status(500).json({ error: 'Erreur de serveur' });
+  }
+};
 
 /**
  * Fonction pour supprimer un enfant
@@ -183,20 +144,20 @@ function updateUsernameEnfant(newUsername, username)
  * @param {*} req
  * @param {*} res
  */
-const deleteEnfant = (req, res) => {
+const deleteEnfant = async (req, res) => {
   const { id } = req.params; // Récupérer l'ID de l'enfant depuis les paramètres de l'URL
   const query = 'DELETE FROM Enfant WHERE id_enfant = ?';
   
-  connection.query(query, [id], (err, results) => {
-    if (err) {
-      console.error('Erreur lors de la suppression de l\'enfant:', err);
-      return res.status(500).json({ error: 'Erreur de serveur' });
-    }
+  try {
+    const [results] = await db.execute(query, [id]);
     if (results.affectedRows === 0) {
       return res.status(404).json({ error: 'Enfant non trouvé' });
     }
     res.json({ message: 'Enfant supprimé avec succès' });
-  });
+  } catch (err) {
+    console.error('Erreur lors de la suppression de l\'enfant:', err);
+    return res.status(500).json({ error: 'Erreur de serveur' });
+  }
 };
 
 module.exports = {
