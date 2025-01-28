@@ -6,7 +6,6 @@
     <title>Chargement</title>
     <style>
         @font-face {
-            /* importation de la font */
             font-family: "Joti-One";
             src: url("./code_sae/src/assets/fonts/JotiOne-Regular.ttf") format("truetype");
         }
@@ -28,8 +27,14 @@
         h1 {
             font-family: 'Joti-One', sans-serif;
             color: white;
-            font-size: 3em;
+            font-size: 2.5em;
             margin-bottom: 20px;
+        }
+
+        p {
+            color: white;
+            font-size: 1.2em;
+            margin-top: 10px;
         }
 
         .loader {
@@ -39,6 +44,7 @@
             width: 50px;
             height: 50px;
             animation: spin 2s linear infinite;
+            margin-bottom: 20px;
         }
 
         @keyframes spin {
@@ -51,11 +57,71 @@
 
     <h1>Chargement ...</h1>
     <div class="loader"></div>
+    <p id="status">Connexion à la base de données (cette opération peut prendre environ 1 minute).</p>
 
     <script>
-        setTimeout(function() {
-            window.location.href = "./code_sae/dist/connexion.html";
-        }, 3000); // 10000 millisecondes = 5 secondes
+        // Fonction pour simuler la connexion au serveur
+        function checkServerStatus() {
+            return new Promise((resolve, reject) => {
+                fetch("https://test-sae.onrender.com/api/enfant") // Remplacez par l'URL de votre backend
+                    .then(response => {
+                        if (response.ok) {
+                            resolve(); // Serveur accessible
+                        } else {
+                            reject(); // Erreur serveur
+                        }
+                    })
+                    .catch(() => reject()); // Erreur réseau
+            });
+        }
+
+        // Messages d'état et gestion de l'affichage
+        let statusElement = document.getElementById("status");
+        let messages = [
+            "Connexion à la base de données (cette opération peut prendre environ 1 minute).",
+            "Tentative de connexion au serveur ...",
+            "Connecté au serveur !",
+            "Allons-y !"
+        ];
+
+        // Affiche les messages progressivement
+        function displayMessages() {
+            return new Promise((resolve) => {
+                let index = 0;
+
+                function showNextMessage() {
+                    if (index < messages.length) {
+                        statusElement.textContent = messages[index];
+                        index++;
+                        setTimeout(showNextMessage, 2000); // Change tous les 2 secondes
+                    } else {
+                        resolve();
+                    }
+                }
+
+                showNextMessage();
+            });
+        }
+
+        // Gestion globale : messages + redirection après connexion
+        async function main() {
+            try {
+                // Attendez que le serveur soit accessible
+                await checkServerStatus();
+
+                // Une fois connecté, affichez les messages successifs
+                await displayMessages();
+
+                // Redirection vers la page de connexion
+                window.location.href = "./code_sae/dist/connexion.html";
+            } catch (error) {
+                statusElement.textContent = "Impossible de se connecter au serveur. Veuillez réessayer.";
+                console.error("Erreur de connexion au serveur :", error);
+            }
+        }
+
+        // Lancer la gestion au chargement de la page
+        main();
     </script>
 
 </body>
