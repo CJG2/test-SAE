@@ -57,3 +57,56 @@ nav ul li a:hover {
   transition: 0.2s;
   cursor: pointer;
 }
+
+/*
+================================================================================================================================
+Partie Responsive
+================================================================================================================================
+*/
+
+/*
+Responsive pour Ipad, tourné coté paysage
+*/
+
+@media only screen and (max-width: 1400px) {
+  body {
+    margin: 4% auto;
+  }
+
+  header {
+    width: 95%;
+  }
+
+  nav .logoApplication{
+    width: 60%;
+  }
+
+  header nav .logoApplication h1 {
+    font-size: 40px;
+  }
+
+  #app h1{
+    visibility: hidden;
+    display: none;
+  }
+
+  #app #alphabet-carousel {
+    margin-top: 50px;
+    width: 80%;
+    max-height: 100px;
+  }
+
+  #app #alphabet-carousel #letter-container {
+    width: 140px;
+    height: 140px;
+  }
+
+  #app h2{
+    margin: 50px 0 20px;
+  }
+
+  #app #welcomeMessage {
+    visibility: visible;
+    display: block;
+  }
+}

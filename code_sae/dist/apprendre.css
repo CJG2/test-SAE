@@ -147,7 +147,7 @@ h3,
   font-family: "Joti-One";
 }
 
-#app h1 {
+#app h1, h2, h3 {
   text-align: center;
   color: white;
   margin: 30px 0;
@@ -156,18 +156,10 @@ h3,
 }
 
 #app h2 {
-  text-align: center;
-  color: white;
-  margin: 30px 0;
-  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
   font-size: 40px;
 }
 
 #app h3 {
-  text-align: center;
-  color: white;
-  margin: 30px 0;
-  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
   font-size: 22px;
 }
 
@@ -177,6 +169,11 @@ h3,
   -moz-osx-font-smoothing: grayscale;
 }
 
+@media screen and (max-width: 1200px) {
+  body {
+    margin: 5% auto;
+  }
+}
 /*
 *   Palette :
 *       - #59D5E0
@@ -327,6 +324,15 @@ button:hover {
     margin: 0
 }
 
+#bloc_connexion .passwordContainer .togglePassword {
+    margin-left: 5px;
+    width: 50px;
+    background-color: #f4538a;
+    padding: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
 
 
 /*
@@ -409,46 +415,76 @@ Responsive pour Ipad, tourné coté paysage
 
 @media only screen and (max-width: 1400px) {
     body {
-        margin: 15% auto;
+        margin: 8% auto;
     }
 
-    h1 {
-        font-size: 55px;
+    hr {
+        margin: 10px 0;
     }
 
     #bloc_connexion {
         width: 70%;
     }
 
-    #bloc_connexion label {
+    #bloc_connexion h1{
+        font-size: 50px;
+    }
+
+    #bloc_connexion h2{
         font-size: 25px;
+        margin: 10px 0
+    }
+
+    #bloc_connexion h3{
+        font-size: 17px;
+    }
+
+    #bloc_connexion label {
+        font-size: 20px;
     }
 
     #bloc_connexion .resetPasswordButton {
         width: fit-content;
         padding: 10px;
-        font-size: 20px;
+        font-size: 15px;
     }
 
     #bloc_connexion input{
-        font-size: 20px;
+        font-size: 15px;
         height: 60px;
     }
 
     #bloc_connexion input::placeholder {
-        font-size: 20px;
+        font-size: 15px;
     }
 
     #bloc_connexion .buttonInscrConnect button {
+        font-size: 15px;
+    }
+
+    #bloc_connexion .Imail, #bloc_connexion .Ipassword {
+        height: 60px;
+    }
+
+    #bloc_connexion .Imail, #bloc_connexion .Ipassword {
+        height: 60px;
+    }
+
+    #bloc_connexion .togglePassword {
+        width: 80px;
+    }
+
+    #bloc_connexion .enfantListeDiv {
+        margin-bottom: 0;
+    }
+
+    #bloc_connexion .enfantListeDiv .boutonCompteEnfant {
+        margin: 5px;
+    }
+
+    #bloc_connexion .compteAdult, #bloc_connexion .enfantListeDiv .boutonCompteEnfant {
         font-size: 20px;
-    }
-
-    #bloc_connexion .Imail, #bloc_connexion .Ipassword {
-        height: 60px;
-    }
-
-    #bloc_connexion .Imail, #bloc_connexion .Ipassword {
-        height: 60px;
+        width: 250px;
     }
 }
 /*
@@ -572,7 +608,7 @@ nav ul li img {
 }
 
 header img {
-  width: 45px;
+  width: 40px;
   height: auto;
 }
 
@@ -621,10 +657,10 @@ header img {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  width: 60%;
+  width: 30%;
   height: 100vh;
   padding: 20% 0;
-  background: #59d5e0;
+  background: white;
   transition: all 0.5s ease-in;
   z-index: 2;
 }
@@ -640,15 +676,19 @@ header img {
 }
 
 .menubar ul li {
+  background-color: #faa300;
   margin-bottom: 32px;
 }
 
 .menubar ul li a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   text-decoration: none;
-  color: #000;
+  color: white;
   font-size: 95%;
   font-weight: 400;
-  padding: 5px 10px;
+  padding: 15px;
   border-radius: 5px;
 }
 
@@ -656,7 +696,8 @@ header img {
   background-color: #f4538a;
 }
 
-@media screen and (max-width: 790px) {
+@media screen and (max-width: 1200px) {
+
   .hamburger {
     display: block;
   }
@@ -733,7 +774,7 @@ body {
 
 @keyframes wave {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-30px) rotate(1deg); }
+  50% { transform: translateY(-10px) rotate(1deg); }
 }
 
 .linkExercice:nth-child(1) { animation-delay: 0s; }
@@ -741,14 +782,60 @@ body {
 .linkExercice:nth-child(3) { animation-delay: 0.5s; }
 .linkExercice:nth-child(4) { animation-delay: 0.8s; }
 
-/* 🎯 Effet de pirouette au survol */
-.linkExercice:hover {
-  transform: rotateY(360deg) scale(1.1);
-  cursor: pointer;
+
+
+/*
+================================================================================================================================
+Partie Responsive
+================================================================================================================================
+*/
+
+/*
+Responsive pour Ipad, tourné coté paysage
+*/
+
+@media only screen and (max-width: 1400px) {
+  body {
+    margin: 4% auto;
+  }
+
+  header {
+    width: 95%;
+  }
+
+  nav .logoApplication{
+    width: 60%;
+  }
+
+  header nav .logoApplication h1 {
+    font-size: 40px;
+  }
+
+  #app h1{
+    visibility: hidden;
+    display: none;
+  }
+
+  #app #alphabet-carousel {
+    margin-top: 50px;
+    width: 80%;
+    max-height: 100px;
+  }
+
+  #app #alphabet-carousel #letter-container {
+    width: 140px;
+    height: 140px;
+  }
+
+  #app h2{
+    margin: 50px 0 20px;
+  }
+
+  #app #welcomeMessage {
+    visibility: visible;
+    display: block;
+  }
 }
-
-
-
 .syllabe-container {
   display: flex;
   align-items: center;

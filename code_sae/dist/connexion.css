@@ -92,7 +92,7 @@ h3,
   font-family: "Joti-One";
 }
 
-#app h1 {
+#app h1, h2, h3 {
   text-align: center;
   color: white;
   margin: 30px 0;
@@ -101,18 +101,10 @@ h3,
 }
 
 #app h2 {
-  text-align: center;
-  color: white;
-  margin: 30px 0;
-  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
   font-size: 40px;
 }
 
 #app h3 {
-  text-align: center;
-  color: white;
-  margin: 30px 0;
-  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
   font-size: 22px;
 }
 
@@ -122,6 +114,11 @@ h3,
   -moz-osx-font-smoothing: grayscale;
 }
 
+@media screen and (max-width: 1200px) {
+  body {
+    margin: 5% auto;
+  }
+}
 /*
 *   Palette :
 *       - #59D5E0
@@ -272,6 +269,15 @@ button:hover {
     margin: 0
 }
 
+#bloc_connexion .passwordContainer .togglePassword {
+    margin-left: 5px;
+    width: 50px;
+    background-color: #f4538a;
+    padding: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
 
 
 /*
@@ -354,45 +360,75 @@ Responsive pour Ipad, tourné coté paysage
 
 @media only screen and (max-width: 1400px) {
     body {
-        margin: 15% auto;
+        margin: 8% auto;
     }
 
-    h1 {
-        font-size: 55px;
+    hr {
+        margin: 10px 0;
     }
 
     #bloc_connexion {
         width: 70%;
     }
 
-    #bloc_connexion label {
+    #bloc_connexion h1{
+        font-size: 50px;
+    }
+
+    #bloc_connexion h2{
         font-size: 25px;
+        margin: 10px 0
+    }
+
+    #bloc_connexion h3{
+        font-size: 17px;
+    }
+
+    #bloc_connexion label {
+        font-size: 20px;
     }
 
     #bloc_connexion .resetPasswordButton {
         width: fit-content;
         padding: 10px;
-        font-size: 20px;
+        font-size: 15px;
     }
 
     #bloc_connexion input{
-        font-size: 20px;
+        font-size: 15px;
         height: 60px;
     }
 
     #bloc_connexion input::placeholder {
-        font-size: 20px;
+        font-size: 15px;
     }
 
     #bloc_connexion .buttonInscrConnect button {
+        font-size: 15px;
+    }
+
+    #bloc_connexion .Imail, #bloc_connexion .Ipassword {
+        height: 60px;
+    }
+
+    #bloc_connexion .Imail, #bloc_connexion .Ipassword {
+        height: 60px;
+    }
+
+    #bloc_connexion .togglePassword {
+        width: 80px;
+    }
+
+    #bloc_connexion .enfantListeDiv {
+        margin-bottom: 0;
+    }
+
+    #bloc_connexion .enfantListeDiv .boutonCompteEnfant {
+        margin: 5px;
+    }
+
+    #bloc_connexion .compteAdult, #bloc_connexion .enfantListeDiv .boutonCompteEnfant {
         font-size: 20px;
-    }
-
-    #bloc_connexion .Imail, #bloc_connexion .Ipassword {
-        height: 60px;
-    }
-
-    #bloc_connexion .Imail, #bloc_connexion .Ipassword {
-        height: 60px;
+        width: 250px;
     }
 }
