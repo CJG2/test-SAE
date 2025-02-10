@@ -70,14 +70,14 @@ const getEnfantByResponsableId = async (req, res) => {
  * @param {*} res
  */
 const createEnfant = async (req, res) => {
-  const { nom, prenom, jour, mois, annee, genre, username } = req.body;
+  const { nom, prenom, jour, mois, annee, genre, username, dys } = req.body;
   const query = `
-    INSERT INTO Enfant (nom_enfant, prenom_enfant, date_naissance, genre, username, date_creation)
-    VALUES (?, ?, ?, ?, ?, DEFAULT)
+    INSERT INTO Enfant (nom_enfant, prenom_enfant, date_naissance, genre, username, date_creation, dys)
+    VALUES (?, ?, ?, ?, ?, DEFAULT, ?)
   `;
   
   try {
-    const [results] = await db.execute(query, [nom, prenom, `${annee}-${mois}-${jour}`, genre, username]);
+    const [results] = await db.execute(query, [nom, prenom, `${annee}-${mois}-${jour}`, genre, username, dys]);
     res.json({ message: 'Enfant créé avec succès', id_enfant: results.insertId });
   } catch (err) {
     console.error('Erreur lors de la création de l\'enfant:', err);
@@ -93,15 +93,15 @@ const createEnfant = async (req, res) => {
  */
 const updateEnfant = async (req, res) => {
   const { id } = req.params;
-  const { newNom, newPrenom, newDateNaiss, newGenre } = req.body;
+  const { newNom, newPrenom, newDateNaiss, newGenre, dys } = req.body;
   const query = `
     UPDATE Enfant
-    SET nom_enfant = ?, prenom_enfant = ?, date_naissance = ?, genre = ?
+    SET nom_enfant = ?, prenom_enfant = ?, date_naissance = ?, genre = ?, dys = ?
     WHERE id_enfant = ?
   `;
   
   try {
-    const [results] = await db.execute(query, [newNom, newPrenom, newDateNaiss, newGenre, id]);
+    const [results] = await db.execute(query, [newNom, newPrenom, newDateNaiss, newGenre, dys, id]);
     if (results.affectedRows === 0) {
       return res.status(404).json({ error: 'Enfant non trouvé' });
     }

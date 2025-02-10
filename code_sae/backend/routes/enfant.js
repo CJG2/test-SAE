@@ -21,9 +21,9 @@ router.get("/Enfant/:username", getEnfantByResponsableId);
 // Route pour créer un nouvel enfant
 router.post("/Enfant/create", async (req, res) => {
 
-  const { nom, prenom, jour, mois, annee, genre, username } = req.body;
+  const { nom, prenom, jour, mois, annee, genre, username, dys} = req.body;
 
-  if (!nom || !prenom || !jour || !mois || !annee || !genre || !username) {
+  if (!nom || !prenom || !jour || !mois || !annee || !genre || !username || !dys) {
     return res
       .status(400)
       .json({ success: false, error: "Tous les champs sont requis." });
@@ -37,7 +37,8 @@ router.post("/Enfant/create", async (req, res) => {
       mois,
       annee,
       genre,
-      username
+      username,
+      dys
     );
     res.status(201).json({ success: true, id: result.insertId });
   } catch (err) {
@@ -53,10 +54,10 @@ router.post("/Enfant/create", async (req, res) => {
 
 // Route pour mettre à jour le usernmae d'un Enfant
 router.put('/enfant/update', async (req, res) => {
-  const { newNom, newPrenom, newDateNaiss, newGenre, id } = req.body;
+  const { newNom, newPrenom, newDateNaiss, newGenre, dys, id } = req.body;
 
   try {
-      const result = await updateEnfant(newNom, newPrenom, newDateNaiss, newGenre,id);
+      const result = await updateEnfant(newNom, newPrenom, newDateNaiss, newGenre, dys, id);
       res.status(201).json({ success: true, id: result.insertId });
   } catch (err) {
       console.error('Erreur lors de la mise à jour des informations de l\'enfant :', err.message);
