@@ -26,10 +26,6 @@
     flex-direction: column;
 }
 
-#bloc_connexion .divNaissanceParent select, #bloc_connexion .genreDiv select {
-    padding: 20px;
-}
-
 #bloc_connexion .selectsNaissanceParent select{
     margin: 0;
 }

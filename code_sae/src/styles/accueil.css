@@ -24,8 +24,13 @@ nav ul li a:hover {
 #container {
   display: flex;
   justify-content: space-evenly;
+  flex-direction: column;
   width: 85%;
   margin: auto;
+}
+
+#container #linksContainer{
+  display: flex;
 }
 
 .linkExercice {
@@ -39,7 +44,7 @@ nav ul li a:hover {
   margin: 20px;
   height: fit-content;
   background-color: #f5dd61;
-  color: white;
+  color: black;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
 }
 
@@ -70,19 +75,11 @@ Responsive pour Ipad, tourné coté paysage
 
 @media only screen and (max-width: 1400px) {
   body {
-    margin: 4% auto;
-  }
-
-  header {
-    width: 95%;
+    margin: auto;
   }
 
   nav .logoApplication{
     width: 60%;
-  }
-
-  header nav .logoApplication h1 {
-    font-size: 40px;
   }
 
   #app h1{
@@ -108,5 +105,10 @@ Responsive pour Ipad, tourné coté paysage
   #app #welcomeMessage {
     visibility: visible;
     display: block;
+    margin: 0;
+  }
+
+  .linkExercice img {
+    width: 100px;
   }
 }

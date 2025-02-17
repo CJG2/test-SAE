@@ -5,6 +5,7 @@ import fauxIcon from "./../../../assets/icons/faux.png";
 
 import goodAnswerSound from "./../../../assets/sons/appSound/goodAnswer.mp3";
 import badAnswerSound from "./../../../assets/sons/appSound/wrongAnswer.mp3";
+import { styleText } from "util";
 
 let scoreAttendu = 70;
 let tabExos=[];
@@ -31,22 +32,7 @@ divSuivant.style.textAlign = "right";
 
 let suivant = document.createElement("button");
 suivant.textContent = "Suivant";
-
-suivant.style.fontSize = "200%";
-suivant.style.padding = "10px 20px";
-suivant.style.backgroundColor = " #F5DD61";
-suivant.style.color = "#000";
-suivant.style.border = "3px solid #FAA300";
-suivant.style.borderRadius = "15px";
-suivant.style.cursor = "pointer";
-suivant.style.margin = "20px";
-suivant.style.transition = "all 0.3s ease";
-suivant.addEventListener("mouseover", () => {
-  suivant.style.backgroundColor = " #0056b3";
-  });
-  suivant.addEventListener("mouseout", () => {
-  suivant.style.backgroundColor = " #F5DD61";
-  });
+buttonStyle(suivant);
 
 divSuivant.appendChild(suivant);
 
@@ -98,21 +84,7 @@ function retour()
   let retour = document.createElement("button");
   retour.textContent = "Retour";
 
-  retour.style.fontSize = "200%";
-  retour.style.padding = "10px 20px";
-  retour.style.backgroundColor = " #F5DD61";
-  retour.style.color = "#000";
-  retour.style.border = "3px solid #FAA300";
-  retour.style.borderRadius = "15px";
-  retour.style.cursor = "pointer";
-  retour.style.marginRight = "810px";
-  retour.style.transition = "all 0.3s ease";
-  retour.addEventListener("mouseover", () => {
-    retour.style.backgroundColor = " #0056b3";
-          });
-          retour.addEventListener("mouseout", () => {
-            retour.style.backgroundColor = " #F5DD61";
-          });
+  buttonStyle(retour);
 
   retour.addEventListener("click", function () {
     window.location.href = "/miniJeux.html";
@@ -145,14 +117,15 @@ function bonneReponse(mot, image, nbErreur)
 
   let erreur = document.createElement("p");
   erreur.textContent = "Nombres d'erreurs : " + nbErreur;
+  textStyle(erreur);
 
   nbErreur = 0;
 
   emplacement.appendChild(motAtrouElement);
   emplacement.appendChild(img);
   emplacement.appendChild(document.createElement("br"));
-  emplacement.appendChild(imgIcon);
   emplacement.appendChild(erreur);
+  emplacement.appendChild(imgIcon);
   emplacement.appendChild(document.createElement("br"));
   retour();
   emplacement.appendChild(suivant);
@@ -191,6 +164,8 @@ async function finExo()
   
   let textScoreAttendu = document.createElement("p");
   textScoreAttendu.textContent = "Score attendu : " + scoreAttendu;
+
+  styleText(scoreAttendu);
   
   let message = document.createElement("h2");
   message.textContent = "Fin de l'exo";
@@ -205,32 +180,9 @@ async function finExo()
 
   message.style.fontSize = "300%";
 
-  textScoreAttendu.style.fontSize = "200%";
-  textScoreAttendu.style.backgroundColor = " #F5DD61";
-  textScoreAttendu.style.border = "3px solid #FAA300";
-  textScoreAttendu.style.padding = "10px 20px";
-  textScoreAttendu.style.borderRadius = "15px";
-  textScoreAttendu.style.width = "auto";
-  textScoreAttendu.style.display = "inline-block";
-  textScoreAttendu.style.margin = "10px 0";
-
-  textScore.style.fontSize = "200%";
-  textScore.style.backgroundColor = " #F5DD61";
-  textScore.style.border = "3px solid #FAA300";
-  textScore.style.padding = "10px 20px";
-  textScore.style.borderRadius = "15px";
-  textScore.style.width = "auto";
-  textScore.style.display = "inline-block";
-  textScore.style.margin = "10px 0";
-
-  erreurTotal.style.fontSize = "200%";
-  erreurTotal.style.backgroundColor = " #F5DD61";
-  erreurTotal.style.border = "3px solid #FAA300";
-  erreurTotal.style.padding = "10px 20px";
-  erreurTotal.style.borderRadius = "15px";
-  erreurTotal.style.width = "auto";
-  erreurTotal.style.display = "inline-block";
-  erreurTotal.style.margin = "10px 0";
+  textStyle(textScoreAttendu);
+  textStyle(textScore);
+  textStyle(erreurTotal);
   
   emplacement.appendChild(message);
   emplacement.appendChild(erreurTotal);
@@ -245,6 +197,15 @@ async function finExo()
   retour();
 }
 
+/** 
+ * Cette fonction crer un trou dans un mot, elle prend en paramètre un tableau de string qui représente des syllabes
+ * et un entier qui représente l'indice de la syllabe à couper
+ * @param {[string]}syllabes
+ * @param {int}trou
+ * @returns {string}
+ * Cette fonction renvoie une chaine de caracteres string qui représente le mot couper avec un - à la place de chaque lettre coupé
+*/
+
 function faireUnTrou(syllabes, trou) 
 {
   let motAtrou = "";
@@ -258,8 +219,11 @@ function faireUnTrou(syllabes, trou)
 
 
 /**
- * Fonction associé au jeu "Mot à trou"
- *
+ * Cette fonction crer le jeu interactif
+ * @param {string}mot le mot d'origine qui doit être couper
+ * @param {[string]}syllabes le tableau de syllabes du mot à découper
+ * @param {int}trou l'indice de la syllabes à découper
+ * @param {string}image le chemin/lien de l'image associer au mot à découper
  * @export
  */
 
@@ -305,21 +269,7 @@ async function exo(mot, syllabes, trou, image)
     {
       let sylButton = document.createElement("button");
       sylButton.textContent = syllabes[trou];
-      sylButton.style.fontSize = "250%";
-      sylButton.style.padding = "10px 20px";
-      sylButton.style.backgroundColor = " #F5DD61";
-      sylButton.style.color = "#000";
-      sylButton.style.border = "3px solid #FAA300";
-      sylButton.style.borderRadius = "15px";
-      sylButton.style.cursor = "pointer";
-      sylButton.style.margin = "20px";
-      sylButton.style.transition = "all 0.3s ease";
-      sylButton.addEventListener("mouseover", () => {
-        sylButton.style.backgroundColor = " #0056b3";
-      });
-      sylButton.addEventListener("mouseout", () => {
-        sylButton.style.backgroundColor = " #F5DD61";
-      });
+      buttonStyle(sylButton);
 
       divSylButton.appendChild(sylButton);
 
@@ -370,21 +320,7 @@ async function exo(mot, syllabes, trou, image)
         
           let sylButton = document.createElement("button");
           sylButton.textContent = syllabes[trou];
-          sylButton.style.fontSize = "250%";
-          sylButton.style.padding = "10px 20px";
-          sylButton.style.backgroundColor = " #F5DD61";
-          sylButton.style.color = "#000";
-          sylButton.style.border = "3px solid #FAA300";
-          sylButton.style.borderRadius = "15px";
-          sylButton.style.cursor = "pointer";
-          sylButton.style.margin = "20px";
-          sylButton.style.transition = "all 0.3s ease";
-          sylButton.addEventListener("mouseover", () => {
-            sylButton.style.backgroundColor = " #0056b3";
-          });
-          sylButton.addEventListener("mouseout", () => {
-            sylButton.style.backgroundColor = " #F5DD61";
-          });
+          buttonStyle(sylButton);
           divSylButton.appendChild(sylButton);
 
           sylButton.textContent = newSyllabes;
@@ -479,4 +415,35 @@ async function recupererDernierExerciceFait()
   console.log(tabExosRealiser);
 
   return numTentative;
+}
+
+function buttonStyle(button)
+{
+  button.style.fontSize = "250%";
+  button.style.padding = "10px 20px";
+  button.style.backgroundColor = " #F5DD61";
+  button.style.color = "#000";
+  button.style.border = "3px solid #FAA300";
+  button.style.borderRadius = "15px";
+  button.style.cursor = "pointer";
+  button.style.margin = "20px";
+  button.style.transition = "all 0.3s ease";
+  button.addEventListener("mouseover", () => {
+    button.style.backgroundColor = " #0056b3";
+          });
+          button.addEventListener("mouseout", () => {
+            button.style.backgroundColor = " #F5DD61";
+          });
+}
+
+function textStyle(text)
+{
+  text.style.fontSize = "200%";
+  text.style.backgroundColor = " #F5DD61";
+  text.style.border = "3px solid #FAA300";
+  text.style.padding = "10px 20px";
+  text.style.borderRadius = "15px";
+  text.style.width = "auto";
+  text.style.display = "inline-block";
+  text.style.margin = "10px 0";
 }

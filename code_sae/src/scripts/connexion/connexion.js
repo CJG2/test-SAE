@@ -71,7 +71,6 @@ export function connexion() {
   let togglePasswordButton = document.createElement("img");
   togglePasswordButton.className = "togglePassword";
   togglePasswordButton.src = seePasswordImage;
-  togglePasswordButton.style = "margin-left: 5px; width: 5%; background-color: #f4538a; padding: 5px; border-radius: 50%; cursor: pointer;";
 
   togglePasswordButton.addEventListener("click", () => {
     // Vérifie le type actuel et bascule entre "password" et "text"
@@ -228,7 +227,7 @@ export function choixCompte(adulte) {
     // Sauvegarder le rôle pour le contrôle d'accès
     localStorage.setItem("role", "adulte");
 
-    window.location.href = "/test-SAE/code_sae/dist/progression.html";
+    window.location.href = "/test-SAE/code_sae/dist//progression.html";
   });
 
   divAdult.appendChild(intituleAdulte)
@@ -297,7 +296,7 @@ export function choixCompte(adulte) {
             localStorage.setItem("chronoStart", startTime.toString());
 
             // Rediriger vers la page d'accueil
-            window.location.href = "accueil.html";
+            window.location.href = "/test-SAE/code_sae/dist/accueil.html";
         });
 
         // Ajouter le bouton dans le conteneur parent

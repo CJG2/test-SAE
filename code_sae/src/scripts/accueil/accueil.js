@@ -2,101 +2,119 @@ import { initAlphabetCarousel } from "./../carousel.js";
 import { loadImages } from "./../inclusionImage.js";
 import { stopChrono } from "../connexion/connexion.js";
 
-//importation des styles
-import "./../../styles/main.css"; // feuille de style générale
+// Importation des styles
+import "./../../styles/main.css";
 import "./../../styles/caroussel.css";
 import "./../../styles/navigation.css";
 import "./../../styles/accueil.css";
 
-// Initialisation du carrousel et configuration de la page
+// Initialisation de la page après le chargement du DOM
 document.addEventListener("DOMContentLoaded", () => {
-  // Récupérer l'utilisateur connecté depuis localStorage
   const userLoggedIn = JSON.parse(localStorage.getItem("userLoggedIn"));
 
-  // Vérifier si un utilisateur est connecté et si c'est un compte enfant
   if (!userLoggedIn || userLoggedIn.type !== "enfant") {
-    // Si ce n'est pas un compte enfant, rediriger vers la page de progression
     window.location.href = "/progression.html";
     return;
   }
 
-  // Configuration du bouton de déconnexion
+  // Gestion du bouton de déconnexion
+  const logoutHandler = (e) => {
+    e.preventDefault();
+    localStorage.removeItem("userLoggedIn");
+    sessionStorage.removeItem("enfantConnecte");
+    sessionStorage.removeItem("adulteConnecte");
+    sessionStorage.clear();
+    window.location.href = "/connexion.html";
+  };
+
   const logoutLink = document.querySelector("#logout-link");
-  if (logoutLink) {
-    logoutLink.addEventListener("click", (e) => {
-      e.preventDefault();
+  if (logoutLink) logoutLink.addEventListener("click", logoutHandler);
 
-      // Supprimer les données de connexion
-      localStorage.removeItem("userLoggedIn");
-      sessionStorage.removeItem("enfantConnecte");
-      sessionStorage.removeItem("adulteConnecte");
-      //stopChrono(); // Arrêter le chrono et sauvegarder le temps écoulé
-      sessionStorage.clear(); // Supprimer les données de session
+  const logoutLinkMobile = document.querySelector(".menubar #logout-link");
+  if (logoutLinkMobile) logoutLinkMobile.addEventListener("click", logoutHandler);
 
-      // Rediriger vers la page de connexion
-      window.location.href = "/test-SAE/code_sae/dist/connexion.html";
-    });
-  }
-
-  // Affiche un message personnalisé sur la page d'accueil
-  const welcomeMessage = document.createElement("h1");
-  welcomeMessage.id = "welcomeMessage";
-  if (userLoggedIn.type === "enfant") {
-    welcomeMessage.textContent = `Bienvenue ${userLoggedIn.prenom} !`;
-  }
-
+  // Sélection du container principal
   const container = document.querySelector("#container");
 
-  container.prepend(welcomeMessage);
+  // 1. Création et ajout du message de bienvenue
+  const welcomeMessage = document.createElement("h1");
+  welcomeMessage.id = "welcomeMessage";
+  welcomeMessage.textContent = `Bienvenue ${userLoggedIn.prenom} !`;
+  container.appendChild(welcomeMessage);
+
+  // 2. Création d'un div pour contenir les liens vers les autres pages
+  const linksContainer = document.createElement("div");
+  linksContainer.id = "linksContainer"; // ID pour styliser plus facilement avec CSS
+  container.appendChild(linksContainer);
+
+  // Fonction pour créer les liens
+  const createNavLink = (imgId, text, url) => {
+    const link = document.createElement("div");
+    link.className = "linkExercice";
+
+    const image = document.createElement("img");
+    image.id = imgId;
+
+    const description = document.createElement("p");
+    description.textContent = text;
+
+    link.appendChild(image);
+    link.appendChild(document.createElement("hr"));
+    link.appendChild(description);
+
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      setTimeout(() => {
+        window.location.href = url;
+      }, 300);
+    });
+
+    return link;
+  };
+
+  // Ajout des liens dans le linksContainer
+  linksContainer.appendChild(
+    createNavLink(
+      "accueilLinkImagesApprendre",
+      "Apprends à lire et à écrire avec des exercices !",
+      "/apprendre.html"
+    )
+  );
+
+  linksContainer.appendChild(
+    createNavLink(
+      "accueilLinkImagesMiniGames",
+      "Apprends en t'amusant avec des exercices !",
+      "/miniJeux.html"
+    )
+  );
+
+  // Initialisation du carrousel
   initAlphabetCarousel();
 
-  const enfantConnecte = JSON.parse(sessionStorage.getItem("enfantConnecte"));
-  console.log(enfantConnecte);
-
-  // lien vers la page apprendre
-  const linkApprendre = document.createElement("div");
-  linkApprendre.className = "linkExercice";
-
-  const imageApprendre = document.createElement("img");
-  imageApprendre.id = "accueilLinkImagesApprendre";
-
-  const descriptionAppr = document.createElement("p");
-  descriptionAppr.textContent =
-    "Apprends à lire et à écrire avec des exercices !";
-
-  linkApprendre.appendChild(imageApprendre);
-  linkApprendre.appendChild(document.createElement("hr"));
-  linkApprendre.appendChild(descriptionAppr);
-
-  linkApprendre.addEventListener("click", function () {
-    window.location.href = "/apprendre.html";
-  });
-
-  // lien vers la page Mini-jeux
-  const linkMiniGames = document.createElement("div");
-  linkMiniGames.className = "linkExercice";
-
-  const imageMiniGame = document.createElement("img");
-  imageMiniGame.id = "accueilLinkImagesMiniGames";
-
-  const descriptionMiGa = document.createElement("p");
-  descriptionMiGa.textContent = "Apprends en t'amusant avec des exercices !";
-
-  linkMiniGames.appendChild(imageMiniGame);
-  linkMiniGames.appendChild(document.createElement("hr"));
-  linkMiniGames.appendChild(descriptionMiGa);
-
-  linkMiniGames.addEventListener("click", function () {
-    window.location.href = "/miniJeux.html";
-  });
-
-  container.appendChild(linkApprendre);
-  container.appendChild(linkMiniGames);
-
+  // Chargement des images
   loadImages();
 
-  // Gestion de l'événement "beforeunload" pour arrêter le chrono
-  window.addEventListener("beforeunload", () => {
-    stopChrono(); // Arrêter et sauvegarder le temps avant de quitter
-  });
+  // Gestion du chrono avant de quitter la page
+  window.addEventListener("beforeunload", stopChrono);
+});
+
+// Gestion du menu hamburger
+document.addEventListener("DOMContentLoaded", () => {
+  const hamburger = document.querySelector(".hamburger");
+  const menubar = document.querySelector(".menubar");
+
+  if (hamburger && menubar) {
+    hamburger.addEventListener("click", () => {
+      hamburger.classList.toggle("hamburger-active");
+      menubar.classList.toggle("active");
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!hamburger.contains(event.target) && !menubar.contains(event.target)) {
+        hamburger.classList.remove("hamburger-active");
+        menubar.classList.remove("active");
+      }
+    });
+  }
 });

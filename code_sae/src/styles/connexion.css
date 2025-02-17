@@ -42,8 +42,30 @@ h1{
     font-size: 20px;  
 }
 
-#lJour, #lMois, #lAnnee {
-    padding : 70px;  
+#bloc_connexion .dateNaissanceEnfantDiv {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: 0 auto;
+}
+
+#bloc_connexion .checkBoxContainer{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    margin: 0;
+}
+
+#bloc_connexion .divCheckBox input{
+    width: 40px;
+}
+
+#bloc_connexion .divCheckBox {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    margin: 0;
 }
 
 #bloc_connexion input {
@@ -85,13 +107,17 @@ h1{
     margin-top: 10px;
 }
 
-#bloc_connexion .buttonInscrConnect button{
+#bloc_connexion .buttonsInscriptionDiv button, #bloc_connexion .buttonInscrConnect button, #bloc_connexion .buttonsInscriptionDivEnfant button{
     border-radius: 15px;
     padding: 10px;
     width: 45%;
     background-color: white;
     font-size: 13px;
     margin: 0 5px;
+}
+
+#bloc_connexion .buttonsInscriptionDivEnfant button {
+    width: 30%;
 }
 
 #bloc_connexion .buttonInscrConnect button:hover{
@@ -239,19 +265,23 @@ Responsive pour Ipad, tourné coté paysage
 
 @media only screen and (max-width: 1400px) {
     body {
-        margin: 8% auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
     }
 
     hr {
-        margin: 10px 0;
+        margin: 8px 0;
     }
 
     #bloc_connexion {
         width: 70%;
+        padding: 10px;
     }
 
     #bloc_connexion h1{
-        font-size: 50px;
+        font-size: 40px;
     }
 
     #bloc_connexion h2{
@@ -260,7 +290,7 @@ Responsive pour Ipad, tourné coté paysage
     }
 
     #bloc_connexion h3{
-        font-size: 17px;
+        font-size: 20px;
     }
 
     #bloc_connexion label {
@@ -307,7 +337,8 @@ Responsive pour Ipad, tourné coté paysage
     }
 
     #bloc_connexion .compteAdult, #bloc_connexion .enfantListeDiv .boutonCompteEnfant {
-        font-size: 20px;
-        width: 250px;
+        font-size: 18px;
+        width: 200px;
+        height: 50px;
     }
 }

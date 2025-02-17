@@ -31,27 +31,35 @@ body {
 
 #container {
   display: flex;
-  justify-content: space-between;
-  width: 85%;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: 70%;
   margin: auto;
 }
 
 .linkMiniJeux {
   display: flex;
-  flex-wrap: nowrap;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 25%;
+  width: 45%;
   border-radius: 20px;
-  padding: 20px;
-  margin: 20px;
+  padding: 10px;
+  margin: 10px;
   height: fit-content;
   background-color: #f5dd61;
-  color: white;
+  color: black;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
   animation: wave 1.5s ease-in-out infinite;
+  will-change: transform;
+  position: relative;
   transition: transform 0.6s ease-in-out;
+}
+
+.linkMiniJeux #description h3 {
+  color: black;
 }
 
 .linkMiniJeux img {
@@ -63,9 +71,21 @@ body {
   text-align: center;
 }
 
+header .menubar.active ~ #container .linkMiniJeux {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 0.3s, opacity 0.3s ease-out;
+}
+
+header .menubar:not(.active) ~ #container .linkMiniJeux {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.3s ease-in;
+}
+
 @keyframes wave {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-30px) rotate(1deg); }
+  0%, 100% { margin-top: 0px; }
+  50% { margin-top: -10px; }
 }
 
 .linkMiniJeux:nth-child(1) { animation-delay: 0s; }
@@ -73,10 +93,19 @@ body {
 .linkMiniJeux:nth-child(3) { animation-delay: 0.5s; }
 .linkMiniJeux:nth-child(4) { animation-delay: 0.8s; }
 
-/* 🎯 Effet de pirouette au survol */
 .linkMiniJeux:hover {
   transform: rotateY(360deg) scale(1.1);
   cursor: pointer;
+  background-color: #faa300; /* Changer en orange */
+  transform: scale(1.05);  /* Agrandir légèrement */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Effet de clic - couleur rouge et réduction */
+.linkMiniJeux:active {
+  background-color: #f4538a;  /* Changer en rouge */
+  transform: scale(0.98);  /* Réduction légère */
+  transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 #app h1,
@@ -94,4 +123,39 @@ body {
 #app h2 {
   font-size: 40px;
   margin: 40px 0;
+}
+
+
+
+
+/*
+================================================================================================================================
+Partie Responsive
+================================================================================================================================
+*/
+
+/*
+Responsive pour Ipad, tourné côté paysage
+*/
+
+@media only screen and (max-width: 1400px) {
+  #app h1 {
+    visibility: hidden;
+    display: none;
+  }
+
+  #app #alphabet-carousel {
+    margin-top: 50px;
+    width: 63%;
+    max-height: 100px;
+  }
+
+  #app #alphabet-carousel #letter-container {
+    width: 140px;
+    height: 140px;
+  }
+
+  #app h2 {
+    margin: 50px 0 20px;
+  }
 }

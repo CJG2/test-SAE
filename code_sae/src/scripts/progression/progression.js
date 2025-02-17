@@ -16,6 +16,7 @@ const emplacement = document.querySelector("#chrono");
 let idExoMotsATrou = 6;
 let idExoListeMots = 16;
 let idExoAssociation = 21; // ID pour le jeu d'association
+let idExoMotsCroises = 22; // ID pour le jeu Mots Croisés
 let nb_tentative;
 let tabExos = [];
 let chronoInterval;
@@ -34,7 +35,8 @@ async function recupererExercice() {
   tabExos = exercices.filter(
     (exercice) =>
       exercice.libelle === "Liste de Mots" ||
-      exercice.libelle === "1 Mot 1 Image"
+      exercice.libelle === "1 Mot 1 Image" ||
+      exercice.libelle === "Mots Croisés"
   );
   return tabExos;
 }
@@ -48,7 +50,7 @@ async function recupererExercice() {
  * @returns {Promise<Object>} - Un objet contenant les informations du dernier exercice effectué.
 */ 
 export async function recupererDernierExerciceFait(enfant, idExercice) {
-  const reponse = await fetch("https://test-sae.onrender.com/api/realiser");
+  const reponse = await fetch("https://test-sae.onrender.com/api/exercice");
   const exercicesRealiser = await reponse.json();
   return exercicesRealiser.filter(
     (exerciceRealiser) =>
@@ -101,6 +103,47 @@ async function compteProgression() {
     compte.addEventListener("click", () => progression(tabEnfants[i]));
     divButton.appendChild(compte);
   }
+}
+
+/**
+ * Affiche la progression de l'enfant dans le jeu "Mots Croisés".
+ * 
+ * @async
+ * @param {Object} enfant - L'objet représentant l'enfant dont on suit la progression.
+ * @param {HTMLElement} motsCroisesContainer - Conteneur DOM où la progression sera affichée.
+ */
+async function afficherProgressionMotsCroises(enfant, motsCroisesContainer) {
+  const motsCroisesDonnees = await recupererDernierExerciceFait(enfant, idExoMotsCroises);
+
+  const titreMotsCroises = document.createElement("h2");
+  titreMotsCroises.textContent = "Progression pour Mots Croisés";
+  motsCroisesContainer.appendChild(titreMotsCroises);
+
+  if (motsCroisesDonnees.length === 0) {
+    const messageAucun = document.createElement("p");
+    messageAucun.textContent = "Aucune donnée pour le jeu Mots Croisés.";
+    motsCroisesContainer.appendChild(messageAucun);
+    return;
+  }
+
+  motsCroisesDonnees.forEach((realisation) => {
+    const realisationDiv = document.createElement("div");
+    realisationDiv.className = "realisation-mots-croises";
+
+    const scoreLabel = document.createElement("p");
+    scoreLabel.textContent = `Score: ${realisation.score}`;
+    realisationDiv.appendChild(scoreLabel);
+
+    const tentativeLabel = document.createElement("p");
+    tentativeLabel.textContent = `Tentatives: ${realisation.tentatives || 0}`;
+    realisationDiv.appendChild(tentativeLabel);
+
+    const dateLabel = document.createElement("p");
+    dateLabel.textContent = `Date: ${new Date(realisation.date).toLocaleString()}`;
+    realisationDiv.appendChild(dateLabel);
+
+    motsCroisesContainer.appendChild(realisationDiv);
+  });
 }
 
 /**
@@ -291,7 +334,6 @@ async function afficherProgressionAssociation(enfant, associationContainer) {
   associationContainer.appendChild(reussiteGlobale);
 }
 
-
 /**
  * Suivi de la progression de l'enfant dans l'exercice.
  * 
@@ -308,9 +350,14 @@ async function progression(enfant) {
     document.createElement("section");
   associationContainer.id = "association-game";
 
+  const motsCroisesContainer = document.querySelector("#mots-croises-container") || document.createElement("section");
+  motsCroisesContainer.id = "mots-croises-container";
+  const emplacement = document.querySelector("#chrono");
+
   listeContainer.innerHTML = "";
   trouContainer.innerHTML = "";
   associationContainer.innerHTML = "";
+  motsCroisesContainer.innerHTML = "";
   emplacement.innerHTML = "";
 
   const titreProgression = document.querySelector("#app > h2");
@@ -318,23 +365,28 @@ async function progression(enfant) {
 
   tabExos = await recupererExercice();
 
-  if (tabExos.length === 0) {
-    console.error("Aucun exercice disponible !");
-    return;
+  try {
+    if (tabExos.length === 0) {
+      console.error("Aucun exercice disponible !");
+      return;
+    }
+
+    await afficherProgressionListeMots(enfant, listeContainer);
+    await afficherProgressionAssociation(enfant, associationContainer);
+    await afficherProgressionMotsTrou(enfant, trouContainer);
+    await afficherProgressionMotsCroises(enfant, motsCroisesContainer); // Affichage des données Mots Croisés
+
+    if (emplacement) {
+      afficherChrono();
+    }
+
+    gauche.appendChild(listeContainer);
+    droite.appendChild(associationContainer);
+    droite.appendChild(trouContainer);
+    droite.appendChild(motsCroisesContainer); // Ajout du conteneur pour Mots Croisés
+  } catch (error) {
+    console.error(error);
   }
-
-  await afficherProgressionListeMots(enfant, listeContainer);
-  await afficherProgressionAssociation(enfant, associationContainer);
-  await afficherProgressionMotsTrou(enfant, trouContainer);
-
-  let titreChrono = document.createElement("h2");
-  titreChrono.textContent = "Temps passé sur l'application";
-  emplacement.appendChild(titreChrono);
-  afficherChrono();
-
-  gauche.appendChild(listeContainer);
-  droite.appendChild(associationContainer);
-  droite.appendChild(trouContainer);
 }
 
 document.addEventListener("DOMContentLoaded", loadImages);
@@ -345,13 +397,28 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "accueil.html";
     return;
   }
+
+  const logo = document.getElementById("logo");
+  if (logo) {
+    logo.addEventListener("click", function() {
+      window.location.href = "profil.html";
+    });
+  } else {
+    console.warn("⚠️ L'élément #logo est introuvable. Vérifiez s'il est présent dans le HTML.");
+  }
 });
+
 document.addEventListener("DOMContentLoaded", () => {
   const userLoggedIn = JSON.parse(localStorage.getItem("userLoggedIn"));
 
   const currentPath = window.location.pathname;
 
   const publicPages = ["/connexion.html"];
+
+
+  document.getElementById('logoApplication').addEventListener('click', function() {
+    window.location.href = "/profil.html";
+  });
 
   if (!userLoggedIn) {
     if (!publicPages.includes(currentPath)) {
@@ -369,16 +436,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const logoutLink = document.querySelector("#logout-link");
   if (logoutLink) {
-    logoutLink.addEventListener("click", (e) => {
-      e.preventDefault();
-
+    logoutLink.addEventListener("click", () => {
       localStorage.removeItem("userLoggedIn");
-      sessionStorage.removeItem("enfantConnecte");
-      sessionStorage.removeItem("adulteConnecte");
-
-      window.location.href = "/test-SAE/code_sae/dist/connexion.html";
+      window.location.href = "/connexion.html";
     });
   }
+
+
+  document.querySelector("#button_container").style.display = "block";
 });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -402,8 +467,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  const retourImage = document.createElement("img")
-  retourImage.id = "#returnArrowImage";
+  const retourImage = document.createElement("img");
+  retourImage.id = "returnArrowImage";
   if (retourImage) {
     retourImage.src = returnArrow;
   } else {

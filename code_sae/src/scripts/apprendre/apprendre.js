@@ -44,11 +44,15 @@ document.addEventListener("DOMContentLoaded", () => {
       sessionStorage.removeItem("adulteConnecte");
       //stopChrono(); // Arrêter le chrono et sauvegarder le temps écoulé
       //sessionStorage.clear(); // Supprimer les données de session
-      
+
       // Rediriger vers la page de connexion
-      window.location.href = "/test-SAE/code_sae/dist/connexion.html";
+      window.location.href = "/connexion.html";
     });
   }
+
+  document.getElementById('logoApplication').addEventListener('click', function() {
+    window.location.href = "/accueil.html";
+  });
 
   // Création des descriptions des exercices
   const listeDescription = [
@@ -66,8 +70,11 @@ document.addEventListener("DOMContentLoaded", () => {
   description_Alphabet.appendChild(descriptionParagraphe_A);
 
   const alphabet_apprendre = document.querySelector("#exoAlphabet");
-  alphabet_apprendre.addEventListener("click", () => {
-    openModal(AlphabetFunction);
+  alphabet_apprendre.addEventListener("click", (e) => {
+    e.preventDefault();
+    setTimeout(() => {
+      openModal(AlphabetFunction);
+    }, 300);
   });
 
   const description_Son = document.querySelector("#exoSon #description");
@@ -81,8 +88,11 @@ document.addEventListener("DOMContentLoaded", () => {
   description_Ecrire.appendChild(descriptionParagraphe_E);
 
   const ecrire_apprendre = document.querySelector("#exoEcrire");
-  ecrire_apprendre.addEventListener("click", () => {
-    openModal(ecrireMot_Apprendre);
+  ecrire_apprendre.addEventListener("click", (e) => {
+    e.preventDefault();
+    setTimeout(() => {
+      openModal(ecrireMot_Apprendre);
+    }, 300);
   });
 
   const description_Lecture = document.querySelector(
@@ -93,17 +103,54 @@ document.addEventListener("DOMContentLoaded", () => {
   description_Lecture.appendChild(descriptionParagraphe_L);
 
   const lectureDeSyllabe = document.querySelector("#exoLecture");
-  lectureDeSyllabe.addEventListener("click", () => {
-    openModal(exerciceLectureSyllabe);
+  lectureDeSyllabe.addEventListener("click", (e) => {
+    e.preventDefault();
+    setTimeout(() => {
+      openModal(exerciceLectureSyllabe);
+    }, 300);
   });
 
   const sonalettre = document.querySelector("#exoSon");
-  sonalettre.addEventListener("click", () => {
-    openModal(exerciceAssociationSonLettre);
+  sonalettre.addEventListener("click", (e) => {
+    e.preventDefault();
+    setTimeout(() => {
+      openModal(exerciceAssociationSonLettre);
+    }, 300);
   });
 
   // Gestion de l'événement "beforeunload" pour arrêter le chrono
   window.addEventListener("beforeunload", () => {
     stopChrono(); // Arrêter et sauvegarder le temps avant de quitter
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const hamburger = document.querySelector(".hamburger");
+  const menubar = document.querySelector(".menubar");
+
+  const logoutLinkMobile = document.querySelector(".menubar #logout-link");
+  if (logoutLinkMobile) {
+    logoutLinkMobile.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      localStorage.removeItem("userLoggedIn");
+      sessionStorage.removeItem("enfantConnecte");
+      sessionStorage.removeItem("adulteConnecte");
+      sessionStorage.clear();
+
+      window.location.href = "/connexion.html";
+    });
+  }
+
+  hamburger.addEventListener("click", () => {
+    hamburger.classList.toggle("hamburger-active");
+    menubar.classList.toggle("active");
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!hamburger.contains(event.target) && !menubar.contains(event.target)) {
+      hamburger.classList.remove("hamburger-active");
+      menubar.classList.remove("active");
+    }
   });
 });

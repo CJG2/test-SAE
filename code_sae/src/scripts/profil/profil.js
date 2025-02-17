@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
       sessionStorage.removeItem("enfantConnecte");
       sessionStorage.removeItem("adulteConnecte");
 
-      window.location.href = "/test-SAE/code_sae/dist/connexion.html";
+      window.location.href = "/connexion.html";
     });
   }
 });
@@ -77,29 +77,33 @@ document.addEventListener("DOMContentLoaded", () => {
  * @async
  * Fonction qui permet de consulter et modifier le profil d'un Responsable
  */
-async function profilParent() {
+async function profilParent() 
+{
   const adulteConnecte = JSON.parse(sessionStorage.getItem("adulteConnecte"));
+  
+  let buttonContainer = document.querySelector("#changerProfil");
 
-  let divButtonProfil = document.createElement("div");
-  divButtonProfil.id = "changerProfil";
-
-  divButtonProfil.innerHTML = "";
+  buttonContainer.innerHTML = "";
   emplacement.innerHTML = "";
 
   let compteParent = document.createElement("button");
   compteParent.className = "compteParentProfil";
   compteParent.textContent = adulteConnecte.nom + " " + adulteConnecte.prenom;
+  console.log(compteParent);
   compteParent.addEventListener("click", () => profilParent());
-  divButtonProfil.appendChild(compteParent);
-  divButtonProfil.appendChild(document.createElement("br"));
+  buttonContainer.appendChild(compteParent);
+  buttonContainer.appendChild(document.createElement("br"));
 
   const tabEnfants = await recupererEnfantsDUnResponsable();
-  for (let i = 0; i < tabEnfants.length; i++) {
+  for (let i = 0; i < tabEnfants.length; i++) 
+  {
     let compte = document.createElement("button");
     compte.className = "compteEnfantProfil";
     compte.textContent = tabEnfants[i].prenom_enfant;
+    console.log(compte);
+    console.log(tabEnfants[i]);
     compte.addEventListener("click", () => profilEnfant(tabEnfants[i]));
-    divButtonProfil.appendChild(compte);
+    buttonContainer.appendChild(compte);
   }
 
   let form = document.createElement("form");
@@ -148,7 +152,7 @@ async function profilParent() {
   let date = new Date(dateString);
   const annee = date.getUTCFullYear(); // Année
   const month = date.getUTCMonth() + 1; // Mois (commence à 0, donc + 1)
-  const day = date.getUTCDate() + 1; // Jour
+  const day = date.getUTCDate(); // Jour
   const mois = month.toString().padStart(2, "0");
   const jour = day.toString().padStart(2, "0");
 
@@ -414,6 +418,7 @@ async function profilParent() {
   });
 
   emplacement.appendChild(document.createElement("br"));
+  emplacement.appendChild(document.createElement("br"));
   emplacement.appendChild(form);
 }
 
@@ -421,23 +426,31 @@ async function profilParent() {
  * @async
  * Fonction qui permet de consulter et modifier le profil d'un Enfant
  */
-async function profilEnfant(enfant) {
-  let divButtonProfil = document.querySelector("#changerProfil");
+async function profilEnfant(enfant) 
+{
+  let buttonContainer = document.querySelector("#changerProfil");
 
-  divButtonProfil.innerHTML = "";
+  buttonContainer.innerHTML = "";
   emplacement.innerHTML = "";
 
   let compteParent = document.createElement("button");
+  compteParent.className = "compteParentProfil";
   compteParent.textContent = adulteConnecte.nom + " " + adulteConnecte.prenom;
+  console.log(compteParent);
   compteParent.addEventListener("click", () => profilParent());
-  divButtonProfil.appendChild(compteParent);
+  buttonContainer.appendChild(compteParent);
+  buttonContainer.appendChild(document.createElement("br"));
 
   const tabEnfants = await recupererEnfantsDUnResponsable();
-  for (let i = 0; i < tabEnfants.length; i++) {
+  for (let i = 0; i < tabEnfants.length; i++) 
+  {
     let compte = document.createElement("button");
+    compte.className = "compteEnfantProfil";
     compte.textContent = tabEnfants[i].prenom_enfant;
+    console.log(compte);
+    console.log(tabEnfants[i]);
     compte.addEventListener("click", () => profilEnfant(tabEnfants[i]));
-    divButtonProfil.appendChild(compte);
+    buttonContainer.appendChild(compte);
   }
 
   let form = document.createElement("form");
@@ -486,7 +499,7 @@ async function profilEnfant(enfant) {
   const date = new Date(dateString);
   const annee = date.getUTCFullYear(); // Année
   const month = date.getUTCMonth() + 1; // Mois (commence à 0, donc + 1)
-  const day = date.getUTCDate() + 1; // Jour
+  const day = date.getUTCDate(); // Jour
   const mois = month.toString().padStart(2, "0");
   const jour = day.toString().padStart(2, "0");
 
@@ -680,9 +693,9 @@ async function profilEnfant(enfant) {
  * Fonction qui demande à l'utilisateur de saisir son mot de passe actuel pour accèder à la modification de son mot de passe
  */
 function verifierMotDePasse() {
-  let divButtonProfil = document.querySelector("#changerProfil");
+  let buttonContainer = document.querySelector("#changerProfil");
 
-  divButtonProfil.innerHTML = "";
+  buttonContainer.innerHTML = "";
   emplacement.innerHTML = "";
 
   let labelConfirmPassword = document.createElement("label");
@@ -747,9 +760,9 @@ function verifierMotDePasse() {
  * Fonction qui permet à l'utilisateur de saisir son nouveau mot de passe
  */
 function modifierMotDePasse() {
-  let divButtonProfil = document.querySelector("#changerProfil");
+  let buttonContainer = document.querySelector("#changerProfil");
 
-  divButtonProfil.innerHTML = "";
+  buttonContainer.innerHTML = "";
   emplacement.innerHTML = "";
 
   let labelNewPassword = document.createElement("label");
@@ -834,7 +847,9 @@ export async function recupererEnfantsDUnResponsable() {
  */
 export async function recupererResponsable(nouveauMail) {
   try {
-    const response = await fetch("https://test-sae.onrender.com/api/responsable");
+    const response = await fetch(
+      "https://test-sae.onrender.com/api/responsable"
+    );
     const responsables = await response.json();
 
     const leResponsable = responsables.find(
@@ -874,22 +889,27 @@ export async function recupererResponsable(nouveauMail) {
  * @param newPrenom
  * @param newDateNaiss
  * @param newGenre
+ * @param dys
  * @param id
  */
-async function miseAJourEnfant(newNom, newPrenom, newDateNaiss, newGenre, id) {
+async function miseAJourEnfant(newNom, newPrenom, newDateNaiss, newGenre, dys, id) {
   console.log("Données envoyées :", {
     newNom,
     newPrenom,
     newDateNaiss,
     newGenre,
+    dys,
     id,
   });
   try {
-    const response = await fetch("https://test-sae.onrender.com/api/enfant/update", {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ newNom, newPrenom, newDateNaiss, newGenre, id }),
-    });
+    const response = await fetch(
+      "https://test-sae.onrender.com/api/enfant/update",
+      {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ newNom, newPrenom, newDateNaiss, newGenre, dys, id }),
+      }
+    );
 
     if (!response.ok) throw new Error(`Erreur HTTP : ${response.status}`);
 
@@ -991,8 +1011,7 @@ async function miseAJourAdulte(
   });
 
   try {
-    const response = await fetch(
-      "http://localhost:3000/api/responsable/update",
+    const response = await fetch("https://test-sae.onrender.com/api/responsable/update",
       {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -1080,3 +1099,34 @@ function miseAJourMDPAdulte(newPassword, newSel, username) {
       alert("Une erreur est survenue : " + error.message);
     });
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const hamburger = document.querySelector(".hamburger");
+  const menubar = document.querySelector(".menubar");
+
+  const logoutLinkMobile = document.querySelector(".menubar #logout-link");
+  if (logoutLinkMobile) {
+    logoutLinkMobile.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      localStorage.removeItem("userLoggedIn");
+      sessionStorage.removeItem("enfantConnecte");
+      sessionStorage.removeItem("adulteConnecte");
+      sessionStorage.clear();
+
+      window.location.href = "/connexion.html";
+    });
+  }
+
+  hamburger.addEventListener("click", () => {
+    hamburger.classList.toggle("hamburger-active");
+    menubar.classList.toggle("active");
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!hamburger.contains(event.target) && !menubar.contains(event.target)) {
+      hamburger.classList.remove("hamburger-active");
+      menubar.classList.remove("active");
+    }
+  });
+});

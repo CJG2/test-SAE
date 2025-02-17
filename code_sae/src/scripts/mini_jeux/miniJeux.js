@@ -47,9 +47,13 @@ document.addEventListener("DOMContentLoaded", () => {
       sessionStorage.clear(); // Supprimer les données de session
 
       // Rediriger vers la page de connexion
-      window.location.href = "/test-SAE/code_sae/dist/connexion.html";
+      window.location.href = "/connexion.html";
     });
   }
+
+  document.getElementById('logoApplication').addEventListener('click', function() {
+    window.location.href = "/accueil.html";
+  });
 
   const listeDescription = [
     "Associe chaque mot à l'image correspondante.",
@@ -90,27 +94,70 @@ document.addEventListener("DOMContentLoaded", () => {
   description_ListeDeMots.appendChild(description_text_ListeDeMots);
 
   const association_miniJeux = document.querySelector("#minijeuxAssociation");
-  association_miniJeux.addEventListener("click", () => {
-    openModal(jeuAssociation);
+  association_miniJeux.addEventListener("click", (e) => {
+    e.preventDefault();
+    setTimeout(() => {
+      openModal(jeuAssociation);
+    }, 300);
   });
 
   const motATrou_miniJeux = document.querySelector("#minijeuxMotsATrou");
-  motATrou_miniJeux.addEventListener("click", () => {
-    openModal(jeuMotAtrou);
+  motATrou_miniJeux.addEventListener("click", (e) => {
+    e.preventDefault();
+    setTimeout(() => {
+      openModal(jeuMotAtrou);
+    },300);
   });
 
   const motsCroises_miniJeux = document.querySelector("#minijeuxMotsCroises");
-  motsCroises_miniJeux.addEventListener("click", () => {
-    openModal(jeuMotsCroises);
+  motsCroises_miniJeux.addEventListener("click", (e) => {
+    e.preventDefault();
+    setTimeout(() => {
+      openModal(jeuMotsCroises);
+    },300);
   });
 
   const listeDeMots_miniJeux = document.querySelector("#minijeuxMotsListe");
-  listeDeMots_miniJeux.addEventListener("click", () => {
-    openModal(jeuListeDeMots);
+  listeDeMots_miniJeux.addEventListener("click", (e) => {
+    e.preventDefault();
+    setTimeout(() => {
+      openModal(jeuListeDeMots);
+    },300);
   });
 
   // Gestion de l'événement "beforeunload" pour arrêter le chrono
   window.addEventListener("beforeunload", () => {
     stopChrono(); // Arrêter et sauvegarder le temps avant de quitter
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const hamburger = document.querySelector(".hamburger");
+  const menubar = document.querySelector(".menubar");
+
+  const logoutLinkMobile = document.querySelector(".menubar #logout-link");
+  if (logoutLinkMobile) {
+    logoutLinkMobile.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      localStorage.removeItem("userLoggedIn");
+      sessionStorage.removeItem("enfantConnecte");
+      sessionStorage.removeItem("adulteConnecte");
+      sessionStorage.clear();
+
+      window.location.href = "/connexion.html";
+    });
+  }
+
+  hamburger.addEventListener("click", () => {
+    hamburger.classList.toggle("hamburger-active");
+    menubar.classList.toggle("active");
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!hamburger.contains(event.target) && !menubar.contains(event.target)) {
+      hamburger.classList.remove("hamburger-active");
+      menubar.classList.remove("active");
+    }
   });
 });

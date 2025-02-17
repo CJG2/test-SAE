@@ -18,9 +18,6 @@ export function InscriptionEnfant(adulte)
 
   emplacement.innerHTML = "";
 
-  let royaume = document.createElement("h1");
-  royaume.textContent = "Le Royaume des Lettres";
-
   let titre = document.createElement("h2");
   titre.textContent = "Inscription de l'enfant";
 
@@ -42,6 +39,9 @@ export function InscriptionEnfant(adulte)
   let labelEnfantDateNaiss = document.createElement("label");
   labelEnfantDateNaiss.textContent = "Date de naissance";
 
+  let dateNaissanceEnfantDiv = document.createElement("div");
+  dateNaissanceEnfantDiv.className = "dateNaissanceEnfantDiv";
+
   let labelJour = document.createElement("label");
   labelJour.textContent = "Jour";
   labelJour.id = "lJour";
@@ -53,6 +53,10 @@ export function InscriptionEnfant(adulte)
   let labelAnnee = document.createElement("label");
   labelAnnee.textContent = "Annee";
   labelAnnee.id = "lAnnee";
+
+  dateNaissanceEnfantDiv.appendChild(labelJour);
+  dateNaissanceEnfantDiv.appendChild(labelMois);
+  dateNaissanceEnfantDiv.appendChild(labelAnnee);
 
   let optionVide1 = document.createElement("option");
   optionVide1.textContent = "";
@@ -165,11 +169,10 @@ export function InscriptionEnfant(adulte)
   labelDys.textContent = "Votre enfant a-t-il été diagnostiqué avec un trouble spécifique des apprentissages (Dys)?";
 
   const checkBoxContainer = document.createElement("div");
+  checkBoxContainer.className = "checkBoxContainer";
 
   const divCheckOui = document.createElement("div");
-  divCheckOui.style.display = "inline-flex";
-  divCheckOui.style.alignItems = "center";
-  divCheckOui.style.marginBottom = "10px"; // Ajoute un espace entre les options
+  divCheckOui.className = "divCheckBox";
 
   const labelOui = document.createElement("label");
   labelOui.textContent = " Oui";
@@ -177,6 +180,7 @@ export function InscriptionEnfant(adulte)
   checkboxDysOui.type = "checkbox";
   checkboxDysOui.name = "diagnostic";
   checkboxDysOui.value = "Oui";
+  checkboxDysOui.setAttribute("required", "");
   labelOui.prepend(checkboxDysOui);
 
   checkboxDysOui.addEventListener("change", function () {
@@ -187,8 +191,7 @@ export function InscriptionEnfant(adulte)
   divCheckOui.appendChild(labelOui);
 
   const divCheckNon = document.createElement("div");
-  divCheckNon.style.display = "inline-flex";
-  divCheckNon.style.alignItems = "center";
+  divCheckNon.className = "divCheckBox";
 
   const labelNon = document.createElement("label");
   labelNon.textContent = " Non";
@@ -196,6 +199,7 @@ export function InscriptionEnfant(adulte)
   checkboxDysNon.type = "checkbox";
   checkboxDysNon.name = "diagnostic";
   checkboxDysNon.value = "Non";
+  checkboxDysNon.setAttribute("required", "")
   labelNon.prepend(checkboxDysNon);
 
   checkboxDysNon.addEventListener("change", function () {
@@ -207,6 +211,9 @@ export function InscriptionEnfant(adulte)
 
   checkBoxContainer.appendChild(divCheckOui);
   checkBoxContainer.appendChild(divCheckNon);
+
+  let buttonsInscriptionDivEnfant = document.createElement("div");
+  buttonsInscriptionDivEnfant.className = "buttonsInscriptionDivEnfant";
   
   let retour = document.createElement("button");
   retour.textContent = "Retour";
@@ -217,6 +224,10 @@ export function InscriptionEnfant(adulte)
   let inscrire2 = document.createElement("button");
   inscrire2.textContent = "S'inscrire";
 
+  buttonsInscriptionDivEnfant.appendChild(retour);
+  buttonsInscriptionDivEnfant.appendChild(effac);
+  buttonsInscriptionDivEnfant.appendChild(inscrire2);
+
   retour.addEventListener("click", () => choixCompte(adulte));
   effac.addEventListener("click", () =>
     effacerEnfant(
@@ -225,7 +236,9 @@ export function InscriptionEnfant(adulte)
       inputEnfantDateNaissJour,
       inputEnfantDateNaissMois,
       inputEnfantDateNaissAnnee,
-      inputEnfantCivilite
+      inputEnfantCivilite,
+      checkboxDysOui,
+      checkboxDysNon
     )
   );
 
@@ -246,9 +259,7 @@ export function InscriptionEnfant(adulte)
   form.appendChild(labelEnfantDateNaiss);
   form.appendChild(document.createElement("br"));
 
-  form.appendChild(labelJour);
-  form.appendChild(labelMois);
-  form.appendChild(labelAnnee);
+  form.appendChild(dateNaissanceEnfantDiv);
   form.appendChild(document.createElement("br"));
 
   form.appendChild(inputEnfantDateNaissJour);
@@ -274,9 +285,7 @@ export function InscriptionEnfant(adulte)
   form.appendChild(document.createElement("br"));
   form.appendChild(document.createElement("br"));
 
-  form.appendChild(retour);
-  form.appendChild(effac);
-  form.appendChild(inscrire2);
+  form.appendChild(buttonsInscriptionDivEnfant);
 
     form.addEventListener("submit", function (event) {
       event.preventDefault();
@@ -293,7 +302,6 @@ export function InscriptionEnfant(adulte)
         event.preventDefault();
       }
     });
-  emplacement.appendChild(royaume);
   emplacement.appendChild(document.createElement("br"));
 
   emplacement.appendChild(titre);
@@ -315,6 +323,8 @@ export function InscriptionEnfant(adulte)
  * @param {*} inputEnfantDateNaissMois
  * @param {*} inputEnfantDateNaissAnnee
  * @param {*} inputEnfantCivilite
+ * @param {*} checkboxDysOui
+ * @param {*} checkboxDysNon
  */
 export function effacerEnfant(
   inputEnfantNom,
@@ -322,7 +332,9 @@ export function effacerEnfant(
   inputEnfantDateNaissJour,
   inputEnfantDateNaissMois,
   inputEnfantDateNaissAnnee,
-  inputEnfantCivilite
+  inputEnfantCivilite,
+  checkboxDysOui,
+  checkboxDysNon
 ) {
   inputEnfantNom.value = "";
   inputEnfantPrenom.value = "";
@@ -330,6 +342,8 @@ export function effacerEnfant(
   inputEnfantDateNaissMois.value = "";
   inputEnfantDateNaissAnnee.value = "";
   inputEnfantCivilite.value = "";
+  checkboxDysOui.value = "";
+  checkboxDysNon.value = "";
 }
 
 
@@ -343,12 +357,13 @@ export function effacerEnfant(
  * @param {*} annee
  * @param {*} genre
  * @param {*} username
+ * @param {*} dys
  */
-function ajouterEnfant(nom, prenom, jour, mois, annee, genre, username) {
+function ajouterEnfant(nom, prenom, jour, mois, annee, genre, username, dys) {
   fetch('https://test-sae.onrender.com/api/enfant/create', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ nom, prenom, jour, mois, annee, genre, username }),
+    body: JSON.stringify({ nom, prenom, jour, mois, annee, genre, username, dys}),
   })
     .then(response => {
       if (!response.ok) {

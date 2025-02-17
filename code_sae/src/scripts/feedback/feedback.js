@@ -28,6 +28,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  document.getElementById('logoApplication').addEventListener('click', function() {
+    window.location.href = "/profil.html";
+  });
+
   /**
    * Gère la déconnexion de l'utilisateur
    */
@@ -40,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
       sessionStorage.removeItem("enfantConnecte");
       sessionStorage.removeItem("adulteConnecte");
 
-      window.location.href = "/test-SAE/code_sae/dist/connexion.html";
+      window.location.href = "/connexion.html";
     });
   }
 });
@@ -104,7 +108,7 @@ function createFeedbackForm() {
       <button type="submit" class="submit-btn">Envoyer mon avis</button>
     `;
 
-  form.addEventListener("submit", async (e) => {
+  /*form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const formData = new FormData(form);
@@ -120,6 +124,39 @@ function createFeedbackForm() {
 
     try {
       console.log("Feedback envoyé:", feedback);
+
+      showMessage("Merci pour votre feedback !", "success");
+      form.reset();
+    } catch (error) {
+      showMessage("Une erreur est survenue. Veuillez réessayer.", "error");
+    }
+  });*/
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+    const feedback = {
+      rating: formData.get("rating"),
+      usageFrequency: formData.get("usageFrequency"),
+      childProgress: formData.get("childProgress"),
+      positivePoints: formData.get("positivePoints"),
+      improvementPoints: formData.get("improvementPoints"),
+      userId: JSON.parse(localStorage.getItem("userLoggedIn")).id,
+      timestamp: new Date().toISOString(),
+    };
+
+    try {
+      // Appel de la fonction pour envoyer le feedback à la BDD
+      await ajouterFeedback(
+        Date.now(), // Générer un ID unique basé sur le timestamp
+        feedback.userId,
+        feedback.rating,
+        feedback.usageFrequency,
+        feedback.childProgress,
+        feedback.positivePoints,
+        feedback.improvementPoints
+      );
 
       showMessage("Merci pour votre feedback !", "success");
       form.reset();
@@ -151,3 +188,71 @@ function showMessage(message, type) {
 document.addEventListener("DOMContentLoaded", () => {
   createFeedbackForm();
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const hamburger = document.querySelector(".hamburger");
+  const menubar = document.querySelector(".menubar");
+
+  const logoutLinkMobile = document.querySelector(".menubar #logout-link");
+  if (logoutLinkMobile) {
+    logoutLinkMobile.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      localStorage.removeItem("userLoggedIn");
+      sessionStorage.removeItem("enfantConnecte");
+      sessionStorage.removeItem("adulteConnecte");
+      sessionStorage.clear();
+
+      window.location.href = "/connexion.html";
+    });
+  }
+
+  hamburger.addEventListener("click", () => {
+    hamburger.classList.toggle("hamburger-active");
+    menubar.classList.toggle("active");
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!hamburger.contains(event.target) && !menubar.contains(event.target)) {
+      hamburger.classList.remove("hamburger-active");
+      menubar.classList.remove("active");
+    }
+  });
+});
+
+function ajouterFeedback(
+  numero_feedback,
+  username,
+  nb_etoiles,
+  frequence,
+  progres_enfant,
+  point_fort,
+  point_amelioration
+) {
+  fetch("https://test-sae.onrender.com/api/feedback/create", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      numero_feedback,
+      username,
+      nb_etoiles,
+      frequence,
+      progres_enfant,
+      point_fort,
+      point_amelioration,
+    }),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`Erreur HTTP : ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data.success) alert("envoi du feedback");
+      else alert("Erreur lors de l'envoi du feedback");
+    })
+    .catch((error) => {
+      alert("Une erreur est survenue : " + error.message);
+    });
+}
