@@ -7,6 +7,7 @@
 */
 
 @font-face {
+  /* Importation de la font */
   font-family: "Joti-One";
   src: url("./../assets/fonts/JotiOne-Regular.ttf") format("truetype");
 }
@@ -29,10 +30,9 @@ nav ul li a:hover {
 }
 
 body {
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
   background-color: #59d5e0;
-  margin: 0;
-  padding: 0;
 }
 
 #container {
@@ -68,9 +68,9 @@ h1 {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
-#chronoDisplay {
-  color: white;
-  font-size: 32px;
+#chronoDisplay{
+  color : white;
+  font-size : 32px;
   font-family: "Joti-One";
 }
 
@@ -89,7 +89,6 @@ h1 {
   border-radius: 20px;
   position: absolute;
   left: 0;
-  transition: width 0.5s ease-in-out;
 }
 
 section {
@@ -153,49 +152,10 @@ button {
   font-size: 18px;
   border-radius: 25px;
   border: 3px solid #f4538a;
-  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 button:hover {
   color: white;
   background-color: #f4538a;
-  transform: scale(1.05);
   transition: 0.3s;
-}
-
-/* Partie Responsive */
-@media screen and (max-width: 768px) {
-  #container {
-    margin: 5% auto;
-    width: 90%;
-  }
-
-  #chrono {
-    width: 100%;
-  }
-
-  h1 {
-    font-size: 28px;
-  }
-
-  #sections-container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  #conteneur-gauche {
-    flex: none;
-    width: 100%;
-  }
-
-  #liste-de-mots,
-  #association-game,
-  #Mot-a-trou {
-    width: 100%;
-  }
-
-  button {
-    width: 100%;
-    min-height: 50px;
-  }
 }
