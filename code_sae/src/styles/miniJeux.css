@@ -159,3 +159,146 @@ Responsive pour Ipad, tourné côté paysage
     margin: 50px 0 20px;
   }
 }
+
+
+
+
+
+/*
+*   Palette :
+*       - #59D5E0
+*       - #F5DD61
+*       - #FAA300
+*       - #F4538A
+*/
+
+nav {
+  padding: 5px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f4538a;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  z-index: 1;
+}
+
+nav ul li a:hover {
+  background-color: #f5dd61;
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+/* 1. Ajout de préfixe pour Safari sur le background-color et le box-shadow */
+body {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  background-color: #59d5e0;
+  -webkit-font-smoothing: antialiased; /* Safari */
+  -moz-osx-font-smoothing: grayscale; /* Firefox */
+}
+
+/* Container central */
+#container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: 70%;
+  margin: auto;
+}
+
+.linkMiniJeux {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 45%;
+  border-radius: 20px;
+  padding: 10px;
+  margin: 10px;
+  height: fit-content;
+  background-color: #f5dd61;
+  color: black;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  animation: wave 1.5s ease-in-out infinite;
+  will-change: transform;
+  position: relative;
+  transition: transform 0.6s ease-in-out;
+}
+
+/* Animation wave pour Safari */
+@keyframes wave {
+  0%, 100% { margin-top: 0px; }
+  50% { margin-top: -10px; }
+}
+
+.linkMiniJeux:nth-child(1) { animation-delay: 0s; }
+.linkMiniJeux:nth-child(2) { animation-delay: 0.2s; }
+.linkMiniJeux:nth-child(3) { animation-delay: 0.5s; }
+.linkMiniJeux:nth-child(4) { animation-delay: 0.8s; }
+
+.linkMiniJeux:hover {
+  transform: rotateY(360deg) scale(1.1);
+  cursor: pointer;
+  background-color: #faa300; /* Changer en orange */
+  transform: scale(1.05);  /* Agrandir légèrement */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Effet de clic - couleur rouge et réduction */
+.linkMiniJeux:active {
+  background-color: #f4538a;  /* Changer en rouge */
+  transform: scale(0.98);  /* Réduction légère */
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+/* Mise en page pour les titres */
+#app h1,
+#app h2 {
+  color: white;
+  text-align: center;
+  margin-top: 20px;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+#app h1 {
+  font-size: 60px;
+}
+
+#app h2 {
+  font-size: 40px;
+  margin: 40px 0;
+}
+
+/* Responsiveness */
+@media only screen and (max-width: 1400px) {
+  #app h1 {
+    visibility: hidden;
+    display: none;
+  }
+
+  #app #alphabet-carousel {
+    margin-top: 50px;
+    width: 63%;
+    max-height: 100px;
+  }
+
+  #app #alphabet-carousel #letter-container {
+    width: 140px;
+    height: 140px;
+  }
+
+  #app h2 {
+    margin: 50px 0 20px;
+  }
+}
+
+/* Ajout de préfixe pour Safari */
+@media screen and (max-width: 1400px) {
+  #app h2 {
+    -webkit-font-smoothing: antialiased; /* Safari */
+    -moz-osx-font-smoothing: grayscale; /* Firefox */
+  }
+}

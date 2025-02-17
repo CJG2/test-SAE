@@ -46,3 +46,68 @@ h3,
     margin: 4% auto;
   }
 }
+
+
+
+
+
+
+/* Palette : 
+*   - #59D5E0
+*   - #F5DD61
+*   - #FAA300
+*   - #F4538A
+*/
+
+/* 1. Importation de la font avec préfixe pour Safari */
+@font-face {
+  font-family: "Joti-One";
+  src: url(614a43a74ffe8cf87adf.ttf) format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased; /* Safari */
+  -moz-osx-font-smoothing: grayscale; /* Firefox */
+}
+
+/* 2. Application de la font */
+h1,
+h2,
+h3,
+#alphabet-carousel {
+  font-family: "Joti-One", sans-serif;
+}
+
+/* 3. Mise en page pour les titres principaux */
+#app h1, h2, h3 {
+  text-align: center;
+  color: white;
+  margin: 30px 0;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+  font-size: 50px;
+  -webkit-text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3); /* Safari */
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* 4. Ajustements pour le titre h2 */
+#app h2 {
+  font-size: 40px;
+}
+
+/* 5. Ajustements pour le titre h3 */
+#app h3 {
+  font-size: 22px;
+}
+
+/* 6. Styles généraux pour tous les éléments */
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased; /* Safari */
+  -moz-osx-font-smoothing: grayscale; /* Firefox */
+}
+
+/* 7. Media query pour les écrans de moins de 1200px */
+@media screen and (max-width: 1200px) {
+  body {
+    margin: 4% auto;
+  }
+}

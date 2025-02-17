@@ -12,24 +12,24 @@ document.addEventListener("DOMContentLoaded", () => {
    */
   const userLoggedIn = JSON.parse(localStorage.getItem("userLoggedIn"));
   const currentPath = window.location.pathname;
-  const publicPages = ["/connexion.html"];
+  const publicPages = ["/test-SAE/code_sae/dist/connexion.html"];
 
   if (!userLoggedIn) {
     if (!publicPages.includes(currentPath)) {
-      window.location.href = "/connexion.html";
+      window.location.href = "/test-SAE/code_sae/dist/connexion.html";
       return;
     }
   } else {
     if (userLoggedIn.type !== "adulte") {
       if (!publicPages.includes(currentPath)) {
-        window.location.href = "/accueil.html";
+        window.location.href = "/test-SAE/code_sae/dist/accueil.html";
         return;
       }
     }
   }
 
   document.getElementById('logoApplication').addEventListener('click', function() {
-    window.location.href = "/profil.html";
+    window.location.href = "/test-SAE/code_sae/dist/profil.html";
   });
 
   /**

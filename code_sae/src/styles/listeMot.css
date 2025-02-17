@@ -107,3 +107,154 @@
     background-color: #388e3c;
   }
   
+
+
+
+
+
+/* Section pour compatibilité Safari */
+
+/* 1. Flexbox pour .jeu-listedemot */
+.jeu-listedemot {
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  -webkit-flex-direction: column; /* Safari */
+  flex-direction: column;
+  -webkit-align-items: center; /* Safari */
+  align-items: center;
+  -webkit-justify-content: center; /* Safari */
+  justify-content: center;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 2. Sélecteur (select) avec ajustement pour Safari */
+select {
+  -webkit-appearance: none; /* Safari */
+  appearance: none;
+  padding: 10px;
+  margin: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+/* 3. Mise en page de #listesMots */
+#listesMots {
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  -webkit-justify-content: space-evenly; /* Safari */
+  justify-content: space-evenly;
+  width: 100%;
+  background-image: url('./../assets/images/fondChateau.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+/* 4. Flexbox pour les divs à l'intérieur de #listesMots */
+#listesMots div {
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  -webkit-flex-direction: column; /* Safari */
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* 5. Boutons dans le modal */
+#modal-body .boutonList {
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  font-size: 8px;
+  background-color: #59d5e0;
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* 6. Hover sur les boutons dans le modal */
+#modal-body .boutonList:hover {
+  background-color: #46cad6;
+}
+
+/* 7. Etat disabled pour les boutons */
+#modal-body .boutonList:disabled {
+  background-color: #a0a0a0;
+  border: 2px solid #808080;
+  color: white;
+  cursor: not-allowed;
+}
+
+/* 8. Boutons sélectionnés dans le modal */
+#modal-body .boutonList.selected {
+  background-color: #4c4faf;
+  border: 2px solid #3c388e;
+  color: white;
+}
+
+/* 9. Boutons corrects dans le modal */
+#modal-body .boutonList.correct {
+  background-color: #4caf50;
+  border: 2px solid #388e3c;
+  color: white;
+}
+
+/* 10. Boutons incorrects dans le modal */
+#modal-body .boutonList.incorrect {
+  background-color: #f44336;
+  border: 2px solid #d32f2f;
+  color: white;
+}
+
+/* 11. Alertes dans le modal */
+.alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.alert.success {
+  background-color: #4caf50;
+}
+
+/* 12. Bouton "suivant" */
+.exoSuivantBoutton {
+  padding: 10px 20px;
+  font-size: 50px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: absolute;
+  top: 45%;
+  left: 41.5%;
+}
+
+/* 13. Hover sur le bouton suivant */
+.btn-suivant:hover {
+  background-color: #388e3c;
+}
+
+/* Hack spécifique pour le select afin d'empêcher l'apparence par défaut de Safari */
+select {
+  -webkit-appearance: none; /* Safari */
+  appearance: none;
+}
+
+/* Hack pour les bordures et ombres dans Safari */
+.jeu-listedemot {
+  -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Safari */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

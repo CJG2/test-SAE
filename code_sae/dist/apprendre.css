@@ -48,6 +48,57 @@
     background-color: #F5DD61;
     transition: 0.2s;
 }
+
+
+/* 
+================================================================================================================================
+Corrections spécifiques pour Safari 
+================================================================================================================================
+*/
+
+/* Correction du rendu flexbox */
+@supports (-webkit-touch-callout: none) {
+    #alphabet {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: flex;
+    }
+  
+    #buttonEmplacement {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: flex;
+    }
+  }
+  
+  /* Ajout de -webkit-transition pour Safari */
+  #alphabet:hover {
+      background-color: #FAA300;
+      color: white;
+      -webkit-transition: 0.2s ease-in;
+      transition: 0.2s ease-in;
+  }
+  
+  #convertImage:hover,
+  #buttonEmplacement button:hover {
+      background-color: #F5DD61;
+      -webkit-transition: 0.2s ease-in;
+      transition: 0.2s ease-in;
+  }
+  
+  /* Gestion du bouton pour éviter les styles non appliqués sur Safari */
+  #buttonEmplacement button {
+      -webkit-appearance: none;
+      appearance: none;
+      font-size: large;
+      border: 0;
+      cursor: pointer;
+  }
+  
 @font-face {
   font-family: "Cursive";
   src: url(35933034c522df190207.ttf) format("truetype");
@@ -122,6 +173,64 @@
     background-color: #F4538A;
     color: white;
 }
+
+
+
+/* ==============================================================================
+Section pour compatibilité Safari 
+======================================================================================*/
+
+/* 1. Flexbox - Problème avec la mise en page */
+#bloc_connexion .selectsNaissanceParent {
+    display: -webkit-flex; /* Safari */
+    display: flex;
+}
+
+/* 2. Styles spécifiques pour les boutons sur Safari (les ombres peuvent ne pas s'afficher correctement sur certains éléments) */
+#bloc_connexion .buttonsInscriptionDiv button {
+    -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Safari */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* 3. Hack pour border-radius dans Safari */
+#bloc_connexion .buttonsInscriptionDiv button {
+    -webkit-border-radius: 15px; /* Safari */
+    border-radius: 15px;
+}
+
+/* 4. Problème de police dans les labels sur Safari */
+#bloc_connexion .selectsNaissanceParent label {
+    -webkit-font-smoothing: antialiased; /* Safari */
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* 5. Hack pour marges ou paddings */
+#bloc_connexion .divNom, .divPrenom, .genreDiv, .emailDiv, .confirmEmailDiv, .passwordDiv, .confirmPasswordDiv, .telephoneDiv, .paysDiv {
+    -webkit-margin-start: 0; /* Safari */
+    margin: 0;
+    margin-bottom: 25px; /* Résolution d'un potentiel conflit de marges */
+}
+
+/* 6. Ajout de padding pour les titres dans Safari */
+#bloc_connexion .inscrireTitle {
+    -webkit-padding-start: 10px; /* Safari */
+    padding-left: 10px;
+}
+
+/* 7. Problème d'affichage de certains éléments sur Safari */
+#bloc_connexion .buttonsInscriptionDiv {
+    -webkit-flex-direction: row; /* Safari */
+    flex-direction: row;
+}
+
+/* 8. Débogage de la taille de police dans Safari */
+#bloc_connexion .responsableEnfantLabel {
+    font-size: 30px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    -webkit-text-size-adjust: none; /* Safari */
+}
+
 /*
 *   Palette :
 *       - #59D5E0
@@ -165,6 +274,71 @@ h3,
   -moz-osx-font-smoothing: grayscale;
 }
 
+@media screen and (max-width: 1200px) {
+  body {
+    margin: 4% auto;
+  }
+}
+
+
+
+
+
+
+/* Palette : 
+*   - #59D5E0
+*   - #F5DD61
+*   - #FAA300
+*   - #F4538A
+*/
+
+/* 1. Importation de la font avec préfixe pour Safari */
+@font-face {
+  font-family: "Joti-One";
+  src: url(614a43a74ffe8cf87adf.ttf) format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased; /* Safari */
+  -moz-osx-font-smoothing: grayscale; /* Firefox */
+}
+
+/* 2. Application de la font */
+h1,
+h2,
+h3,
+#alphabet-carousel {
+  font-family: "Joti-One", sans-serif;
+}
+
+/* 3. Mise en page pour les titres principaux */
+#app h1, h2, h3 {
+  text-align: center;
+  color: white;
+  margin: 30px 0;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+  font-size: 50px;
+  -webkit-text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3); /* Safari */
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* 4. Ajustements pour le titre h2 */
+#app h2 {
+  font-size: 40px;
+}
+
+/* 5. Ajustements pour le titre h3 */
+#app h3 {
+  font-size: 22px;
+}
+
+/* 6. Styles généraux pour tous les éléments */
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased; /* Safari */
+  -moz-osx-font-smoothing: grayscale; /* Firefox */
+}
+
+/* 7. Media query pour les écrans de moins de 1200px */
 @media screen and (max-width: 1200px) {
   body {
     margin: 4% auto;
@@ -283,7 +457,7 @@ h1{
     border-radius: 15px;
     padding: 10px;
     width: 45%;
-    background-color: white;
+    background-color: #fdfdfd;
     font-size: 13px;
     margin: 0 5px;
 }
@@ -514,6 +688,95 @@ Responsive pour Ipad, tourné coté paysage
         height: 50px;
     }
 }
+
+
+
+
+/* 
+================================================================================================================================
+Corrections spécifiques pour Safari 
+================================================================================================================================
+*/
+
+/* Gestion des flexbox sur Safari */
+@supports (-webkit-touch-callout: none) {
+    body, 
+    #bloc_connexion,
+    #bloc_connexion .dateNaissanceEnfantDiv,
+    #bloc_connexion .checkBoxContainer,
+    #bloc_connexion .divCheckBox,
+    #bloc_connexion .buttonInscrConnect {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex;
+    }
+}
+
+/* Correction du padding et margin mal interprétés sur Safari */
+body {
+    -webkit-padding-start: 0px;
+    -webkit-margin-before: 0px;
+    -webkit-margin-after: 0px;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+
+/* Amélioration du rendu des bordures */
+#bloc_connexion,
+#bloc_connexion input,
+#bloc_connexion select,
+#bloc_connexion button {
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
+    -webkit-border: 3px solid #F4538A;
+    border: 3px solid #F4538A;
+}
+
+/* Correction du focus sur les inputs */
+#bloc_connexion input:focus,
+#bloc_connexion select:focus {
+    -webkit-border: 5px solid #F4538A;
+    border: 5px solid #F4538A;
+    -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Ajout du support pour les transformations et transitions sur Safari */
+#bloc_connexion .buttonInscrConnect button:hover {
+    -webkit-transform: rotate(-0.02turn);
+    transform: rotate(-0.02turn);
+    -webkit-transition: -webkit-transform 0.3s, border 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s, border 0.3s, box-shadow 0.3s;
+}
+
+/* Correction des boutons de connexion et inscription */
+#bloc_connexion .buttonsInscriptionDiv button,
+#bloc_connexion .buttonInscrConnect button,
+#bloc_connexion .buttonsInscriptionDivEnfant button {
+    -webkit-border-radius: 15px;
+    border-radius: 15px;
+}
+
+/* Correction des polices qui peuvent ne pas bien s'afficher */
+@supports (-webkit-touch-callout: none) {
+    #bloc_connexion label,
+    #bloc_connexion button,
+    #bloc_connexion input,
+    #bloc_connexion select {
+        -webkit-text-size-adjust: none;
+        text-size-adjust: none;
+        font-family: "Joti-One", sans-serif;
+    }
+}
+
+/* Safari ne gère pas toujours bien les ombres, donc forçage */
+#bloc_connexion {
+    -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+}
+
 /*
 *   Palette :
 *       - #59D5E0
@@ -582,6 +845,66 @@ Responsive pour Ipad, tourné coté paysage
 
 #carousel-list li {
   list-style: none;
+}
+
+
+/* 
+================================================================================================================================
+Corrections spécifiques pour Safari 
+================================================================================================================================
+*/
+
+/* Gestion des flexbox pour Safari */
+@supports (-webkit-touch-callout: none) {
+  #alphabet-carousel,
+  #letter-container {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+/* Ajout des préfixes -webkit- pour les transitions et animations */
+#prev-button:hover,
+#next-button:hover {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+  -webkit-transition: -webkit-transform 0.2s;
+  transition: transform 0.2s;
+}
+
+/* Correction des boutons de navigation qui peuvent apparaître décalés sur Safari */
+#prev-button,
+#next-button {
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+}
+
+/* Amélioration de l'affichage du container de lettres sur Safari */
+#letter-container {
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+/* Assurer que les bordures et les ombres s'affichent bien */
+#alphabet-carousel {
+  -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+#letter-container {
+  -webkit-border-radius: 100%;
+  border-radius: 100%;
+  -webkit-border: 5px solid #faa300;
+  border: 5px solid #faa300;
 }
 
 /*
@@ -753,6 +1076,177 @@ header img {
   }
 }
 
+
+
+/* Partie Navigation */
+
+.logoApplication {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.logoApplication img {
+  margin-right: 10px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  padding: 0;
+}
+
+nav ul li {
+  margin-left: 1rem;
+}
+
+nav ul li a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  font-size: 95%;
+  font-weight: 400;
+  padding: 7px;
+  border-radius: 5px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Transition douce */
+}
+
+nav ul li a:hover {
+  background-color: #f5dd61;  /* Changer au survol */
+  transform: scale(1.05);
+}
+
+nav ul li img {
+  width: 40px;
+  height: auto;
+  margin: 8px;
+}
+
+header img {
+  width: 40px;
+  height: auto;
+}
+
+/* Partie responsive */
+.hamburger {
+  display: none;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.hamburger .line {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  display: block;
+  margin: 7px auto;
+  transition: all 0.3s ease-in-out;
+}
+
+.hamburger-active {
+  transform: rotate(45deg);
+}
+
+.hamburger-active .line:nth-child(2) {
+  width: 0;
+}
+
+.hamburger-active .line:nth-child(1),
+.hamburger-active .line:nth-child(3) {
+  transition-delay: 0.3s;
+}
+
+.hamburger-active .line:nth-child(1) {
+  transform: translateY(12px);
+}
+
+.hamburger-active .line:nth-child(3) {
+  transform: translateY(-5px) rotate(90deg);
+}
+
+.menubar {
+  position: absolute;
+  top: -300px;
+  left: -30px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 105.7%;
+  height: 80px;
+  padding: 13% 0;
+  background: #f4538a;
+  transition: all 0.5s ease-in;
+  border-bottom: 10px solid #faa300;
+  z-index: 1000;
+}
+
+.active {
+  top: -140px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.menubar ul {
+  display: flex;
+  justify-content: space-evenly;
+  width: 80%;
+  height: fit-content;
+  padding: 0;
+  list-style: none;
+}
+
+.menubar ul li {
+  padding: 10px;
+  border-radius: 35px;
+  width: 175px;
+  background-color: #faa300;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Transition douce */
+}
+
+.menubar ul li a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  font-size: 95%;
+  font-weight: 400;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.menubar ul li a:hover {
+  background-color: #f4538a;
+  transform: scale(1.05); /* Légère augmentation au survol */
+}
+
+@media screen and (max-width: 1200px) {
+
+  .hamburger {
+    display: block;
+  }
+
+  header {
+    position: sticky;
+    top: 20px;
+    width: 95%;
+    height: 100px;
+  }
+
+  nav ul {
+    display: none;
+  }
+
+  header nav .logoApplication h1 {
+    font-size: 35px;
+  }
+}
+
+
 /*
 *   Palette :
 *       - #59D5E0 cyan
@@ -891,6 +1385,82 @@ body {
   }
 }
 
+
+
+/* 
+================================================================================================================================
+Corrections spécifiques pour Safari 
+================================================================================================================================
+*/
+
+/* Gestion des flexbox pour Safari */
+@supports (-webkit-touch-callout: none) {
+  #container {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+
+  .linkExercice {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+/* Ajout des préfixes -webkit- pour les transitions et animations */
+.linkExercice:hover {
+  background-color: #faa300;
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
+  -webkit-transition: background-color 0.3s ease, -webkit-transform 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.linkExercice:active {
+  background-color: #f4538a;
+  -webkit-transform: scale(0.98);
+  transform: scale(0.98);
+  -webkit-transition: background-color 0.2s ease, -webkit-transform 0.2s ease;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+/* Correction de l'animation wave pour Safari */
+@-webkit-keyframes wave {
+  0%, 100% { margin-top: 0px; }
+  50% { margin-top: -10px; }
+}
+
+@keyframes wave {
+  0%, 100% { margin-top: 0px; }
+  50% { margin-top: -10px; }
+}
+
+.linkExercice {
+  -webkit-animation: wave 1.5s ease-in-out infinite;
+  animation: wave 1.5s ease-in-out infinite;
+}
+
+/* Correction des box-shadow sur Safari */
+.linkExercice {
+  -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Assurer que les boutons gardent une apparence cohérente */
+#buttonEmplacement button {
+  -webkit-appearance: none;
+  appearance: none;
+  font-size: large;
+  border: 0;
+  cursor: pointer;
+}
+
+
 .syllabe-container {
   display: flex;
   align-items: center;
@@ -918,6 +1488,60 @@ body {
 
 .syllabe-button:hover {
   background-color: #45a049;
+}
+
+
+
+.syllabe-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.syllabe-display {
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+  min-width: 100px;
+  transition: transform 0.3s ease; /* Ajout d'une transition sur l'effet transform */
+}
+
+/* Ajout d'une animation pour une transition plus fluide */
+.syllabe-display.active {
+  transform: scale(1.1); /* Effet de zoom lorsque la syllabe devient active */
+}
+
+.syllabe-button {
+  font-size: 2rem;
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.syllabe-button:hover {
+  background-color: #45a049;
+  transform: translateY(-3px); /* Légère élévation pour un effet de pression */
+}
+
+/* Effet de focus sur les boutons pour l'accessibilité */
+.syllabe-button:focus {
+  outline: 3px solid #59d5e0;
+}
+
+@media (max-width: 768px) {
+  .syllabe-display {
+    font-size: 2.5rem; /* Réduction de la taille des syllabes pour les petits écrans */
+  }
+
+  .syllabe-button {
+    font-size: 1.8rem; /* Ajustement de la taille des boutons pour une meilleure adaptation mobile */
+  }
 }
 
 /* Style de base pour le modal */
@@ -952,6 +1576,77 @@ body {
     color: red;
     cursor: pointer;
 }
+
+
+
+
+
+/* Style de base pour le modal */
+.modal {
+    display: none; /* Masqué par défaut */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Fond semi-transparent */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    -webkit-overflow-scrolling: touch; /* Ajout pour la compatibilité avec Safari */
+}
+
+/* Contenu du modal */
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    min-height: 600px;
+    max-width: 1500px;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ajout d'une ombre pour plus de profondeur */
+}
+
+/* Bouton de fermeture */
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 50px;
+    color: red;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+/* Effet au survol du bouton de fermeture */
+.close-button:hover {
+    color: darkred;
+}
+
+/* Animation d'ouverture et de fermeture du modal */
+@keyframes modalFadeIn {
+    0% { opacity: 0; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes modalFadeOut {
+    0% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0.8); }
+}
+
+/* Animation d'ouverture pour le modal */
+.modal.show {
+    display: flex;
+    animation: modalFadeIn 0.3s ease-out forwards;
+}
+
+/* Animation de fermeture pour le modal */
+.modal.hide {
+    display: flex;
+    animation: modalFadeOut 0.3s ease-in forwards;
+}
+
 /* Conteneur principal pour les exercices */
 .exercice-syllabe {
   display: flex;
@@ -1040,5 +1735,85 @@ body {
 
 .next-button:hover {
   background-color: #48b1c0;
+}
+
+
+
+/* Section pour compatibilité Safari */
+
+/* 1. Flexbox - Problème avec la mise en page */
+.exercice-syllabe {
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  -webkit-flex-direction: column; /* Safari */
+  flex-direction: column;
+  -webkit-align-items: center; /* Safari */
+  align-items: center;
+  gap: 20px;
+  max-width: 90%; /* Réduction de la largeur du contenu */
+  max-height: 70vh; /* Limite la hauteur totale à 70% de la hauteur visible */
+  overflow-y: auto; /* Ajoute un défilement vertical si nécessaire */
+}
+
+/* 2. Images des exercices - Problèmes de bordure et d'alignement dans Safari */
+.image-exercice {
+  -webkit-border-radius: 10px; /* Safari */
+  border-radius: 10px;
+  -webkit-border: 3px solid #ccc; /* Safari */
+  border: 3px solid #ccc;
+  object-fit: cover;
+}
+
+/* 3. Boutons des mots - transition et effet hover */
+.mot-button {
+  -webkit-transition: transform 0.2s ease-in-out, background-color 0.2s; /* Safari */
+  transition: transform 0.2s ease-in-out, background-color 0.2s;
+}
+
+/* 4. Ajustement pour le conteneur des boutons de choix */
+.choix-container {
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  -webkit-flex-wrap: wrap; /* Safari */
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  max-width: 100%;
+}
+
+/* 5. Bouton suivant - Hack pour rendre les boutons plus fluides sur Safari */
+.next-button {
+  -webkit-transition: background-color 0.2s; /* Safari */
+  transition: background-color 0.2s;
+  -webkit-border-radius: 5px; /* Safari */
+  border-radius: 5px;
+}
+
+/* 6. Problème de position sticky sur Safari */
+.score-container {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Safari */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+/* 7. Ajout d'un petit fix pour le texte centré sur Safari */
+.exercice-syllabe h2, .exercice-syllabe p {
+  -webkit-text-size-adjust: none; /* Safari */
+  font-size: 1.2rem;
+}
+
+/* 8. Boutons avec un fond de couleur qui change de manière fluide */
+.next-button:hover {
+  background-color: #48b1c0;
+  -webkit-transform: scale(1.05); /* Safari */
+  transform: scale(1.05);
 }
 

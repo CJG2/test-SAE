@@ -413,22 +413,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const currentPath = window.location.pathname;
 
-  const publicPages = ["/connexion.html"];
+  const publicPages = ["/test-SAE/code_sae/dist/connexion.html"];
 
 
   document.getElementById('logoApplication').addEventListener('click', function() {
-    window.location.href = "/profil.html";
+    window.location.href = "/test-SAE/code_sae/dist/profil.html";
   });
 
   if (!userLoggedIn) {
     if (!publicPages.includes(currentPath)) {
-      window.location.href = "/connexion.html";
+      window.location.href = "/test-SAE/code_sae/dist/connexion.html";
       return;
     }
   } else {
     if (userLoggedIn.type !== "adulte") {
       if (!publicPages.includes(currentPath)) {
-        window.location.href = "/accueil.html";
+        window.location.href = "/test-SAE/code_sae/dist/accueil.html";
         return;
       }
     }
@@ -438,7 +438,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (logoutLink) {
     logoutLink.addEventListener("click", () => {
       localStorage.removeItem("userLoggedIn");
-      window.location.href = "/connexion.html";
+      window.location.href = "/test-SAE/code_sae/dist/connexion.html";
     });
   }
 
@@ -463,7 +463,7 @@ document.addEventListener("DOMContentLoaded", () => {
           JSON.stringify(adulteConnecte)
         );
       }
-      window.location.href = "/connexion.html";
+      window.location.href = "/test-SAE/code_sae/dist/connexion.html";
     });
   });
 

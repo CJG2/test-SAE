@@ -155,3 +155,71 @@
   color: #f4538a;
   z-index: 1000;
 }
+
+
+/* 
+================================================================================================================================
+Corrections spécifiques pour Safari 
+================================================================================================================================
+*/
+
+/* Gestion des flexbox pour Safari */
+@supports (-webkit-touch-callout: none) {
+  .game-area .image-container,
+  .words-container,
+  .game-content,
+  .game-header,
+  .game-info,
+  .game-area {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+/* Ajout des préfixes -webkit- pour les transitions et animations */
+.word-card:hover {
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
+  -webkit-transition: -webkit-transform 0.2s;
+  transition: transform 0.2s;
+}
+
+.drop-zone.incorrect {
+  -webkit-animation: shake 0.5s;
+  animation: shake 0.5s;
+}
+
+/* Correction de l'animation shake pour Safari */
+@-webkit-keyframes shake {
+  0%, 100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  25% {
+    -webkit-transform: translateX(-10px);
+    transform: translateX(-10px);
+  }
+  75% {
+    -webkit-transform: translateX(10px);
+    transform: translateX(10px);
+  }
+}
+
+/* Correction des box-shadow sur Safari */
+.game-content {
+  -webkit-box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Amélioration du drag and drop sur Safari */
+.word-card {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.word-card:active {
+  cursor: grabbing;
+}

@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Vérifier si un utilisateur est connecté et si c'est un compte enfant
   if (!userLoggedIn || userLoggedIn.type !== "enfant") {
     // Si ce n'est pas un compte enfant, rediriger vers la page de progression
-    window.location.href = "/progression.html";
+    window.location.href = "/test-SAE/code_sae/dist/progression.html";
     return;
   }
 
@@ -46,12 +46,12 @@ document.addEventListener("DOMContentLoaded", () => {
       //sessionStorage.clear(); // Supprimer les données de session
 
       // Rediriger vers la page de connexion
-      window.location.href = "/connexion.html";
+      window.location.href = "/test-SAE/code_sae/dist/connexion.html";
     });
   }
 
   document.getElementById('logoApplication').addEventListener('click', function() {
-    window.location.href = "/accueil.html";
+    window.location.href = "/test-SAE/code_sae/dist/accueil.html";
   });
 
   // Création des descriptions des exercices
@@ -138,7 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
       sessionStorage.removeItem("adulteConnecte");
       sessionStorage.clear();
 
-      window.location.href = "/connexion.html";
+      window.location.href = "/test-SAE/code_sae/dist/connexion.html";
     });
   }
 

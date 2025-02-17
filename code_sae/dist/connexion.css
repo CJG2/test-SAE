@@ -67,6 +67,64 @@
     background-color: #F4538A;
     color: white;
 }
+
+
+
+/* ==============================================================================
+Section pour compatibilité Safari 
+======================================================================================*/
+
+/* 1. Flexbox - Problème avec la mise en page */
+#bloc_connexion .selectsNaissanceParent {
+    display: -webkit-flex; /* Safari */
+    display: flex;
+}
+
+/* 2. Styles spécifiques pour les boutons sur Safari (les ombres peuvent ne pas s'afficher correctement sur certains éléments) */
+#bloc_connexion .buttonsInscriptionDiv button {
+    -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Safari */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* 3. Hack pour border-radius dans Safari */
+#bloc_connexion .buttonsInscriptionDiv button {
+    -webkit-border-radius: 15px; /* Safari */
+    border-radius: 15px;
+}
+
+/* 4. Problème de police dans les labels sur Safari */
+#bloc_connexion .selectsNaissanceParent label {
+    -webkit-font-smoothing: antialiased; /* Safari */
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* 5. Hack pour marges ou paddings */
+#bloc_connexion .divNom, .divPrenom, .genreDiv, .emailDiv, .confirmEmailDiv, .passwordDiv, .confirmPasswordDiv, .telephoneDiv, .paysDiv {
+    -webkit-margin-start: 0; /* Safari */
+    margin: 0;
+    margin-bottom: 25px; /* Résolution d'un potentiel conflit de marges */
+}
+
+/* 6. Ajout de padding pour les titres dans Safari */
+#bloc_connexion .inscrireTitle {
+    -webkit-padding-start: 10px; /* Safari */
+    padding-left: 10px;
+}
+
+/* 7. Problème d'affichage de certains éléments sur Safari */
+#bloc_connexion .buttonsInscriptionDiv {
+    -webkit-flex-direction: row; /* Safari */
+    flex-direction: row;
+}
+
+/* 8. Débogage de la taille de police dans Safari */
+#bloc_connexion .responsableEnfantLabel {
+    font-size: 30px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    -webkit-text-size-adjust: none; /* Safari */
+}
+
 /*
 *   Palette :
 *       - #59D5E0
@@ -110,6 +168,71 @@ h3,
   -moz-osx-font-smoothing: grayscale;
 }
 
+@media screen and (max-width: 1200px) {
+  body {
+    margin: 4% auto;
+  }
+}
+
+
+
+
+
+
+/* Palette : 
+*   - #59D5E0
+*   - #F5DD61
+*   - #FAA300
+*   - #F4538A
+*/
+
+/* 1. Importation de la font avec préfixe pour Safari */
+@font-face {
+  font-family: "Joti-One";
+  src: url(614a43a74ffe8cf87adf.ttf) format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased; /* Safari */
+  -moz-osx-font-smoothing: grayscale; /* Firefox */
+}
+
+/* 2. Application de la font */
+h1,
+h2,
+h3,
+#alphabet-carousel {
+  font-family: "Joti-One", sans-serif;
+}
+
+/* 3. Mise en page pour les titres principaux */
+#app h1, h2, h3 {
+  text-align: center;
+  color: white;
+  margin: 30px 0;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+  font-size: 50px;
+  -webkit-text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3); /* Safari */
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* 4. Ajustements pour le titre h2 */
+#app h2 {
+  font-size: 40px;
+}
+
+/* 5. Ajustements pour le titre h3 */
+#app h3 {
+  font-size: 22px;
+}
+
+/* 6. Styles généraux pour tous les éléments */
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased; /* Safari */
+  -moz-osx-font-smoothing: grayscale; /* Firefox */
+}
+
+/* 7. Media query pour les écrans de moins de 1200px */
 @media screen and (max-width: 1200px) {
   body {
     margin: 4% auto;
@@ -228,7 +351,7 @@ h1{
     border-radius: 15px;
     padding: 10px;
     width: 45%;
-    background-color: white;
+    background-color: #fdfdfd;
     font-size: 13px;
     margin: 0 5px;
 }
@@ -459,3 +582,92 @@ Responsive pour Ipad, tourné coté paysage
         height: 50px;
     }
 }
+
+
+
+
+/* 
+================================================================================================================================
+Corrections spécifiques pour Safari 
+================================================================================================================================
+*/
+
+/* Gestion des flexbox sur Safari */
+@supports (-webkit-touch-callout: none) {
+    body, 
+    #bloc_connexion,
+    #bloc_connexion .dateNaissanceEnfantDiv,
+    #bloc_connexion .checkBoxContainer,
+    #bloc_connexion .divCheckBox,
+    #bloc_connexion .buttonInscrConnect {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex;
+    }
+}
+
+/* Correction du padding et margin mal interprétés sur Safari */
+body {
+    -webkit-padding-start: 0px;
+    -webkit-margin-before: 0px;
+    -webkit-margin-after: 0px;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+
+/* Amélioration du rendu des bordures */
+#bloc_connexion,
+#bloc_connexion input,
+#bloc_connexion select,
+#bloc_connexion button {
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
+    -webkit-border: 3px solid #F4538A;
+    border: 3px solid #F4538A;
+}
+
+/* Correction du focus sur les inputs */
+#bloc_connexion input:focus,
+#bloc_connexion select:focus {
+    -webkit-border: 5px solid #F4538A;
+    border: 5px solid #F4538A;
+    -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Ajout du support pour les transformations et transitions sur Safari */
+#bloc_connexion .buttonInscrConnect button:hover {
+    -webkit-transform: rotate(-0.02turn);
+    transform: rotate(-0.02turn);
+    -webkit-transition: -webkit-transform 0.3s, border 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s, border 0.3s, box-shadow 0.3s;
+}
+
+/* Correction des boutons de connexion et inscription */
+#bloc_connexion .buttonsInscriptionDiv button,
+#bloc_connexion .buttonInscrConnect button,
+#bloc_connexion .buttonsInscriptionDivEnfant button {
+    -webkit-border-radius: 15px;
+    border-radius: 15px;
+}
+
+/* Correction des polices qui peuvent ne pas bien s'afficher */
+@supports (-webkit-touch-callout: none) {
+    #bloc_connexion label,
+    #bloc_connexion button,
+    #bloc_connexion input,
+    #bloc_connexion select {
+        -webkit-text-size-adjust: none;
+        text-size-adjust: none;
+        font-family: "Joti-One", sans-serif;
+    }
+}
+
+/* Safari ne gère pas toujours bien les ombres, donc forçage */
+#bloc_connexion {
+    -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+}
+

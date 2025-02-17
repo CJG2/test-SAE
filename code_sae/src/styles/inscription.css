@@ -67,3 +67,60 @@
     background-color: #F4538A;
     color: white;
 }
+
+
+
+/* ==============================================================================
+Section pour compatibilité Safari 
+======================================================================================*/
+
+/* 1. Flexbox - Problème avec la mise en page */
+#bloc_connexion .selectsNaissanceParent {
+    display: -webkit-flex; /* Safari */
+    display: flex;
+}
+
+/* 2. Styles spécifiques pour les boutons sur Safari (les ombres peuvent ne pas s'afficher correctement sur certains éléments) */
+#bloc_connexion .buttonsInscriptionDiv button {
+    -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Safari */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* 3. Hack pour border-radius dans Safari */
+#bloc_connexion .buttonsInscriptionDiv button {
+    -webkit-border-radius: 15px; /* Safari */
+    border-radius: 15px;
+}
+
+/* 4. Problème de police dans les labels sur Safari */
+#bloc_connexion .selectsNaissanceParent label {
+    -webkit-font-smoothing: antialiased; /* Safari */
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* 5. Hack pour marges ou paddings */
+#bloc_connexion .divNom, .divPrenom, .genreDiv, .emailDiv, .confirmEmailDiv, .passwordDiv, .confirmPasswordDiv, .telephoneDiv, .paysDiv {
+    -webkit-margin-start: 0; /* Safari */
+    margin: 0;
+    margin-bottom: 25px; /* Résolution d'un potentiel conflit de marges */
+}
+
+/* 6. Ajout de padding pour les titres dans Safari */
+#bloc_connexion .inscrireTitle {
+    -webkit-padding-start: 10px; /* Safari */
+    padding-left: 10px;
+}
+
+/* 7. Problème d'affichage de certains éléments sur Safari */
+#bloc_connexion .buttonsInscriptionDiv {
+    -webkit-flex-direction: row; /* Safari */
+    flex-direction: row;
+}
+
+/* 8. Débogage de la taille de police dans Safari */
+#bloc_connexion .responsableEnfantLabel {
+    font-size: 30px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    -webkit-text-size-adjust: none; /* Safari */
+}

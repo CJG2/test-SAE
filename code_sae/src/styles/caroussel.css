@@ -67,3 +67,63 @@
 #carousel-list li {
   list-style: none;
 }
+
+
+/* 
+================================================================================================================================
+Corrections spécifiques pour Safari 
+================================================================================================================================
+*/
+
+/* Gestion des flexbox pour Safari */
+@supports (-webkit-touch-callout: none) {
+  #alphabet-carousel,
+  #letter-container {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+/* Ajout des préfixes -webkit- pour les transitions et animations */
+#prev-button:hover,
+#next-button:hover {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+  -webkit-transition: -webkit-transform 0.2s;
+  transition: transform 0.2s;
+}
+
+/* Correction des boutons de navigation qui peuvent apparaître décalés sur Safari */
+#prev-button,
+#next-button {
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+}
+
+/* Amélioration de l'affichage du container de lettres sur Safari */
+#letter-container {
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+/* Assurer que les bordures et les ombres s'affichent bien */
+#alphabet-carousel {
+  -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+#letter-container {
+  -webkit-border-radius: 100%;
+  border-radius: 100%;
+  -webkit-border: 5px solid #faa300;
+  border: 5px solid #faa300;
+}

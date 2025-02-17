@@ -227,7 +227,7 @@ export function choixCompte(adulte) {
     // Sauvegarder le rôle pour le contrôle d'accès
     localStorage.setItem("role", "adulte");
 
-    window.location.href = "/test-SAE/code_sae/dist//progression.html";
+    window.location.href = "/test-SAE/code_sae/dist/progression.html";
   });
 
   divAdult.appendChild(intituleAdulte)

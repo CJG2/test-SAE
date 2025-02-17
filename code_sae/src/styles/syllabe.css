@@ -26,3 +26,57 @@
 .syllabe-button:hover {
   background-color: #45a049;
 }
+
+
+
+.syllabe-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.syllabe-display {
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+  min-width: 100px;
+  transition: transform 0.3s ease; /* Ajout d'une transition sur l'effet transform */
+}
+
+/* Ajout d'une animation pour une transition plus fluide */
+.syllabe-display.active {
+  transform: scale(1.1); /* Effet de zoom lorsque la syllabe devient active */
+}
+
+.syllabe-button {
+  font-size: 2rem;
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.syllabe-button:hover {
+  background-color: #45a049;
+  transform: translateY(-3px); /* Légère élévation pour un effet de pression */
+}
+
+/* Effet de focus sur les boutons pour l'accessibilité */
+.syllabe-button:focus {
+  outline: 3px solid #59d5e0;
+}
+
+@media (max-width: 768px) {
+  .syllabe-display {
+    font-size: 2.5rem; /* Réduction de la taille des syllabes pour les petits écrans */
+  }
+
+  .syllabe-button {
+    font-size: 1.8rem; /* Ajustement de la taille des boutons pour une meilleure adaptation mobile */
+  }
+}

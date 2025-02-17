@@ -46,6 +46,71 @@ h3,
     margin: 4% auto;
   }
 }
+
+
+
+
+
+
+/* Palette : 
+*   - #59D5E0
+*   - #F5DD61
+*   - #FAA300
+*   - #F4538A
+*/
+
+/* 1. Importation de la font avec préfixe pour Safari */
+@font-face {
+  font-family: "Joti-One";
+  src: url(614a43a74ffe8cf87adf.ttf) format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased; /* Safari */
+  -moz-osx-font-smoothing: grayscale; /* Firefox */
+}
+
+/* 2. Application de la font */
+h1,
+h2,
+h3,
+#alphabet-carousel {
+  font-family: "Joti-One", sans-serif;
+}
+
+/* 3. Mise en page pour les titres principaux */
+#app h1, h2, h3 {
+  text-align: center;
+  color: white;
+  margin: 30px 0;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+  font-size: 50px;
+  -webkit-text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3); /* Safari */
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* 4. Ajustements pour le titre h2 */
+#app h2 {
+  font-size: 40px;
+}
+
+/* 5. Ajustements pour le titre h3 */
+#app h3 {
+  font-size: 22px;
+}
+
+/* 6. Styles généraux pour tous les éléments */
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased; /* Safari */
+  -moz-osx-font-smoothing: grayscale; /* Firefox */
+}
+
+/* 7. Media query pour les écrans de moins de 1200px */
+@media screen and (max-width: 1200px) {
+  body {
+    margin: 4% auto;
+  }
+}
 /*
 *   Palette :
 *       - #59D5E0
@@ -215,6 +280,177 @@ header img {
   }
 }
 
+
+
+/* Partie Navigation */
+
+.logoApplication {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.logoApplication img {
+  margin-right: 10px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  padding: 0;
+}
+
+nav ul li {
+  margin-left: 1rem;
+}
+
+nav ul li a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  font-size: 95%;
+  font-weight: 400;
+  padding: 7px;
+  border-radius: 5px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Transition douce */
+}
+
+nav ul li a:hover {
+  background-color: #f5dd61;  /* Changer au survol */
+  transform: scale(1.05);
+}
+
+nav ul li img {
+  width: 40px;
+  height: auto;
+  margin: 8px;
+}
+
+header img {
+  width: 40px;
+  height: auto;
+}
+
+/* Partie responsive */
+.hamburger {
+  display: none;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.hamburger .line {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  display: block;
+  margin: 7px auto;
+  transition: all 0.3s ease-in-out;
+}
+
+.hamburger-active {
+  transform: rotate(45deg);
+}
+
+.hamburger-active .line:nth-child(2) {
+  width: 0;
+}
+
+.hamburger-active .line:nth-child(1),
+.hamburger-active .line:nth-child(3) {
+  transition-delay: 0.3s;
+}
+
+.hamburger-active .line:nth-child(1) {
+  transform: translateY(12px);
+}
+
+.hamburger-active .line:nth-child(3) {
+  transform: translateY(-5px) rotate(90deg);
+}
+
+.menubar {
+  position: absolute;
+  top: -300px;
+  left: -30px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 105.7%;
+  height: 80px;
+  padding: 13% 0;
+  background: #f4538a;
+  transition: all 0.5s ease-in;
+  border-bottom: 10px solid #faa300;
+  z-index: 1000;
+}
+
+.active {
+  top: -140px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.menubar ul {
+  display: flex;
+  justify-content: space-evenly;
+  width: 80%;
+  height: fit-content;
+  padding: 0;
+  list-style: none;
+}
+
+.menubar ul li {
+  padding: 10px;
+  border-radius: 35px;
+  width: 175px;
+  background-color: #faa300;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Transition douce */
+}
+
+.menubar ul li a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  font-size: 95%;
+  font-weight: 400;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.menubar ul li a:hover {
+  background-color: #f4538a;
+  transform: scale(1.05); /* Légère augmentation au survol */
+}
+
+@media screen and (max-width: 1200px) {
+
+  .hamburger {
+    display: block;
+  }
+
+  header {
+    position: sticky;
+    top: 20px;
+    width: 95%;
+    height: 100px;
+  }
+
+  nav ul {
+    display: none;
+  }
+
+  header nav .logoApplication h1 {
+    font-size: 35px;
+  }
+}
+
+
 /*
 *   Palette :
 *       - #59D5E0
@@ -366,6 +602,117 @@ textarea {
   .feedback-form {
     margin: 1rem;
     padding: 1rem;
+  }
+}
+
+
+/* 
+================================================================================================================================
+Corrections spécifiques pour Safari et compatibilité générale
+================================================================================================================================
+*/
+
+/* Correction du style des étoiles sur Safari */
+.rating-container label {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Amélioration du `hover` sur les étoiles */
+.rating-container label:hover,
+.rating-container label:hover ~ label,
+.rating-container input[type="radio"]:checked ~ label {
+  color: #ffd700 !important;
+  transition: color 0.2s ease-in-out;
+}
+
+/* Meilleur focus sur les inputs et les selects */
+select,
+textarea,
+input {
+  -webkit-appearance: none; /* Supprime les styles par défaut sur Safari mobile */
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+  border-radius: 4px;
+  border: 2px solid #faa300;
+  padding: 0.8rem;
+  font-size: 1rem;
+  transition: border 0.3s, box-shadow 0.3s;
+}
+
+select:focus,
+textarea:focus,
+input:focus {
+  border: 2px solid #f4538a;
+  box-shadow: 0 0 10px rgba(244, 83, 138, 0.3);
+}
+
+/* Amélioration du bouton de soumission */
+.submit-btn {
+  background-color: #4caf50;
+  color: white;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  width: 100%;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.submit-btn:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+/* Empêche Safari de modifier le style des boutons et des champs */
+button, select, input, textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* Amélioration des messages de succès et d'erreur */
+.message {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.message.success {
+  background-color: #dff0d8;
+  color: #3c763d;
+  border: 1px solid #d6e9c6;
+}
+
+.message.error {
+  background-color: #f2dede;
+  color: #a94442;
+  border: 1px solid #ebccd1;
+}
+
+/* Responsive : meilleure gestion sur mobile */
+@media (max-width: 768px) {
+  .feedback-form {
+    margin: 1rem;
+    padding: 1rem;
+  }
+  
+  select,
+  textarea,
+  input {
+    font-size: 0.9rem;
+    padding: 0.6rem;
+  }
+
+  .submit-btn {
+    font-size: 0.9rem;
+    padding: 0.8rem;
   }
 }
 

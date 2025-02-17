@@ -48,3 +48,54 @@
     background-color: #F5DD61;
     transition: 0.2s;
 }
+
+
+/* 
+================================================================================================================================
+Corrections spécifiques pour Safari 
+================================================================================================================================
+*/
+
+/* Correction du rendu flexbox */
+@supports (-webkit-touch-callout: none) {
+    #alphabet {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: flex;
+    }
+  
+    #buttonEmplacement {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: flex;
+    }
+  }
+  
+  /* Ajout de -webkit-transition pour Safari */
+  #alphabet:hover {
+      background-color: #FAA300;
+      color: white;
+      -webkit-transition: 0.2s ease-in;
+      transition: 0.2s ease-in;
+  }
+  
+  #convertImage:hover,
+  #buttonEmplacement button:hover {
+      background-color: #F5DD61;
+      -webkit-transition: 0.2s ease-in;
+      transition: 0.2s ease-in;
+  }
+  
+  /* Gestion du bouton pour éviter les styles non appliqués sur Safari */
+  #buttonEmplacement button {
+      -webkit-appearance: none;
+      appearance: none;
+      font-size: large;
+      border: 0;
+      cursor: pointer;
+  }
+  

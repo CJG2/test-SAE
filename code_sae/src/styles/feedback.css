@@ -151,3 +151,114 @@ textarea {
     padding: 1rem;
   }
 }
+
+
+/* 
+================================================================================================================================
+Corrections spécifiques pour Safari et compatibilité générale
+================================================================================================================================
+*/
+
+/* Correction du style des étoiles sur Safari */
+.rating-container label {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Amélioration du `hover` sur les étoiles */
+.rating-container label:hover,
+.rating-container label:hover ~ label,
+.rating-container input[type="radio"]:checked ~ label {
+  color: #ffd700 !important;
+  transition: color 0.2s ease-in-out;
+}
+
+/* Meilleur focus sur les inputs et les selects */
+select,
+textarea,
+input {
+  -webkit-appearance: none; /* Supprime les styles par défaut sur Safari mobile */
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+  border-radius: 4px;
+  border: 2px solid #faa300;
+  padding: 0.8rem;
+  font-size: 1rem;
+  transition: border 0.3s, box-shadow 0.3s;
+}
+
+select:focus,
+textarea:focus,
+input:focus {
+  border: 2px solid #f4538a;
+  box-shadow: 0 0 10px rgba(244, 83, 138, 0.3);
+}
+
+/* Amélioration du bouton de soumission */
+.submit-btn {
+  background-color: #4caf50;
+  color: white;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  width: 100%;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.submit-btn:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+/* Empêche Safari de modifier le style des boutons et des champs */
+button, select, input, textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* Amélioration des messages de succès et d'erreur */
+.message {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.message.success {
+  background-color: #dff0d8;
+  color: #3c763d;
+  border: 1px solid #d6e9c6;
+}
+
+.message.error {
+  background-color: #f2dede;
+  color: #a94442;
+  border: 1px solid #ebccd1;
+}
+
+/* Responsive : meilleure gestion sur mobile */
+@media (max-width: 768px) {
+  .feedback-form {
+    margin: 1rem;
+    padding: 1rem;
+  }
+  
+  select,
+  textarea,
+  input {
+    font-size: 0.9rem;
+    padding: 0.6rem;
+  }
+
+  .submit-btn {
+    font-size: 0.9rem;
+    padding: 0.8rem;
+  }
+}
