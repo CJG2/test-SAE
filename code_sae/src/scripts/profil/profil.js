@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // nécessite que le compte connecté soit un compte adulte
   if (userRole !== "adulte") {
-    window.location.href = "accueil.html";
+    window.location.href = "/test-SAE/code_sae/dist/accueil.html";
     return;
   }
 
@@ -47,13 +47,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!userLoggedIn) {
     if (!publicPages.includes(currentPath)) {
-      window.location.href = "/connexion.html";
+      window.location.href = "/test-SAE/code_sae/dist/connexion.html";
       return;
     }
   } else {
     if (userLoggedIn.type !== "adulte") {
       if (!publicPages.includes(currentPath)) {
-        window.location.href = "/accueil.html";
+        window.location.href = "/test-SAE/code_sae/dist/accueil.html";
         return;
       }
     }
@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
       sessionStorage.removeItem("enfantConnecte");
       sessionStorage.removeItem("adulteConnecte");
 
-      window.location.href = "/connexion.html";
+      window.location.href = "/test-SAE/code_sae/dist/connexion.html";
     });
   }
 });
@@ -1088,7 +1088,7 @@ function miseAJourMDPAdulte(newPassword, newSel, username) {
     })
     .then((data) => {
       console.log("Réponse du serveur :", data);
-      if (data.success) window.location.href = "/connexion.html";
+      if (data.success) window.location.href = "/test-SAE/code_sae/dist/connexion.html";
       else alert("Erreur lors de mise à jour du mot de passe du responsable.");
     })
     .catch((error) => {
@@ -1114,7 +1114,7 @@ document.addEventListener("DOMContentLoaded", () => {
       sessionStorage.removeItem("adulteConnecte");
       sessionStorage.clear();
 
-      window.location.href = "/connexion.html";
+      window.location.href = "/test-SAE/code_sae/dist/connexion.html";
     });
   }
 
