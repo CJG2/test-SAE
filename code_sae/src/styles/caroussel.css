@@ -28,6 +28,7 @@
   width: 85px;
   height: 85px;
   border: 5px solid #faa300;
+  background-color: white;
   border-radius: 100%;
   font-size: 60px;
 }
@@ -42,7 +43,7 @@
 #letter-container {
   text-align: center;
   font-size: 100px;
-  color : #fff;
+  color : white;
 }
 
 #letter-container {

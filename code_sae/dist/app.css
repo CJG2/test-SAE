@@ -12,6 +12,13 @@
   src: url(614a43a74ffe8cf87adf.ttf) format("truetype");
 }
 
+body {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  background-color: #59d5e0;
+  padding: 30px 0;
+}
+
 h1,
 h2,
 h3,

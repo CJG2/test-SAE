@@ -31,3 +31,23 @@
   background-color: #F5DD61;
   font-size: 220%;
 }
+
+
+/*
+================================================================================================================================
+Partie Responsive
+================================================================================================================================
+*/
+
+/*
+Responsive pour Ipad, tourné côté paysage
+*/
+
+@media only screen and (max-width: 1200px) {
+  #gauche .boutonList, #droite .boutonList {
+    margin: 10px auto;
+    font-size: 25px;
+    width: 70%;
+    height: 60px;
+  }
+}

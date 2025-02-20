@@ -1,26 +1,3 @@
-body {
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
-  background-color: #59d5e0;
-}
-
-nav {
-  padding: 5px 5%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #f4538a;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-  z-index: 1;
-}
-
-nav ul li a:hover {
-  background-color: #f5dd61;
-  transform: scale(1.1);
-  transition: 0.3s;
-}
-
 #container {
   display: flex;
   justify-content: space-evenly;
@@ -76,10 +53,6 @@ Responsive pour Ipad, tourné coté paysage
 @media only screen and (max-width: 1400px) {
   body {
     margin: auto;
-  }
-
-  nav .logoApplication{
-    width: 60%;
   }
 
   #app h1{

@@ -58,12 +58,12 @@
     border-radius: 15px;
     padding: 10px;
     width: 45%;
-    background-color: #fff;
+    background-color: white;
     font-size: 13px;
     margin: 0 5px;
 }
 
 #bloc_connexion .buttonsInscriptionDiv .inscrireButton{
     background-color: #F4538A;
-    color: #fff;
+    color: white;
 }
