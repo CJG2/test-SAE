@@ -110,7 +110,7 @@ header .menubar:not(.active) ~ #container .linkMiniJeux {
 
 #app h1,
 #app h2 {
-  color: white;
+  color: #fff;
   text-align: center;
   margin-top: 20px;
   text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);

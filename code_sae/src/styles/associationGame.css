@@ -25,7 +25,7 @@
 }
 
 .game-content {
-  background-color: white;
+  background-color: #fff;
   border-radius: 20px;
   padding: 20px;
   width: 100%;
@@ -77,7 +77,7 @@
 
 .word-card {
   background-color: #59d5e0;
-  color: white;
+  color: #fff;
   padding: 15px;
   border-radius: 10px;
   text-align: center;

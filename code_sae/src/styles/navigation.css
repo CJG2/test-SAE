@@ -12,7 +12,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: #fff;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
 }
 
@@ -34,7 +34,7 @@ nav ul li a {
   justify-content: center;
   align-items: center;
   text-decoration: none;
-  color: white;
+  color: #fff;
   font-size: 95%;
   font-weight: 400;
   padding: 7px;
@@ -63,7 +63,7 @@ header img {
 .hamburger .line {
   width: 25px;
   height: 3px;
-  background-color: white;
+  background-color: #fff;
   display: block;
   margin: 7px auto;
   transition: all 0.3s ease-in-out;
@@ -134,7 +134,7 @@ header img {
   justify-content: space-between;
   align-items: center;
   text-decoration: none;
-  color: white;
+  color: #fff;
   font-size: 95%;
   font-weight: 400;
   padding: 15px;
