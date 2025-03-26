@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
     createNavLink(
       "accueilLinkImagesApprendre",
       "Apprends à lire et à écrire avec des exercices !",
-      "/test-SAE/code_sae/dist/apprendre.html"
+      "/apprendre.html"
     )
   );
 
@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
     createNavLink(
       "accueilLinkImagesMiniGames",
       "Apprends en t'amusant avec des exercices !",
-      "/test-SAE/code_sae/dist/miniJeux.html"
+      "/miniJeux.html"
     )
   );
 
