@@ -1,6 +1,9 @@
 import successSound from "./../../../assets/sons/appSound/goodAnswer.mp3";
 import failSound from "./../../../assets/sons/appSound/wrongAnswer.mp3";
 
+import ennonceSound from "./../../../assets/sons/descriptionMJetA/description_apprendre/voix_apprendre_lectureDesSyllabes 1.mp3";
+import { Consignes } from "./../../consignes/consignes.js";
+
 /**
  * Exercice pour la lecture de syllabe
  *
@@ -76,6 +79,8 @@ export async function exerciceLectureSyllabe(modalBody) {
 
     const exerciseContainer = document.createElement("div");
     exerciseContainer.classList.add("exercice-syllabe");
+
+    new Consignes(exerciseContainer, ennonceSound);
 
     const titre = document.createElement("h2");
     titre.textContent = "Lecture de Syllabes";

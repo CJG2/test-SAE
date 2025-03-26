@@ -183,7 +183,14 @@ Responsive pour Ipad, tourné côté paysage
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 200px;
     height: 130px;
+  }
+
+  .game-area .words-container, .game-area .images-container {
+    width: 50%;
+  }
+
+  .game-area .words-container .word-card, .game-area .images-container .image-container {
+    width: 100%;
   }
 }

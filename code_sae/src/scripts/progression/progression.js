@@ -1,9 +1,7 @@
-import { loadImages } from "./../inclusionImage.js";
+import { recupererExercice, recupererDernierExerciceFait } from "../mini_jeux/listeDeMots/listeDeMots";
 import { recupererEnfantsDUnResponsable } from "../profil/profil.js";
-import { formatTime, resetChrono } from "../connexion/connexion.js";
 import returnArrow from "./../../assets/icons/returnArrow.png";
 
-//importation des styles
 import "./../../styles/main.css";
 import "./../../styles/caroussel.css";
 import "./../../styles/navigation.css";
@@ -12,79 +10,29 @@ import "./../../styles/profil.css";
 
 const adulteConnecte = JSON.parse(sessionStorage.getItem("adulteConnecte"));
 const enfantConnecte = JSON.parse(sessionStorage.getItem("enfantConnecte"));
-const emplacement = document.querySelector("#chrono");
+let idExoAssociation = 1; // ID pour le jeu d'association
 let idExoMotsATrou = 6;
+let idExoMotsCroises = 11; // ID pour le jeu Mots Croisés
 let idExoListeMots = 16;
-let idExoAssociation = 21; // ID pour le jeu d'association
-let idExoMotsCroises = 22; // ID pour le jeu Mots Croisés
-let nb_tentative;
+
 let tabExos = [];
-let chronoInterval;
-let chronoStartTime;
 
 /**
- * Récupère les données d'un exercice en cours ou disponible pour l'enfant.
- * 
- * @async
- * @returns {Promise<Object>} - Un objet contenant les informations sur l'exercice à récupérer.
-*/ 
-async function recupererExercice() {
-  const reponse = await fetch("https://test-sae.onrender.com/api/exercice");
-  const exercices = await reponse.json();
+ * Fonction pour récupérer tous les exercices réalisés par un enfant donné
+ *
+ * @param {number} id_enfant - L'ID de l'enfant dont on veut récupérer les exercices réalisés
+ * @returns {Promise<Array>} - Retourne une promesse contenant un tableau des exercices réalisés
+ */
+async function getExerciceRealiseById(id_enfant)  
+{
+    const reponse = await fetch("https://test-sae.onrender.com/api/realiser");
 
-  tabExos = exercices.filter(
-    (exercice) =>
-      exercice.libelle === "Liste de Mots" ||
-      exercice.libelle === "1 Mot 1 Image" ||
-      exercice.libelle === "Mots Croisés"
-  );
-  return tabExos;
+    const exercicesRealiser = await reponse.json();
+    const tabExosRealiser = exercicesRealiser.filter(exerciceRealiser => exerciceRealiser.id_enfant === id_enfant);
+
+    return tabExosRealiser;
 }
 
-/**
- * Récupère les données du dernier exercice effectué par l'enfant.
- * 
- * @async
- * @param {Object} enfant - L'objet représentant l'enfant dont on souhaite récupérer l'exercice.
- * @param {string} idExercice - L'identifiant de l'exercice dont on souhaite récupérer les données.
- * @returns {Promise<Object>} - Un objet contenant les informations du dernier exercice effectué.
-*/ 
-export async function recupererDernierExerciceFait(enfant, idExercice) {
-  const reponse = await fetch("https://test-sae.onrender.com/api/exercice");
-  const exercicesRealiser = await reponse.json();
-  return exercicesRealiser.filter(
-    (exerciceRealiser) =>
-      exerciceRealiser.id_enfant === enfant.id_enfant &&
-      exerciceRealiser.id_exercice === idExercice
-  );
-}
-
-/**
- * Affiche le chronomètre dans l'interface utilisateur.
- * 
- * @returns {void}
-*/ 
-function afficherChrono() {
-  const startTime = parseInt(localStorage.getItem("chronoStart"), 10);
-  if (!startTime) return;
-
-  const chronoElement = document.createElement("p");
-  chronoElement.id = "chronoDisplay";
-  emplacement.appendChild(chronoElement);
-
-/** 
- * Met à jour le chronomètre de l'exercice.
- * 
- * @returns {void}
-*/ 
-  function updateChrono() {
-    const elapsedTime = Date.now() - startTime;
-    chronoElement.textContent = formatTime(elapsedTime);
-  }
-
-  updateChrono(); // Mettre à jour immédiatement
-  chronoInterval = setInterval(updateChrono, 1000); // Sauvegarde de l'intervalle
-}
 
 /**
  * Calcule la progression de l'enfant dans l'exercice.
@@ -92,11 +40,13 @@ function afficherChrono() {
  * @async
  * @returns {Promise<number>} - Retourne un pourcentage représentant la progression de l'enfant.
 */ 
-async function compteProgression() {
+async function compteProgression() 
+{
   const tabEnfants = await recupererEnfantsDUnResponsable();
   progression(tabEnfants[0]);
   const divButton = document.querySelector("#button_container");
-  for (let i = 0; i < tabEnfants.length; i++) {
+  for (let i = 0; i < tabEnfants.length; i++) 
+  {
     let compte = document.createElement("button");
     compte.className = "compteEnfantProfil";
     compte.textContent = tabEnfants[i].prenom_enfant;
@@ -105,233 +55,21 @@ async function compteProgression() {
   }
 }
 
-/**
- * Affiche la progression de l'enfant dans le jeu "Mots Croisés".
- * 
- * @async
- * @param {Object} enfant - L'objet représentant l'enfant dont on suit la progression.
- * @param {HTMLElement} motsCroisesContainer - Conteneur DOM où la progression sera affichée.
- */
-async function afficherProgressionMotsCroises(enfant, motsCroisesContainer) {
-  const motsCroisesDonnees = await recupererDernierExerciceFait(enfant, idExoMotsCroises);
-
-  const titreMotsCroises = document.createElement("h2");
-  titreMotsCroises.textContent = "Progression pour Mots Croisés";
-  motsCroisesContainer.appendChild(titreMotsCroises);
-
-  if (motsCroisesDonnees.length === 0) {
-    const messageAucun = document.createElement("p");
-    messageAucun.textContent = "Aucune donnée pour le jeu Mots Croisés.";
-    motsCroisesContainer.appendChild(messageAucun);
-    return;
-  }
-
-  motsCroisesDonnees.forEach((realisation) => {
-    const realisationDiv = document.createElement("div");
-    realisationDiv.className = "realisation-mots-croises";
-
-    const scoreLabel = document.createElement("p");
-    scoreLabel.textContent = `Score: ${realisation.score}`;
-    realisationDiv.appendChild(scoreLabel);
-
-    const tentativeLabel = document.createElement("p");
-    tentativeLabel.textContent = `Tentatives: ${realisation.tentatives || 0}`;
-    realisationDiv.appendChild(tentativeLabel);
-
-    const dateLabel = document.createElement("p");
-    dateLabel.textContent = `Date: ${new Date(realisation.date).toLocaleString()}`;
-    realisationDiv.appendChild(dateLabel);
-
-    motsCroisesContainer.appendChild(realisationDiv);
-  });
-}
-
-/**
- * Affiche la progression de l'enfant dans une liste de mots.
- * 
- * @async
- * @param {Object} enfant - L'objet représentant l'enfant dont on suit la progression.
- * @param {HTMLElement} listeContainer - Conteneur DOM où la liste des mots sera affichée.
-*/ 
-async function afficherProgressionListeMots(enfant, listeContainer) {
-  let lstDeMots = document.createElement("h2");
-  lstDeMots.textContent = "Liste de Mots";
-
-  let exerciceReussiTotal = 0;
-  let nbrExoTotal = 0;
-  let stats = {
-    un: { reussi: 0, total: 0 },
-    deux: { reussi: 0, total: 0 },
-    trois: { reussi: 0, total: 0 },
-    quatre: { reussi: 0, total: 0 },
-    cinq: { reussi: 0, total: 0 },
-  };
-
-  for (let idExo = idExoListeMots; idExo < idExoListeMots + 5; idExo++) {
-    const exercicesRealiser = await recupererDernierExerciceFait(enfant, idExo);
-    for (let tentative of exercicesRealiser) {
-      const niveau = idExo - idExoListeMots + 1;
-      const seuil = 70 + (niveau - 1) * 5;
-      const niveauKey = ["un", "deux", "trois", "quatre", "cinq"][niveau - 1];
-
-      stats[niveauKey].total++;
-      if (tentative.score >= seuil) {
-        stats[niveauKey].reussi++;
-        exerciceReussiTotal++;
+function calculerTauxReussite(exosListeMots, scoreAttendu)
+{
+  let tauxReussite = -1;
+  if (exosListeMots.length > 0) 
+    {
+      let reussi = 0;
+      for (let i = 0; i < exosListeMots.length; i++) 
+      {
+        if (exosListeMots[i] >= scoreAttendu) 
+          reussi++;
       }
-      nbrExoTotal++;
-    }
-  }
-
-  listeContainer.appendChild(lstDeMots);
-  listeContainer.appendChild(document.createElement("br"));
-
-  Object.entries(stats).forEach(([niveau, data], index) => {
-    let reussite = document.createElement("label");
-    reussite.textContent =
-      data.total === 0
-        ? `Réussite Niveau ${index + 1} : Pas de donnée pour ce niveau`
-        : `Réussite Niveau ${index + 1} : ${(
-          (data.reussi / data.total) *
-          100
-        ).toFixed(2)}%`;
-    listeContainer.appendChild(reussite);
-    listeContainer.appendChild(document.createElement("br"));
-    listeContainer.appendChild(document.createElement("br"));
-  });
-
-  let reussiteGlobale = document.createElement("label");
-  reussiteGlobale.textContent =
-    nbrExoTotal === 0
-      ? "Réussite Globale : Pas de donnée pour cet exercice"
-      : `Réussite Globale : ${(
-        (exerciceReussiTotal / nbrExoTotal) *
-        100
-      ).toFixed(2)}%`;
-  listeContainer.appendChild(reussiteGlobale);
-}
-
-/**
- * Affiche la progression de l'enfant dans un exercice basé sur un mot à trous.
- * 
- * @async
- * @param {Object} enfant - L'objet représentant l'enfant dont on suit la progression.
- * @param {HTMLElement} trouContainer - Conteneur DOM dans lequel l'affichage des mots à trous sera effectué.
-*/ 
-async function afficherProgressionMotsTrou(enfant, trouContainer) {
-  let motATrou = document.createElement("h2");
-  motATrou.textContent = "Mots à trou";
-
-  let exerciceReussiTotal = 0;
-  let nbrExoTotal = 0;
-  let stats = {
-    un: { reussi: 0, total: 0 },
-    deux: { reussi: 0, total: 0 },
-    trois: { reussi: 0, total: 0 },
-    quatre: { reussi: 0, total: 0 },
-    cinq: { reussi: 0, total: 0 },
-  };
-
-  for (let idExo = idExoMotsATrou; idExo < idExoMotsATrou + 5; idExo++) {
-    const exercicesRealiser = await recupererDernierExerciceFait(enfant, idExo);
-    for (let tentative of exercicesRealiser) {
-      const niveau = idExo - idExoMotsATrou + 1;
-      const seuil = 70 + (niveau - 1) * 5;
-      const niveauKey = ["un", "deux", "trois", "quatre", "cinq"][niveau - 1];
-
-      stats[niveauKey].total++;
-      if (tentative.score >= seuil) {
-        stats[niveauKey].reussi++;
-        exerciceReussiTotal++;
-      }
-      nbrExoTotal++;
-    }
-  }
-
-  trouContainer.appendChild(motATrou);
-  trouContainer.appendChild(document.createElement("br"));
-
-  let reussiteGlobale = document.createElement("label");
-  reussiteGlobale.textContent =
-    nbrExoTotal === 0
-      ? "Réussite de L'exercice : Pas de donnée pour cet exercice"
-      : `Réussite de L\'exercice : ${(
-        (exerciceReussiTotal / nbrExoTotal) *
-        100
-      ).toFixed(2)}%`;
-  trouContainer.appendChild(reussiteGlobale);
-}
-
-/**
- * Affiche la progression de l'enfant dans l'association.
- * Cette fonction gère les différentes étapes d'affichage liées à l'exercice, les mots à trouver, et le chronomètre.
- * 
- * @async
- * @param {Object} enfant - L'objet représentant l'enfant dont on suit la progression.
- * @param {HTMLElement} associationContainer - Conteneur DOM dans lequel les informations de progression de l'association seront affichées.
- */
-async function afficherProgressionAssociation(enfant, associationContainer) {
-  let titreAssociation = document.createElement("h2");
-  titreAssociation.textContent = "1 Mot 1 Image";
-
-  let exerciceReussiTotal = 0;
-  let nbrExoTotal = 0;
-  let stats = {
-    facile: { reussi: 0, total: 0 },
-    moyen: { reussi: 0, total: 0 },
-    difficile: { reussi: 0, total: 0 },
-  };
-
-  const exercicesRealiser = await recupererDernierExerciceFait(
-    enfant,
-    idExoAssociation
-  );
-
-  for (let tentative of exercicesRealiser) {
-    const difficulte = Math.floor(tentative.score / 100);
-    const niveauKey =
-      ["facile", "moyen", "difficile"][difficulte - 1] || "facile";
-
-    stats[niveauKey].total++;
-    if (tentative.score % 100 >= 70) {
-      stats[niveauKey].reussi++;
-      exerciceReussiTotal++;
-    }
-    nbrExoTotal++;
-  }
-
-  associationContainer.appendChild(titreAssociation);
-  associationContainer.appendChild(document.createElement("br"));
-
-  const niveaux = [
-    { key: "facile", nom: "Facile" },
-    { key: "moyen", nom: "Moyen" },
-    { key: "difficile", nom: "Difficile" },
-  ];
-
-  niveaux.forEach(({ key, nom }) => {
-    let reussite = document.createElement("label");
-    reussite.textContent =
-      stats[key].total === 0
-        ? `Réussite Niveau ${nom} : Pas de donnée pour ce niveau`
-        : `Réussite Niveau ${nom} : ${(
-          (stats[key].reussi / stats[key].total) *
-          100
-        ).toFixed(2)}%`;
-    associationContainer.appendChild(reussite);
-    associationContainer.appendChild(document.createElement("br"));
-    associationContainer.appendChild(document.createElement("br"));
-  });
-
-  let reussiteGlobale = document.createElement("label");
-  reussiteGlobale.textContent =
-    nbrExoTotal === 0
-      ? "Réussite Globale : Pas de donnée pour cet exercice"
-      : `Réussite Globale : ${(
-        (exerciceReussiTotal / nbrExoTotal) *
-        100
-      ).toFixed(2)}%`;
-  associationContainer.appendChild(reussiteGlobale);
+  
+      tauxReussite = (reussi / exosListeMots.length) * 100;
+    } 
+    return tauxReussite;
 }
 
 /**
@@ -340,138 +78,414 @@ async function afficherProgressionAssociation(enfant, associationContainer) {
  * @async
  * @param {Object} enfant - L'objet représentant l'enfant dont on suit la progression.
 */ 
-async function progression(enfant) {
+async function progression(enfant)
+{
+  let tabExos = await getExerciceRealiseById(enfant.id_enfant);
+
   const gauche = document.querySelector("#conteneur-gauche");
   const droite = document.querySelector("#conteneur-droite");
   const listeContainer = document.querySelector("#liste-de-mots");
+  const croisesContainer = document.querySelector("#mots-croises");
+  const motImageContainer = document.querySelector("#Mot-image");
   const trouContainer = document.querySelector("#Mot-a-trou");
-  const associationContainer =
-    document.querySelector("#association-game") ||
-    document.createElement("section");
-  associationContainer.id = "association-game";
-
-  const motsCroisesContainer = document.querySelector("#mots-croises-container") || document.createElement("section");
-  motsCroisesContainer.id = "mots-croises-container";
   const emplacement = document.querySelector("#chrono");
 
+  // Nettoyage des conteneurs
   listeContainer.innerHTML = "";
+  croisesContainer.innerHTML = "";
+  motImageContainer.innerHTML = "";
   trouContainer.innerHTML = "";
-  associationContainer.innerHTML = "";
-  motsCroisesContainer.innerHTML = "";
   emplacement.innerHTML = "";
 
+  // Mise à jour du titre
   const titreProgression = document.querySelector("#app > h2");
   titreProgression.textContent = "Progression de " + enfant.prenom_enfant;
 
-  tabExos = await recupererExercice();
+  let titreListeMots = document.createElement("h2");
+  titreListeMots.textContent = "Liste de Mots";
+  listeContainer.appendChild(titreListeMots);
 
-  try {
-    if (tabExos.length === 0) {
-      console.error("Aucun exercice disponible !");
-      return;
+  let exosListeMots = [];
+  let allExosListeMots = await recupererExercice("Liste de Mots");
+
+  for (let difficulte = 0; difficulte < allExosListeMots.length; difficulte++) 
+  {
+    exosListeMots[difficulte] = [];
+    for (let i = 0; i < tabExos.length; i++) 
+    {
+      if (tabExos[i].id_exercice == allExosListeMots[difficulte].id_exercice)
+        exosListeMots[difficulte].push(tabExos[i].score);
     }
-
-    await afficherProgressionListeMots(enfant, listeContainer);
-    await afficherProgressionAssociation(enfant, associationContainer);
-    await afficherProgressionMotsTrou(enfant, trouContainer);
-    await afficherProgressionMotsCroises(enfant, motsCroisesContainer); // Affichage des données Mots Croisés
-
-    if (emplacement) {
-      afficherChrono();
-    }
-
-    gauche.appendChild(listeContainer);
-    droite.appendChild(associationContainer);
-    droite.appendChild(trouContainer);
-    droite.appendChild(motsCroisesContainer); // Ajout du conteneur pour Mots Croisés
-  } catch (error) {
-    console.error(error);
   }
+
+  if (exosListeMots.length > 0 ) 
+  {
+    let tauxReussite1 = calculerTauxReussite(exosListeMots[0], 70);
+    if(tauxReussite1 >= 0)
+    {
+      let listeMot1 = document.createElement("h4");
+      listeMot1.textContent = "Taux de réussite du niveau 1 : " + tauxReussite1.toFixed(2) + "%";
+      listeContainer.appendChild(listeMot1);
+    }
+  
+    else 
+    {
+      let listeMot1 = document.createElement("h4");
+      listeMot1.textContent = "Pas encore d'exercices réalisés pour le niveau 1.";
+      listeContainer.appendChild(listeMot1);
+    }
+
+    let tauxReussite2 = calculerTauxReussite(exosListeMots[1], 75);
+    if(tauxReussite2 >= 0)
+    {
+      let listeMot2 = document.createElement("h4");
+      listeMot2.textContent = "Taux de réussite du niveau 2 : " + tauxReussite2.toFixed(2) + "%";
+      listeContainer.appendChild(listeMot2);
+    }
+
+    else 
+    {
+      let listeMot2 = document.createElement("h4");
+      listeMot2.textContent = "Pas encore d'exercices réalisés pour le niveau 2.";
+      listeContainer.appendChild(listeMot2);
+    }
+
+    let tauxReussite3 = calculerTauxReussite(exosListeMots[2], 80);
+    if(tauxReussite3 >= 0)
+    {
+      let listeMot3 = document.createElement("h4");
+      listeMot3.textContent = "Taux de réussite du niveau 3 : " + tauxReussite3.toFixed(2) + "%";
+      listeContainer.appendChild(listeMot3);
+    }
+
+    else 
+    {
+      let listeMot3 = document.createElement("h4");
+      listeMot3.textContent = "Pas encore d'exercices réalisés pour le niveau 3.";
+      listeContainer.appendChild(listeMot3);
+    }
+
+    let tauxReussite4 = calculerTauxReussite(exosListeMots[3], 85);
+    if(tauxReussite4 >= 0)
+    {
+      let listeMot4 = document.createElement("h4");
+      listeMot4.textContent = "Taux de réussite du niveau 4 : " + tauxReussite4.toFixed(2) + "%";
+      listeContainer.appendChild(listeMot4);
+    }
+
+    else 
+    {
+      let listeMot4 = document.createElement("h4");
+      listeMot4.textContent = "Pas encore d'exercices réalisés pour le niveau 4.";
+      listeContainer.appendChild(listeMot4);
+    }
+
+    let tauxReussite5 = calculerTauxReussite(exosListeMots[4], 90);
+    if(tauxReussite5 >= 0)
+    {
+      let listeMot5 = document.createElement("h4");
+      listeMot5.textContent = "Taux de réussite du niveau 5 : " + tauxReussite5.toFixed(2) + "%";
+      listeContainer.appendChild(listeMot5);
+    }
+
+    else 
+    {
+      let listeMot5 = document.createElement("h4");
+      listeMot5.textContent = "Pas encore d'exercices réalisés pour le niveau 5.";
+      listeContainer.appendChild(listeMot5);
+    }
+  }
+  
+  let titreCroises = document.createElement("h2");
+  titreCroises.textContent = "Mots Croisés";
+  croisesContainer.appendChild(titreCroises);
+
+  let exosMotsCroises = [];
+  let allExosMotsCroises = await recupererExercice("Mot croisés");
+
+  for (let difficulte = 0; difficulte < allExosMotsCroises.length; difficulte++) 
+  {
+    exosMotsCroises[difficulte] = [];
+    for (let i = 0; i < tabExos.length; i++) 
+    {
+      if (tabExos[i].id_exercice == allExosMotsCroises[difficulte].id_exercice)
+        exosMotsCroises[difficulte].push(tabExos[i].score);
+    }
+  }
+
+  if (exosMotsCroises.length > 0 ) 
+  {
+    let tauxReussite1 = calculerTauxReussite(exosMotsCroises[0], 70);
+    if(tauxReussite1 >= 0)
+    {
+      let motsCroises1 = document.createElement("h4");
+      motsCroises1.textContent = "Taux de réussite du niveau 1 : " + tauxReussite1.toFixed(2) + "%";
+      croisesContainer.appendChild(motsCroises1);
+    }
+  
+    else 
+    {
+      let motsCroises1 = document.createElement("h4");
+      motsCroises1.textContent = "Pas encore d'exercices réalisés pour le niveau 1.";
+      croisesContainer.appendChild(motsCroises1);
+    }
+
+    let tauxReussite2 = calculerTauxReussite(exosMotsCroises[1], 75);
+    if(tauxReussite2 >= 0)
+    {
+      let motsCroises2 = document.createElement("h4");
+      motsCroises2.textContent = "Taux de réussite du niveau 2 : " + tauxReussite2.toFixed(2) + "%";
+      croisesContainer.appendChild(motsCroises2);
+    }
+
+    else 
+    {
+      let motsCroises2 = document.createElement("h4");
+      motsCroises2.textContent = "Pas encore d'exercices réalisés pour le niveau 2.";
+      croisesContainer.appendChild(motsCroises2);
+    }
+
+    let tauxReussite3 = calculerTauxReussite(exosMotsCroises[2], 80);
+    if(tauxReussite3 >= 0)
+    {
+      let motsCroises3 = document.createElement("h4");
+      motsCroises3.textContent = "Taux de réussite du niveau 3 : " + tauxReussite3.toFixed(2) + "%";
+      croisesContainer.appendChild(motsCroises3);
+    }
+
+    else 
+    {
+      let motsCroises3 = document.createElement("h4");
+      motsCroises3.textContent = "Pas encore d'exercices réalisés pour le niveau 3.";
+      croisesContainer.appendChild(motsCroises3);
+    }
+
+    let tauxReussite4 = calculerTauxReussite(exosMotsCroises[3], 85);
+    if(tauxReussite4 >= 0)
+    {
+      let motsCroises4 = document.createElement("h4");
+      motsCroises4.textContent = "Taux de réussite du niveau 4 : " + tauxReussite4.toFixed(2) + "%";
+      croisesContainer.appendChild(motsCroises4);
+    }
+
+    else 
+    {
+      let motsCroises4 = document.createElement("h4");
+      motsCroises4.textContent = "Pas encore d'exercices réalisés pour le niveau 4.";
+      croisesContainer.appendChild(motsCroises4);
+    }
+
+    let tauxReussite5 = calculerTauxReussite(exosMotsCroises[4], 90);
+    if(tauxReussite5 >= 0)
+    {
+      let motsCroises5 = document.createElement("h4");
+      motsCroises5.textContent = "Taux de réussite du niveau 5 : " + tauxReussite5.toFixed(2) + "%";
+      croisesContainer.appendChild(motsCroises5);
+    }
+
+    else 
+    {
+      let motsCroises5 = document.createElement("h4");
+      motsCroises5.textContent = "Pas encore d'exercices réalisés pour le niveau 5.";
+      croisesContainer.appendChild(motsCroises5);
+    }
+  }
+
+  let titreMotImage = document.createElement("h2");
+  titreMotImage.textContent = "1 Mot 1 Image";
+  motImageContainer.appendChild(titreMotImage);
+
+  let exosMotImage = [];
+  let allExosMotImage = await recupererExercice("Associations");
+
+  for (let difficulte = 0; difficulte < allExosMotImage.length; difficulte++) 
+  {
+    exosMotImage[difficulte] = [];
+    for (let i = 0; i < tabExos.length; i++) 
+    {
+      if (tabExos[i].id_exercice == allExosMotImage[difficulte].id_exercice)
+        exosMotImage[difficulte].push(tabExos[i].score);
+    }
+  }
+
+  if (exosMotImage.length > 0 ) 
+  {
+    let tauxReussite1 = calculerTauxReussite(exosMotImage[0], 70);
+    if(tauxReussite1 >= 0)
+    {
+      let motImage1 = document.createElement("h4");
+      motImage1.textContent = "Taux de réussite du niveau 1 : " + tauxReussite1.toFixed(2) + "%";
+      motImageContainer.appendChild(motImage1);
+    }
+  
+    else 
+    {
+      let motImage1 = document.createElement("h4");
+      motImage1.textContent = "Pas encore d'exercices réalisés pour le niveau 1.";
+      motImageContainer.appendChild(motImage1);
+    }
+
+    let tauxReussite2 = calculerTauxReussite(exosMotImage[1], 75);
+    if(tauxReussite2 >= 0)
+    {
+      let motImage2 = document.createElement("h4");
+      motImage2.textContent = "Taux de réussite du niveau 2 : " + tauxReussite2.toFixed(2) + "%";
+      motImageContainer.appendChild(motImage2);
+    }
+
+    else 
+    {
+      let motImage2 = document.createElement("h4");
+      motImage2.textContent = "Pas encore d'exercices réalisés pour le niveau 2.";
+      motImageContainer.appendChild(motImage2);
+    }
+
+    let tauxReussite3 = calculerTauxReussite(exosMotImage[2], 80);
+    if(tauxReussite3 >= 0)
+    {
+      let motImage3 = document.createElement("h4");
+      motImage3.textContent = "Taux de réussite du niveau 3 : " + tauxReussite3.toFixed(2) + "%";
+      motImageContainer.appendChild(motImage3);
+    }
+
+    else 
+    {
+      let motImage3 = document.createElement("h4");
+      motImage3.textContent = "Pas encore d'exercices réalisés pour le niveau 3.";
+      motImageContainer.appendChild(motImage3);
+    }
+
+    let tauxReussite4 = calculerTauxReussite(exosMotImage[3], 85);
+    if(tauxReussite4 >= 0)
+    {
+      let motImage4 = document.createElement("h4");
+      motImage4.textContent = "Taux de réussite du niveau 4 : " + tauxReussite4.toFixed(2) + "%";
+      motImageContainer.appendChild(motImage4);
+    }
+
+    else 
+    {
+      let motImage4 = document.createElement("h4");
+      motImage4.textContent = "Pas encore d'exercices réalisés pour le niveau 4.";
+      motImageContainer.appendChild(motImage4);
+    }
+
+    let tauxReussite5 = calculerTauxReussite(exosMotImage[4], 90);
+    if(tauxReussite5 >= 0)
+    {
+      let motImage5 = document.createElement("h4");
+      motImage5.textContent = "Taux de réussite du niveau 5 : " + tauxReussite5.toFixed(2) + "%";
+      motImageContainer.appendChild(motImage5);
+    }
+
+    else 
+    {
+      let motImage5 = document.createElement("h4");
+      motImage5.textContent = "Pas encore d'exercices réalisés pour le niveau 5.";
+      motImageContainer.appendChild(motImage5);
+    }
+  }
+
+  let titreTrou = document.createElement("h2");
+  titreTrou.textContent = "Mots à trou";
+  trouContainer.appendChild(titreTrou);
+
+  let exosTrou = [];
+  let allExosTrou = await recupererExercice("Mot à trou");
+
+  for (let difficulte = 0; difficulte < allExosTrou.length; difficulte++) 
+  {
+    exosTrou[difficulte] = [];
+    for (let i = 0; i < tabExos.length; i++) 
+    {
+      if (tabExos[i].id_exercice == allExosTrou[difficulte].id_exercice)
+        exosTrou[difficulte].push(tabExos[i].score);
+    }
+  }
+
+  if (exosTrou.length > 0 ) 
+  {
+    let tauxReussite1 = calculerTauxReussite(exosTrou[0], 70);
+    if(tauxReussite1 >= 0)
+    {
+      let trou1 = document.createElement("h4");
+      trou1.textContent = "Taux de réussite du niveau 1 : " + tauxReussite1.toFixed(2) + "%";
+      trouContainer.appendChild(trou1);
+    }
+  
+    else 
+    {
+      let trou1 = document.createElement("h4");
+      trou1.textContent = "Pas encore d'exercices réalisés pour le niveau 1.";
+      trouContainer.appendChild(trou1);
+    }
+    /*
+    let tauxReussite2 = calculerTauxReussite(exosTrou[1], 75);
+    if(tauxReussite2 >= 0)
+    {
+      let trou2 = document.createElement("h4");
+      trou2.textContent = "Taux de réussite du niveau 2 : " + tauxReussite2.toFixed(2) + "%";
+      trouContainer.appendChild(trou2);
+    }
+
+    else 
+    {
+      let trou2 = document.createElement("h4");
+      trou2.textContent = "Pas encore d'exercices réalisés pour le niveau 2.";
+      trouContainer.appendChild(trou2);
+    }
+
+    let tauxReussite3 = calculerTauxReussite(exosTrou[2], 80);
+    if(tauxReussite3 >= 0)
+    {
+      let trou3 = document.createElement("h4");
+      trou3.textContent = "Taux de réussite du niveau 3 : " + tauxReussite3.toFixed(2) + "%";
+      trouContainer.appendChild(trou3);
+    }
+
+    else 
+    {
+      let trou3 = document.createElement("h4");
+      trou3.textContent = "Pas encore d'exercices réalisés pour le niveau 3.";
+      trouContainer.appendChild(trou3);
+    }
+
+    let tauxReussite4 = calculerTauxReussite(exosTrou[3], 85);
+    if(tauxReussite4 >= 0)
+    {
+      let trou4 = document.createElement("h4");
+      trou4.textContent = "Taux de réussite du niveau 4 : " + tauxReussite4.toFixed(2) + "%";
+      trouContainer.appendChild(trou4);
+    }
+
+    else 
+    {
+      let trou4 = document.createElement("h4");
+      trou4.textContent = "Pas encore d'exercices réalisés pour le niveau 4.";
+      trouContainer.appendChild(trou4);
+    }
+
+    let tauxReussite5 = calculerTauxReussite(exosTrou[4], 90);
+    if(tauxReussite5 >= 0)
+    {
+      let trou5 = document.createElement("h4");
+      trou5.textContent = "Taux de réussite du niveau 5 : " + tauxReussite5.toFixed(2) + "%";
+      trouContainer.appendChild(trou5);
+    }
+
+    else 
+    {
+      let trou5 = document.createElement("h4");
+      trou5.textContent = "Pas encore d'exercices réalisés pour le niveau 5.";
+      trouContainer.appendChild(trou5);
+    }
+    */
+  }
+
+  gauche.appendChild(listeContainer);
+  gauche.appendChild(croisesContainer);
+  droite.appendChild(motImageContainer);
+  droite.appendChild(trouContainer);
 }
 
-document.addEventListener("DOMContentLoaded", loadImages);
-
-document.addEventListener("DOMContentLoaded", () => {
-  const userRole = localStorage.getItem("role");
-  if (userRole !== "adulte") {
-    window.location.href = "accueil.html";
-    return;
-  }
-
-  const logo = document.getElementById("logo");
-  if (logo) {
-    logo.addEventListener("click", function() {
-      window.location.href = "profil.html";
-    });
-  } else {
-    console.warn("⚠️ L'élément #logo est introuvable. Vérifiez s'il est présent dans le HTML.");
-  }
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-  const userLoggedIn = JSON.parse(localStorage.getItem("userLoggedIn"));
-
-  const currentPath = window.location.pathname;
-
-  const publicPages = ["/test-SAE/code_sae/dist/connexion.html"];
-
-
-  document.getElementById('logoApplication').addEventListener('click', function() {
-    window.location.href = "/test-SAE/code_sae/dist/profil.html";
-  });
-
-  if (!userLoggedIn) {
-    if (!publicPages.includes(currentPath)) {
-      window.location.href = "/test-SAE/code_sae/dist/connexion.html";
-      return;
-    }
-  } else {
-    if (userLoggedIn.type !== "adulte") {
-      if (!publicPages.includes(currentPath)) {
-        window.location.href = "/test-SAE/code_sae/dist/accueil.html";
-        return;
-      }
-    }
-  }
-
-  const logoutLink = document.querySelector("#logout-link");
-  if (logoutLink) {
-    logoutLink.addEventListener("click", () => {
-      localStorage.removeItem("userLoggedIn");
-      window.location.href = "/test-SAE/code_sae/dist/connexion.html";
-    });
-  }
-
-
-  document.querySelector("#button_container").style.display = "block";
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-  loadImages();
-  compteProgression();
-
-  const adulteConnecte = JSON.parse(sessionStorage.getItem("adulteConnecte"));
-
-  const retourCompteDivs = document.querySelectorAll(
-    ".returnArrowToChoixCompte"
-  );
-  retourCompteDivs.forEach((retourCompteDiv) => {
-    retourCompteDiv.addEventListener("click", () => {
-      if (adulteConnecte) {
-        sessionStorage.setItem(
-          "preRemplissageFormulaire",
-          JSON.stringify(adulteConnecte)
-        );
-      }
-      window.location.href = "/test-SAE/code_sae/dist/connexion.html";
-    });
-  });
-
-  const retourImage = document.createElement("img");
-  retourImage.id = "returnArrowImage";
-  if (retourImage) {
-    retourImage.src = returnArrow;
-  } else {
-    console.warn("⚠️ L'élément #returnArrowImage est introuvable. Vérifiez s'il est présent dans le HTML.");
-  }
-});
+compteProgression();

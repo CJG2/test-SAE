@@ -77,11 +77,11 @@ export function verifierEmail(inputEmail) {
  * @returns {boolean}
  */
 export function verifierPassword(inputPassword) {
-  const modelePassword = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.-_()])[A-Za-z\d@$!%*?&.-_()]{8,}$/;
+  const modelePassword = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.-_()])[A-Za-z\d@$!%*?&.-_()]{12,}$/;
   const Password = inputPassword.value;
 
   if (!modelePassword.test(Password)) {
-    alert("Le mot de passe doit contenir au moins 8 caractères, dont 1 majuscule, 1 chiffre et un caractère spécial(. - _ ! etc).");
+    alert("Le mot de passe doit contenir au moins 12 caractères, dont 1 majuscule, 1 chiffre et un caractère spécial(. - _ ! etc).");
     return false;
   }
   return true;
@@ -435,7 +435,7 @@ export function inscription()
 
   let informationPassword = document.createElement("p");
   informationPassword.style = "font-family: arial, sans-serif; font-size: 12px; color: #666;";
-  informationPassword.textContent = "Le mot de passe doit contenir au minimum : 8 caractères, 1 majuscule, 1 minuscule, 1 chiffre, 1 caractère spécial parmi : @ $ ! % * ? & . - _ ( )";
+  informationPassword.textContent = "Le mot de passe doit contenir au minimum : 12 caractères, 1 majuscule, 1 minuscule, 1 chiffre, 1 caractère spécial parmi : @ $ ! % * ? & . - _ ( )";
 
   // Conteneur pour le champ de mot de passe et le bouton de bascule
   let passwordDiv = document.createElement("div");
@@ -707,8 +707,6 @@ function effacerParent(
  * @param {*} sel
  */
 function ajouterAdulte(email, password, nom, prenom, jour, mois, annee, civilite, pays, sel, telephone) {
-  console.log('Données envoyées :', { email, password, nom, prenom, jour, mois, annee, civilite, pays, sel, telephone });
-
   fetch('https://test-sae.onrender.com/api/create', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -721,7 +719,6 @@ function ajouterAdulte(email, password, nom, prenom, jour, mois, annee, civilite
       return response.json();
     })
     .then(data => {
-      console.log('Réponse du serveur :', data);
       if (data.success)
         confirmInscription();
       else

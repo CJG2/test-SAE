@@ -29,6 +29,11 @@ import x_sound from "./../../../assets/sons/lettres/x.mp3";
 import y_sound from "./../../../assets/sons/lettres/y.mp3";
 import z_sound from "./../../../assets/sons/lettres/z.mp3";
 
+//Importations des données relatives au consignes 
+
+import ennonceSound from "./../../../assets/sons/descriptionMJetA/description_apprendre/voix_apprendre_alphabet 1.mp3";
+import { Consignes } from "./../../consignes/consignes.js";
+
 /**
  * Fonction qui permet de jouer le son des lettres du carrousel lorsqu'elles sont cliquées.
  * @param {number} currentIndex - Index de la lettre à jouer
@@ -82,6 +87,8 @@ export function AlphabetFunction(container) {
   buttonEmplacement.appendChild(precedent);
   buttonEmplacement.appendChild(convertImage);
   buttonEmplacement.appendChild(suivant);
+
+  new Consignes(emplacement, ennonceSound);
 
   // Ajouter les boutons et le carrousel au conteneur
   container.appendChild(emplacement);

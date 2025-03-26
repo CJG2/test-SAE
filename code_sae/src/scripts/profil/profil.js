@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // nécessite que le compte connecté soit un compte adulte
   if (userRole !== "adulte") {
-    window.location.href = "/test-SAE/code_sae/dist/accueil.html";
+    window.location.href = "accueil.html";
     return;
   }
 
@@ -47,13 +47,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!userLoggedIn) {
     if (!publicPages.includes(currentPath)) {
-      window.location.href = "/test-SAE/code_sae/dist/connexion.html";
+      window.location.href = "./connexion.html";
       return;
     }
   } else {
     if (userLoggedIn.type !== "adulte") {
       if (!publicPages.includes(currentPath)) {
-        window.location.href = "/test-SAE/code_sae/dist/accueil.html";
+        window.location.href = "./accueil.html";
         return;
       }
     }
@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
       sessionStorage.removeItem("enfantConnecte");
       sessionStorage.removeItem("adulteConnecte");
 
-      window.location.href = "/test-SAE/code_sae/dist/connexion.html";
+      window.location.href = "./connexion.html";
     });
   }
 });
@@ -89,7 +89,6 @@ async function profilParent()
   let compteParent = document.createElement("button");
   compteParent.className = "compteParentProfil";
   compteParent.textContent = adulteConnecte.nom + " " + adulteConnecte.prenom;
-  console.log(compteParent);
   compteParent.addEventListener("click", () => profilParent());
   buttonContainer.appendChild(compteParent);
   buttonContainer.appendChild(document.createElement("br"));
@@ -100,8 +99,6 @@ async function profilParent()
     let compte = document.createElement("button");
     compte.className = "compteEnfantProfil";
     compte.textContent = tabEnfants[i].prenom_enfant;
-    console.log(compte);
-    console.log(tabEnfants[i]);
     compte.addEventListener("click", () => profilEnfant(tabEnfants[i]));
     buttonContainer.appendChild(compte);
   }
@@ -436,7 +433,6 @@ async function profilEnfant(enfant)
   let compteParent = document.createElement("button");
   compteParent.className = "compteParentProfil";
   compteParent.textContent = adulteConnecte.nom + " " + adulteConnecte.prenom;
-  console.log(compteParent);
   compteParent.addEventListener("click", () => profilParent());
   buttonContainer.appendChild(compteParent);
   buttonContainer.appendChild(document.createElement("br"));
@@ -447,8 +443,6 @@ async function profilEnfant(enfant)
     let compte = document.createElement("button");
     compte.className = "compteEnfantProfil";
     compte.textContent = tabEnfants[i].prenom_enfant;
-    console.log(compte);
-    console.log(tabEnfants[i]);
     compte.addEventListener("click", () => profilEnfant(tabEnfants[i]));
     buttonContainer.appendChild(compte);
   }
@@ -642,6 +636,62 @@ async function profilEnfant(enfant)
   form.appendChild(document.createElement("hr"));
   form.appendChild(genreDiv);
 
+  //Option dys
+  const labelDys = document.createElement("label");
+  labelDys.textContent = "Votre enfant a-t-il été diagnostiqué avec un trouble spécifique des apprentissages (Dys)?";
+
+  const checkBoxContainer = document.createElement("div");
+  checkBoxContainer.className = "checkBoxContainer";
+
+  const divCheckOui = document.createElement("div");
+  divCheckOui.className = "divCheckBox";
+
+  const labelOui = document.createElement("label");
+  labelOui.textContent = " Oui";
+  const checkboxDysOui = document.createElement("input");
+  checkboxDysOui.type = "checkbox";
+  checkboxDysOui.name = "diagnostic";
+  checkboxDysOui.value = "Oui";
+  checkboxDysOui.setAttribute("required", "");
+  labelOui.prepend(checkboxDysOui);
+
+  checkboxDysOui.addEventListener("change", function () {
+    if (checkboxDysOui.checked) checkboxDysNon.checked = false;
+  });
+
+  divCheckOui.appendChild(checkboxDysOui);
+  divCheckOui.appendChild(labelOui);
+
+  const divCheckNon = document.createElement("div");
+  divCheckNon.className = "divCheckBox";
+
+  const labelNon = document.createElement("label");
+  labelNon.textContent = " Non";
+  const checkboxDysNon = document.createElement("input");
+  checkboxDysNon.type = "checkbox";
+  checkboxDysNon.name = "diagnostic";
+  checkboxDysNon.value = "Non";
+  checkboxDysNon.setAttribute("required", "")
+  labelNon.prepend(checkboxDysNon);
+
+  checkboxDysNon.addEventListener("change", function () {
+    if (checkboxDysNon.checked) checkboxDysOui.checked = false;
+  });
+
+  divCheckNon.appendChild(checkboxDysNon);
+  divCheckNon.appendChild(labelNon);
+
+  checkBoxContainer.appendChild(divCheckOui);
+  checkBoxContainer.appendChild(divCheckNon);
+
+  form.appendChild(labelDys);
+  form.appendChild(document.createElement("br"));
+  form.appendChild(document.createElement("br"));
+
+  form.appendChild(checkBoxContainer);
+  form.appendChild(document.createElement("br"));
+  form.appendChild(document.createElement("br"));
+
   let annuler = document.createElement("button");
   annuler.type = "button";
   annuler.textContent = "Annuler";
@@ -656,6 +706,7 @@ async function profilEnfant(enfant)
       inputEnfantPrenom.value,
       dateNaiss,
       inputEnfantCivilite.value,
+      checkboxDysOui.checked ? 1 : 0,
       enfant.id_enfant
     );
   });
@@ -692,7 +743,8 @@ async function profilEnfant(enfant)
 /**
  * Fonction qui demande à l'utilisateur de saisir son mot de passe actuel pour accèder à la modification de son mot de passe
  */
-function verifierMotDePasse() {
+function verifierMotDePasse() 
+{
   let buttonContainer = document.querySelector("#changerProfil");
 
   buttonContainer.innerHTML = "";
@@ -733,11 +785,7 @@ function verifierMotDePasse() {
       adulteConnecte.hash ===
       hachage(inputConfirmPassword.value + adulteConnecte.sel, false)
     ) {
-      console.log("Hash BDD : " + adulteConnecte.hash);
-      console.log(
-        "Nouveau Hash : " +
-          hachage(inputConfirmPassword.value + adulteConnecte.sel, false)
-      );
+
       modifierMotDePasse();
     }
   });
@@ -802,7 +850,8 @@ function modifierMotDePasse() {
   let suivant = document.createElement("button");
   suivant.textContent = "Suivant";
   suivant.addEventListener("click", () => {
-    if (verifierPassword(inputNewPassword)) {
+    if (verifierPassword(inputNewPassword))
+    {
       const tabMDP = hachage(inputNewPassword.value, true);
       miseAJourMDPAdulte(tabMDP.hash, tabMDP.sel, adulteConnecte.username);
     }
@@ -829,7 +878,8 @@ function modifierMotDePasse() {
  * @export
  * @async
  */
-export async function recupererEnfantsDUnResponsable() {
+export async function recupererEnfantsDUnResponsable() 
+{
   const reponse = await fetch("https://test-sae.onrender.com/api/enfant");
 
   const enfants = await reponse.json();
@@ -875,7 +925,6 @@ export async function recupererResponsable(nouveauMail) {
     };
 
     sessionStorage.setItem("adulteConnecte", JSON.stringify(adulteConnecte));
-    console.log("Adulte connecté mis à jour :", adulteConnecte);
   } catch (error) {
     console.error("Erreur lors de la récupération du responsable :", error);
   }
@@ -893,30 +942,28 @@ export async function recupererResponsable(nouveauMail) {
  * @param id
  */
 async function miseAJourEnfant(newNom, newPrenom, newDateNaiss, newGenre, dys, id) {
-  console.log("Données envoyées :", {
-    newNom,
-    newPrenom,
-    newDateNaiss,
-    newGenre,
-    dys,
-    id,
-  });
   try {
-    const response = await fetch(
-      "https://test-sae.onrender.com/api/enfant/update",
+    const response = await fetch("https://test-sae.onrender.com/api/enfant/update",
       {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ newNom, newPrenom, newDateNaiss, newGenre, dys, id }),
+        body: JSON.stringify({ 
+          newNom, 
+          newPrenom, 
+          newDateNaiss, 
+          newGenre, 
+          dys, 
+          id, 
+        }),
       }
     );
 
     if (!response.ok) throw new Error(`Erreur HTTP : ${response.status}`);
 
     const data = await response.json();
-    console.log("Réponse du serveur :", data);
 
-    if (data.success) {
+    if (data.success) 
+    {
       console.log("La modification des données de l'Enfant est réussie.");
       const tabEnfants = await recupererEnfantsDUnResponsable();
       const enfant = tabEnfants.find((enf) => enf.id_enfant === id);
@@ -943,7 +990,6 @@ async function miseAJourEnfant(newNom, newPrenom, newDateNaiss, newGenre, dys, i
  * @param username
  */
 async function miseAJourUsernameEnfant(newUsername, username) {
-  console.log("Données envoyées :", { newUsername, username });
 
   fetch("https://test-sae.onrender.com/api/enfant/updateUsername", {
     method: "PUT",
@@ -957,7 +1003,6 @@ async function miseAJourUsernameEnfant(newUsername, username) {
       return response.json();
     })
     .then((data) => {
-      console.log("Réponse du serveur :", data);
       if (data.success)
         console.log("Mise à jour du username de l'Enfant réussi.");
       else alert("Erreur lors de mise à jour du username de l'enfant.");
@@ -997,18 +1042,6 @@ async function miseAJourAdulte(
   telephone,
   username
 ) {
-  console.log("Données envoyées :", {
-    newUsername,
-    newNom,
-    hash,
-    sel,
-    newPrenom,
-    newDateNaiss,
-    newGenre,
-    newNationalite,
-    telephone,
-    username,
-  });
 
   try {
     const response = await fetch("https://test-sae.onrender.com/api/responsable/update",
@@ -1033,7 +1066,6 @@ async function miseAJourAdulte(
     if (!response.ok) throw new Error(`Erreur HTTP : ${response.status}`);
 
     const data = await response.json();
-    console.log("Réponse du serveur :", data);
 
     if (data.success) {
       console.log("La modification des données du responsable est réussie.");
@@ -1073,7 +1105,6 @@ async function miseAJourAdulte(
  * @param username
  */
 function miseAJourMDPAdulte(newPassword, newSel, username) {
-  console.log("Données envoyées :", { newPassword, newSel, username });
 
   fetch("https://test-sae.onrender.com/api/responsable/updateMDP", {
     method: "PUT",
@@ -1087,8 +1118,7 @@ function miseAJourMDPAdulte(newPassword, newSel, username) {
       return response.json();
     })
     .then((data) => {
-      console.log("Réponse du serveur :", data);
-      if (data.success) window.location.href = "/test-SAE/code_sae/dist/connexion.html";
+      if (data.success) window.location.href = "./connexion.html";
       else alert("Erreur lors de mise à jour du mot de passe du responsable.");
     })
     .catch((error) => {
@@ -1114,7 +1144,7 @@ document.addEventListener("DOMContentLoaded", () => {
       sessionStorage.removeItem("adulteConnecte");
       sessionStorage.clear();
 
-      window.location.href = "/test-SAE/code_sae/dist/connexion.html";
+      window.location.href = "./connexion.html";
     });
   }
 

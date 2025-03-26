@@ -40,7 +40,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 8% auto;
+  margin: auto;
 }
 
 h1 {
@@ -111,7 +111,8 @@ section {
 }
 
 #liste-de-mots,
-#association-game,
+#mots-croises,
+#Mot-image,
 #Mot-a-trou {
   background-color: #f5dd61;
   border: 10px solid #faa300;
@@ -122,6 +123,15 @@ section {
 
 #Mot-a-trou {
   flex: 1;
+}
+
+#Mot-image {
+  flex: 1;
+}
+
+#app h1 {
+  visibility: hidden;
+  display: none;
 }
 
 h2 {
@@ -158,4 +168,9 @@ button:hover {
   color: white;
   background-color: #f4538a;
   transition: 0.3s;
+}
+
+#chrono {
+  visibility: hidden;
+  display: none;
 }

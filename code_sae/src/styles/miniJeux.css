@@ -126,6 +126,20 @@ header .menubar:not(.active) ~ #container .linkMiniJeux {
 }
 
 
+.replay-audio {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.replay-audio:hover {
+  background-color: #45a049;
+}
 
 
 /*

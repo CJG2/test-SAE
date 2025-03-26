@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const userLoggedIn = JSON.parse(localStorage.getItem("userLoggedIn"));
 
   if (!userLoggedIn || userLoggedIn.type !== "enfant") {
-    window.location.href = "/test-SAE/code_sae/dist/progression.html";
+    window.location.href = "./progression.html";
     return;
   }
 
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
     sessionStorage.removeItem("enfantConnecte");
     sessionStorage.removeItem("adulteConnecte");
     sessionStorage.clear();
-    window.location.href = "/test-SAE/code_sae/dist/connexion.html";
+    window.location.href = "./connexion.html";
   };
 
   const logoutLink = document.querySelector("#logout-link");
@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
     createNavLink(
       "accueilLinkImagesApprendre",
       "Apprends à lire et à écrire avec des exercices !",
-      "/test-SAE/code_sae/dist/apprendre.html"
+      "/apprendre.html"
     )
   );
 
@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
     createNavLink(
       "accueilLinkImagesMiniGames",
       "Apprends en t'amusant avec des exercices !",
-      "/test-SAE/code_sae/dist/miniJeux.html"
+      "/miniJeux.html"
     )
   );
 

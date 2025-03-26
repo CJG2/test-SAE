@@ -1,6 +1,9 @@
 import successSound from "./../../../assets/sons/appSound/goodAnswer.mp3";
 import failSound from "./../../../assets/sons/appSound/wrongAnswer.mp3";
 
+import ennonceSound from "./../../../assets/sons/descriptionMJetA/description_minijeux/voix_minijeux_UnMotUneImage.mp3";
+import { Consignes } from "./../../consignes/consignes.js";
+
 /**
  * Fonction associé au Mini-Jeu "1 Mot 1 Image"
  *
@@ -45,7 +48,7 @@ export async function jeuAssociation(modalBody) {
           const normalizedWord = this.normalizeString(wordObj.mot);
           return {
             word: wordObj.mot,
-            image: `../../../assets/images/${normalizedWord}.png`,
+            image: `./../../../assets/images/${normalizedWord}.png`,
             originalImage: wordObj.image,
           };
         });
@@ -73,6 +76,7 @@ export async function jeuAssociation(modalBody) {
         console.error("Aucun mot n'a pu être chargé");
         return;
       }
+      new Consignes(this.container, ennonceSound);
       this.createGameContent();
       this.createDifficultyMenu();
       this.startNewLevel();
@@ -293,12 +297,6 @@ export async function jeuAssociation(modalBody) {
               id_enfant,
               id_exercice
             );
-            console.log("Données envoyées :", {
-              id_enfant,
-              id_exercice,
-              nb_tentative,
-              score,
-            });
 
             const response = await fetch(
               "https://test-sae.onrender.com/api/realiser/create",
@@ -319,7 +317,6 @@ export async function jeuAssociation(modalBody) {
             }
 
             const data = await response.json();
-            console.log("Réponse du serveur :", data);
 
             if (data.success)
               console.log("Le résultat de l'exercice a bien été sauvegardé.");

@@ -1,6 +1,9 @@
 import goodAnswerSound from "./../../../assets/sons/appSound/goodAnswer.mp3";
 import badAnswerSound from "./../../../assets/sons/appSound/wrongAnswer.mp3";
 
+import ennonceSound from "./../../../assets/sons/descriptionMJetA/description_minijeux/voix_minijeux_MotsCroises.mp3";
+import { Consignes } from "./../../consignes/consignes.js";
+
 /**
  * Fonction associée au jeu "Mots Croisés"
  *
@@ -22,24 +25,24 @@ export function jeuMotsCroises(modalBody) {
     }
 
     async init() {
-      await this.loadWordBank(); 
+      await this.loadWordBank();
+      new Consignes(this.container, ennonceSound); 
       this.createGameContent(); 
       this.generateNewCrossword(); 
     }
 
+    
+
+
     async loadWordBank() {
       const response = await fetch("https://test-sae.onrender.com/api/mot");
       const words = await response.json();
-
-      console.log("Mots récupérés depuis l'API :");
-      words.forEach((word) => console.log(word.categorie, word.mot));
 
       this.wordBank = words.map((word) => ({
         word: word.mot.toUpperCase(), 
         clue: word.categorie,
       }));
 
-      console.log("Mots chargés dans wordBank :", this.wordBank);
     }
 
     createGameContent() {
@@ -97,7 +100,7 @@ export function jeuMotsCroises(modalBody) {
       gameContent.appendChild(gameHeader);
       gameContent.appendChild(listAndCounterContainer);
       gameContent.appendChild(this.crosswordContainer);
-  
+      
       this.container.appendChild(gameContent);
   }
   

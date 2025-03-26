@@ -184,7 +184,12 @@ export function InscriptionEnfant(adulte)
   labelOui.prepend(checkboxDysOui);
 
   checkboxDysOui.addEventListener("change", function () {
-    if (checkboxDysOui.checked) checkboxDysNon.checked = false;
+    if (checkboxDysOui.checked)
+    {
+      checkboxDysNon.checked = false;
+      checkboxDysOui.setAttribute("required", "");
+      checkboxDysNon.removeAttribute("required", "");
+    }
   });
 
   divCheckOui.appendChild(checkboxDysOui);
@@ -203,7 +208,13 @@ export function InscriptionEnfant(adulte)
   labelNon.prepend(checkboxDysNon);
 
   checkboxDysNon.addEventListener("change", function () {
-    if (checkboxDysNon.checked) checkboxDysOui.checked = false;
+    if (checkboxDysNon.checked) 
+    {
+      checkboxDysOui.checked = false;
+      checkboxDysNon.setAttribute("required", "");
+      checkboxDysOui.removeAttribute("required", "");
+    }
+      
   });
 
   divCheckNon.appendChild(checkboxDysNon);
@@ -296,6 +307,7 @@ export function InscriptionEnfant(adulte)
           inputEnfantDateNaissMois.value,
           inputEnfantDateNaissAnnee.value,
           inputEnfantCivilite.value,
+          checkboxDysOui.checked ? 1 : 0,
           adulte.username);
         choixCompte(adulte);
       } else {

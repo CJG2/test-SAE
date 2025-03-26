@@ -2,8 +2,10 @@
 
 // images de la navigation
 import home_Logo from "./../assets/icons/home.png";
-import learn_Logo from "./../assets/icons/apprendre.png";
-import miniGames_Logo from "./../assets/icons/miniJeux.png";
+import learn_Logo from "./../assets/icons/apprendreBlanc.png";
+import learn_Logo_Black from "./../assets/icons/apprendre.png";
+import miniGames_Logo from "./../assets/icons/miniJeuxBlanc.png";
+import miniGames_Logo_Black from "./../assets/icons/miniJeux.png";
 import logOut_Logo from "./../assets/icons/logOut.png";
 import progress_Logo from "./../assets/icons/progression.png";
 import logoApplication from "./../assets/icons/logo.png";
@@ -162,13 +164,13 @@ export function loadImages() {
     "#accueilLinkImagesApprendre"
   );
   if (accueilLinkImagesApprendre) {
-    accueilLinkImagesApprendre.src = learn_Logo;
+    accueilLinkImagesApprendre.src = learn_Logo_Black;
   }
 
   let accueilLinkImagesMiniGames = document.querySelector(
     "#accueilLinkImagesMiniGames"
   );
   if (accueilLinkImagesMiniGames) {
-    accueilLinkImagesMiniGames.src = miniGames_Logo;
+    accueilLinkImagesMiniGames.src = miniGames_Logo_Black;
   }
 }

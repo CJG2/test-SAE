@@ -22,7 +22,6 @@
     display: flex;
     justify-content: space-evenly;
     width: 100%;
-    background-image: url(assets/images/fondChateau.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -123,6 +122,15 @@ Responsive pour Ipad, tourné côté paysage
   #gauche .boutonList, #droite .boutonList {
     font-size: 25px;
   }
+}
+.replay-audio {
+    background-color: #FFDA44; 
+    border: none; 
+    border-radius: 5px; 
+    top: 10px; 
+    left: 10px; 
+    padding: 5px; 
+    
 }
 /*
 *   Palette :
@@ -989,6 +997,20 @@ header .menubar:not(.active) ~ #container .linkMiniJeux {
 }
 
 
+.replay-audio {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.replay-audio:hover {
+  background-color: #45a049;
+}
 
 
 /*
@@ -1049,9 +1071,9 @@ Responsive pour Ipad, tourné côté paysage
 
 .close-button {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 50px;
+    top: 0px;
+    right: 16px;
+    font-size: 70px;
     color: red;
     cursor: pointer;
 }
@@ -1240,8 +1262,15 @@ Responsive pour Ipad, tourné côté paysage
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 200px;
     height: 130px;
+  }
+
+  .game-area .words-container, .game-area .images-container {
+    width: 50%;
+  }
+
+  .game-area .words-container .word-card, .game-area .images-container .image-container {
+    width: 100%;
   }
 }
 /* Conteneur du mot croisé */
@@ -1334,19 +1363,6 @@ td {
   text-align: center;
   width: 300px;
   position: relative;
-}
-
-.close-button {
-  color: white;
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 24px;
-  cursor: pointer;
-}
-
-.close-button:hover {
-  color: black;
 }
 
 /* Styles supplémentaires */

@@ -1,6 +1,9 @@
 import { fetchMot } from "./fetchMots";
 import { checkWordMatch } from "./process";
 
+import ennonceSound from "./../../../assets/sons/descriptionMJetA/description_apprendre/voix_apprendre_ecrire 1.mp3";
+import { Consignes } from "./../../consignes/consignes.js";
+
 import "../../../styles/ecrire.css";
 
 /**
@@ -30,6 +33,8 @@ export async function ecrireMot_Apprendre(modalBody) {
   const container = document.createElement("div");
   container.id = "mainContainer";
   
+  new Consignes(container, ennonceSound);
+
   // Récupérer les mots via l'API (assurer que fetchMot() retourne une liste de mots)
   const mots = await fetchMot(); // Cette ligne attend que fetchMot() renvoie les mots
   if (!mots || mots.length === 0) {

@@ -6,6 +6,7 @@ import { ecrireMot_Apprendre } from "./ecrire/ecrire.js";
 import { exerciceLectureSyllabe } from "./syllabe/exerciceSyllabe.js";
 import { exerciceAssociationSonLettre } from "./sonToImage/sonToImage.js";
 import { stopChrono } from "../connexion/connexion.js";
+import { changeFont } from "../font.js";
 
 // Importation des styles
 import "./../../styles/main.css";
@@ -15,6 +16,8 @@ import "./../../styles/apprendre.css";
 import "./../../styles/syllabe.css";
 import "./../../styles/modal.css";
 import "./../../styles/lectureSyllabe.css";
+
+changeFont();
 
 // Initialisation du carrousel et autres actions au chargement du DOM
 document.addEventListener("DOMContentLoaded", initAlphabetCarousel);
@@ -28,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Vérifier si un utilisateur est connecté et si c'est un compte enfant
   if (!userLoggedIn || userLoggedIn.type !== "enfant") {
     // Si ce n'est pas un compte enfant, rediriger vers la page de progression
-    window.location.href = "/test-SAE/code_sae/dist/progression.html";
+    window.location.href = "./progression.html";
     return;
   }
 
@@ -46,19 +49,19 @@ document.addEventListener("DOMContentLoaded", () => {
       //sessionStorage.clear(); // Supprimer les données de session
 
       // Rediriger vers la page de connexion
-      window.location.href = "/test-SAE/code_sae/dist/connexion.html";
+      window.location.href = "./connexion.html";
     });
   }
 
   document.getElementById('logoApplication').addEventListener('click', function() {
-    window.location.href = "/test-SAE/code_sae/dist/accueil.html";
+    window.location.href = "./accueil.html";
   });
 
   // Création des descriptions des exercices
   const listeDescription = [
     "Apprends le son de chaque lettre de l'alphabet, et savoir les reconnaître que ce soit en majuscule ou en minuscule.",
     "Trouve le son correspondant à la bonne lettre.",
-    "Apprends à écrire de manière intéractive le mot qui te sont présentés.",
+    "Apprends à écrire de manière intéractive les mots qui te sont présentés.",
     "Apprends à lire les syllabes des mots qui te sont présentés.",
   ];
 
@@ -138,7 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
       sessionStorage.removeItem("adulteConnecte");
       sessionStorage.clear();
 
-      window.location.href = "/test-SAE/code_sae/dist/connexion.html";
+      window.location.href = "./connexion.html";
     });
   }
 

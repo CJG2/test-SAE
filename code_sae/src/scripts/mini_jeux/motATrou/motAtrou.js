@@ -7,6 +7,9 @@ import goodAnswerSound from "./../../../assets/sons/appSound/goodAnswer.mp3";
 import badAnswerSound from "./../../../assets/sons/appSound/wrongAnswer.mp3";
 import { styleText } from "util";
 
+import ennonceSound from "./../../../assets/sons/descriptionMJetA/description_minijeux/voix_minijeux_motsATrou.mp3";
+import { Consignes } from "./../../consignes/consignes.js";
+
 let scoreAttendu = 70;
 let tabExos=[];
 let compteur=0;
@@ -87,7 +90,7 @@ function retour()
   buttonStyle(retour);
 
   retour.addEventListener("click", function () {
-    window.location.href = "/miniJeux.html";
+    window.location.href = "./miniJeux.html";
   });
   emplacement.appendChild(retour);
 }
@@ -238,11 +241,6 @@ async function exo(mot, syllabes, trou, image)
 
   divSylButton.style.textAlign = "center";
 
-  console.log("Mot :", mot);
-  console.log("Syllabes :", syllabes);
-  console.log("Trou :", trou);
-  console.log("Image :", image);
-
   motAtrouElement.textContent = faireUnTrou(syllabes, trou);
 
   let img = document.createElement("img");
@@ -365,6 +363,7 @@ function afficherExercice(index, mots)
 export async function jeuMotAtrou()
 {
   let mots = await motsExo(10);
+  new Consignes(emplacement, ennonceSound);
   compteur=0;
   afficherExercice(compteur, mots);
 
@@ -410,9 +409,7 @@ async function recupererDernierExerciceFait()
 
   const exercicesRealiser = await reponse.json();
   const tabExosRealiser = exercicesRealiser.filter(exerciceRealiser => exerciceRealiser.id_enfant === enfantConnecte.id && exerciceRealiser.id_exercice === idExo);
-  console.log("Dernier exercice récupéré :", exercicesRealiser); // Vérifiez ici le contenu
   let numTentative = tabExosRealiser.length;
-  console.log(tabExosRealiser);
 
   return numTentative;
 }

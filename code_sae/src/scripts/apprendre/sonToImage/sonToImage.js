@@ -1,3 +1,7 @@
+import ennonceSound from "./../../../assets/sons/descriptionMJetA/description_apprendre/voix_apprendre_duSonALaLettre 1.mp3";
+import { Consignes } from "./../../consignes/consignes.js";
+
+
 /**
  * Fonction pour lancer le mini-jeu de l'association du son à l'image
  *
@@ -39,6 +43,8 @@ export function exerciceAssociationSonLettre(modalBody) {
     const lettres = "abcdefghijklmnopqrstuvwxyz".split('');
     let currentLetter, currentSound, soundOptions, selectedSoundPath = null;
     let resultMessage;
+
+    new Consignes(exerciseContainer, ennonceSound);
 
     const context = require.context('./../../../assets/sons/lettres', false, /\.mp3$/);
     const audioFiles = context.keys().reduce((files, path) => {

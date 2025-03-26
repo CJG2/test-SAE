@@ -275,12 +275,7 @@ nav {
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   z-index: 1;
   margin: 0 auto;
-}
-
-nav ul li a:hover {
-  background-color: #f5dd61;
-  transform: scale(1.1);
-  transition: 0.3s;
+  width: 50%;
 }
 
 #container {

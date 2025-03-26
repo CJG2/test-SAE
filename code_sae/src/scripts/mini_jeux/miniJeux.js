@@ -6,6 +6,7 @@ import { jeuAssociation } from "./association/associationGame.js";
 import { jeuMotsCroises } from "./motscroises/motscroises.js";
 import { jeuListeDeMots } from "./listeDeMots/listeDeMots.js";
 import { stopChrono } from "../connexion/connexion.js";
+import { changeFont } from "../font.js";
 
 //importation des styles
 import "./../../styles/main.css"; // feuille de style générale
@@ -17,9 +18,14 @@ import "./../../styles/associationGame.css";
 import "./../../styles/motscroises.css";
 import "./../../styles/listeDeMots.css";
 
+
+changeFont();
+
 // Initialisation du carrousel quand le DOM est chargé
 document.addEventListener("DOMContentLoaded", initAlphabetCarousel);
 document.addEventListener("DOMContentLoaded", loadImages);
+
+
 
 // ajout des description des mini jeux
 document.addEventListener("DOMContentLoaded", () => {
@@ -29,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Vérifier si un utilisateur est connecté et si c'est un compte enfant
   if (!userLoggedIn || userLoggedIn.type !== "enfant") {
     // Si ce n'est pas un compte enfant, rediriger vers la page de progression
-    window.location.href = "/test-SAE/code_sae/dist/progression.html";
+    window.location.href = "./progression.html";
     return;
   }
 
@@ -47,19 +53,19 @@ document.addEventListener("DOMContentLoaded", () => {
       sessionStorage.clear(); // Supprimer les données de session
 
       // Rediriger vers la page de connexion
-      window.location.href = "/test-SAE/code_sae/dist/connexion.html";
+      window.location.href = "./connexion.html";
     });
   }
 
   document.getElementById('logoApplication').addEventListener('click', function() {
-    window.location.href = "/test-SAE/code_sae/dist/accueil.html";
+    window.location.href = "./accueil.html";
   });
 
   const listeDescription = [
     "Associe chaque mot à l'image correspondante.",
     "Complète les lettres manquantes pour chaque mot.",
     "Devine les mots avec leurs descriptions.",
-    "Retrouve le même mot dans la liste de mots de droite et de gauche",
+    "Retrouve le même mot dans la liste de mots de droite et celle de gauche",
   ];
   // Bouton pour le mini-jeu : 1 Mot 1 Image
   const description_Association = document.querySelector(
@@ -145,7 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
       sessionStorage.removeItem("adulteConnecte");
       sessionStorage.clear();
 
-      window.location.href = "/test-SAE/code_sae/dist/connexion.html";
+      window.location.href = "./connexion.html";
     });
   }
 

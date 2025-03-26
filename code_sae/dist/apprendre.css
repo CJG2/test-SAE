@@ -48,6 +48,15 @@
     background-color: #F5DD61;
     transition: 0.2s;
 }
+.replay-audio {
+    background-color: #FFDA44; 
+    border: none; 
+    border-radius: 5px; 
+    top: 10px; 
+    left: 10px; 
+    padding: 5px; 
+    
+}
 @font-face {
   font-family: "Cursive";
   src: url(35933034c522df190207.ttf) format("truetype");
@@ -983,9 +992,9 @@ body {
 
 .close-button {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 50px;
+    top: 0px;
+    right: 16px;
+    font-size: 70px;
     color: red;
     cursor: pointer;
 }

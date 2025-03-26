@@ -6,6 +6,9 @@ import fauxIcon from "./../../../assets/icons/faux.png";
 import successSound from './../../../assets/sons/appSound/goodAnswer.mp3';
 import failSound from './../../../assets/sons/appSound/wrongAnswer.mp3';
 
+import ennonceSound from "./../../../assets/sons/descriptionMJetA/description_minijeux/voix_minijeux_listeDeMots.mp3";
+import { Consignes } from "./../../consignes/consignes.js";
+
 let tabMots = [];
 let tabButtons = [];
 let tabExos = [];
@@ -40,10 +43,12 @@ export async function jeuListeDeMots()
 {
     emplacement.innerHTML = "";
     nbPoints = 0;
+
+    new Consignes(emplacement, ennonceSound);
+
     await recupererExercice("Liste de Mots");
     idExo = tabExos[0].id_exercice;
     await recupererDernierExerciceFait(enfantConnecte.id, idExo);
-    console.log("Numéro de tentative : " + nb_tentative);
     let niveau = document.createElement("select");
 
     let niveau1 = document.createElement("option");
@@ -86,7 +91,6 @@ export async function jeuListeDeMots()
         bonneReponse = niveauActuel;
         idExo = tabExos[niveauActuel-1].id_exercice;
         await recupererDernierExerciceFait(enfantConnecte.id, idExo);
-        console.log("Numéro de tentative : " + nb_tentative);
         emplacement.innerHTML = "";
         nbPoints = 0;
         score.textContent = "Score : " + Math.round(nbPoints);
@@ -362,7 +366,7 @@ function melange(mots)
  * @param {string} libelle
  * @returns {unknown}
  */
-async function recupererExercice(libelle) 
+export async function recupererExercice(libelle) 
 {
     const reponse = await fetch("https://test-sae.onrender.com/api/exercice");
 
@@ -387,9 +391,7 @@ export async function recupererDernierExerciceFait(id_enfant, id_exo)
 
     const exercicesRealiser = await reponse.json();
     const tabExosRealiser = exercicesRealiser.filter(exerciceRealiser => exerciceRealiser.id_enfant === id_enfant && exerciceRealiser.id_exercice === id_exo);
-    console.log("Dernier exercice récupéré :", exercicesRealiser); // Vérifiez ici le contenu
     nb_tentative = tabExosRealiser.length;
-    console.log(tabExosRealiser);
 
     return nb_tentative;
 }
@@ -405,30 +407,28 @@ export async function recupererDernierExerciceFait(id_enfant, id_exo)
  * @param {int} score
  * @returns {unknown}
  */
-export function stockerExercice(id_enfant, id_exercice, nb_tentative, score) 
-{
-  console.log('Données envoyées :', { id_enfant, id_exercice, nb_tentative, score });
+export function stockerExercice(id_enfant, id_exercice, nb_tentative, score) {
 
-  fetch('http://localhost:3000/api/realiser/create', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id_enfant, id_exercice, nb_tentative, score }),
-  })
-      .then(response => {
-          if (!response.ok) {
-              throw new Error(`Erreur HTTP : ${response.status}`);
-          }
-          return response.json();
-      })
-      .then(data => {
-          console.log('Réponse du serveur :', data);
-          if (data.success)
+    fetch('https://test-sae.onrender.com/api/realiser/create', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id_enfant, id_exercice, nb_tentative, score }),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Erreur HTTP : ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.success)
             console.log('Le résultat de l\'exercice a bien été sauvegardé.');
-          else
-          console.log('Erreur lors du stockage de l\'exercice.');
-      })
-      .catch(error => {
-          console.error('Erreur lors du stockage de l\'exercice :', error);
-          alert('Une erreur est survenue : ' + error.message);
-      });
+        else
+            console.log('Erreur lors du stockage de l\'exercice.');
+    })
+    .catch(error => {
+        console.error('Erreur lors du stockage de l\'exercice :', error);
+        alert('Une erreur est survenue : ' + error.message);
+    });
 }
+
