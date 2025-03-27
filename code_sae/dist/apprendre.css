@@ -972,8 +972,8 @@ body {
   background-color: #45a049;
 }
 
-.choix-container{
-  margin-bottom: 20px;
+.exercice-syllabe .choix-container{
+  margin-bottom: 40px;
 }
 
 /* Style de base pour le modal */
