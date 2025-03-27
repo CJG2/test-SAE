@@ -64,14 +64,6 @@ document.addEventListener("DOMContentLoaded", () => {
     "Apprends à lire les syllabes des mots qui te sont présentés.",
   ];
 
-  const alphabet_apprendre = document.querySelector("#exoAlphabet");
-  alphabet_apprendre.addEventListener("click", (e) => {
-    e.preventDefault();
-    setTimeout(() => {
-      openModal(AlphabetFunction);
-    }, 300);
-  });
-
   const description_Son = document.querySelector("#exoSon #description");
   const descriptionParagraphe_S = document.createElement("p");
   descriptionParagraphe_S.textContent = listeDescription[0];
