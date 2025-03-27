@@ -382,7 +382,7 @@ export function jeuMotsCroises(modalBody) {
 
     showWordImage(word, container) {
       try {
-        const imageSrc = require(`./assets/images/${word}.png`);
+        const imageSrc = `./assets/images/${word}.png`;
 
         const imageElement = document.createElement("img");
         imageElement.src = imageSrc;
