@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
     createNavLink(
       "accueilLinkImagesMiniGames",
       "Apprends en t'amusant avec des exercices !",
-      "miniJeux.html"
+      "./connexion.html"
     )
   );
 
