@@ -1,7 +1,7 @@
-import successSound from "./../../../assets/sons/appSound/goodAnswer.mp3";
-import failSound from "./../../../assets/sons/appSound/wrongAnswer.mp3";
+import successSound from "./assets/sons/appSound/goodAnswer.mp3";
+import failSound from "./assets/sons/appSound/wrongAnswer.mp3";
 
-import ennonceSound from "./../../../assets/sons/descriptionMJetA/description_minijeux/voix_minijeux_UnMotUneImage.mp3";
+import ennonceSound from "./assets/sons/descriptionMJetA/description_minijeux/voix_minijeux_UnMotUneImage.mp3";
 import { Consignes } from "./../../consignes/consignes.js";
 
 /**
@@ -48,7 +48,7 @@ export async function jeuAssociation(modalBody) {
           const normalizedWord = this.normalizeString(wordObj.mot);
           return {
             word: wordObj.mot,
-            image: `./../../../assets/images/${normalizedWord}.png`,
+            image: `./assets/images/${normalizedWord}.png`,
             originalImage: wordObj.image,
           };
         });

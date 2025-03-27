@@ -1,13 +1,13 @@
 import { randint } from "./../../connexion/hachage.js";
 import { stockerExercice} from "./../listeDeMots/listeDeMots.js";
-import vraiIcon from "./../../../assets/icons/vrai.png";
-import fauxIcon from "./../../../assets/icons/faux.png";
+import vraiIcon from "./assets/icons/vrai.png";
+import fauxIcon from "./assets/icons/faux.png";
 
-import goodAnswerSound from "./../../../assets/sons/appSound/goodAnswer.mp3";
-import badAnswerSound from "./../../../assets/sons/appSound/wrongAnswer.mp3";
+import goodAnswerSound from "./assets/sons/appSound/goodAnswer.mp3";
+import badAnswerSound from "./assets/sons/appSound/wrongAnswer.mp3";
 import { styleText } from "util";
 
-import ennonceSound from "./../../../assets/sons/descriptionMJetA/description_minijeux/voix_minijeux_motsATrou.mp3";
+import ennonceSound from "./assets/sons/descriptionMJetA/description_minijeux/voix_minijeux_motsATrou.mp3";
 import { Consignes } from "./../../consignes/consignes.js";
 
 let scoreAttendu = 70;
@@ -71,7 +71,7 @@ async function motsExo(nbMot) {
       motsAleatoires.push({
         mot: motSelectionne.mot,
         syllabes: motSelectionne.syllabes,
-        image_src: "./../../../assets/images/"+nomImage+".png",     //motSelectionne.image_src,
+        image_src: "./assets/images/"+nomImage+".png",     //motSelectionne.image_src,
       });
 
       tabMot.splice(indexAleatoire, 1);
