@@ -6,13 +6,15 @@
     background-color: rgb(245, 245, 245);
     width: 100%;
     margin-top: 40px;
-    min-height: 450px;
-    height: 70%;
-    font-size: 2000%;
     border: 5px solid #FAA300;
     color: #FAA300;
     cursor: pointer;
+    min-height: 250px; /* Ajuste pour petits écrans */
+    height: auto; /* Évite d'étirer inutilement */
+    font-size: clamp(5rem, 10vw, 10rem); /* Taille de police adaptative */
+    overflow: hidden; /* Évite tout débordement */
 }
+
 
 #alphabet:hover {
     background-color: #FAA300;
