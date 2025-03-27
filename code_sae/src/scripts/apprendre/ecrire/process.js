@@ -25,38 +25,66 @@ function removeAccents(str) {
  * @returns {*}
  */
 export async function checkWordMatch(word, modalBody) {
-    alert("Vérification en cours...");
+    console.log("🔹 Fonction checkWordMatch lancée");
+
     const drawingCanvas = document.getElementById("drawingCanvas");
-    const imageData = drawingCanvas.toDataURL();
+    if (!drawingCanvas) {
+        console.error("❌ Canvas non trouvé !");
+        return;
+    }
+
+    const imageData = drawingCanvas.toDataURL("image/png");
+    console.log("📷 Image Data récupérée :", imageData.length > 100 ? "OK" : "⚠️ VIDE !");
+
+    // Vérifie si l'image a bien été récupérée
+    if (imageData.length < 100) {
+        alert("Problème avec le canvas, l'image ne se génère pas !");
+        return;
+    }
+
     // Charger le son
     const goodAnswer = new Audio(successSound);
     const wrongAnswer = new Audio(failSound);
 
-    // Utilisation de Tesseract.js pour la reconnaissance de texte
-    Tesseract.recognize(imageData, 'fra', {
-        logger: (m) => console.log(m),
-    }).then(({ data: { text } }) => {
+    try {
+        console.log("🔍 Début de la reconnaissance de texte...");
+        const { data: { text } } = await Tesseract.recognize(imageData, 'fra', {
+            logger: (m) => console.log("📝 Log Tesseract:", m),
+            corePath: 'https://cdn.jsdelivr.net/npm/tesseract.js-core@latest/tesseract-core.wasm.js',
+            workerPath: 'https://cdn.jsdelivr.net/npm/tesseract.js@latest/src/worker.js',
+        });
+
+        console.log("✅ Texte reconnu :", text);
+        if (!text.trim()) {
+            alert("Tesseract n'a reconnu aucun texte. Essaye d'écrire plus lisiblement !");
+            return;
+        }
+
+        // Nettoyage du texte reconnu
         const cleanedText = text.trim().toLowerCase();
         const cleanedWord = word.toLowerCase();
 
-        // Supprimer les accents pour comparaison
+        // Supprime les accents
         const texteReconnuSansAccents = removeAccents(cleanedText);
         const motSansAccents = removeAccents(cleanedWord);
 
         // Mesurer la similarité entre le texte reconnu et le mot attendu
         const similarity = stringSimilarity.compareTwoStrings(texteReconnuSansAccents, motSansAccents);
-        console.log(`Texte reconnu : ${cleanedText}`);
-        console.log(`Similarité : ${similarity}`);
+        console.log(`📊 Similarité calculée : ${similarity}`);
 
-        // Si la similarité est supérieure à 0.5 (50%), on considère que c'est correct
         if (similarity > 0.45) {
-            goodAnswer.play(); // Jouer le son de réussite
+            console.log("🎉 Mot correct !");
+            goodAnswer.play();
             alert("Bravo, tu as bien écrit le mot !");
-            modalBody.innerHTML = ""; // Nettoyer le conteneur
-            ecrireMot_Apprendre(modalBody); // Relancer le processus
+            modalBody.innerHTML = "";
+            ecrireMot_Apprendre(modalBody);
         } else {
-            wrongAnswer.play(); // Jouer le son d'erreur
+            console.log("❌ Mot incorrect !");
+            wrongAnswer.play();
             alert("Dommage, essaie encore !");
         }
-    });
+    } catch (error) {
+        console.error("🚨 Erreur dans Tesseract :", error);
+        alert("Une erreur est survenue lors de la reconnaissance du texte.");
+    }
 }
