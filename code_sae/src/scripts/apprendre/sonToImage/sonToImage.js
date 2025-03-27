@@ -105,6 +105,7 @@ export function exerciceAssociationSonLettre(modalBody) {
                 letterImg.src = require(`./../../../assets/images/${letter}.png`);
                 letterImg.alt = `Image de la lettre ${letter}`;
                 letterImg.style.width = "70px"; 
+                letterImg.style.marginTop = "20px"; 
                 boutonChoix.appendChild(letterImg);
                 
                 boutonChoix.draggable = true;

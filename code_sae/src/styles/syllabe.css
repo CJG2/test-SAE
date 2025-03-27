@@ -1,3 +1,7 @@
+#titre-exercice-syllabes{
+  color: #000;
+}
+
 .syllabe-container {
   display: flex;
   align-items: center;
@@ -25,4 +29,8 @@
 
 .syllabe-button:hover {
   background-color: #45a049;
+}
+
+.choix-container{
+  margin-bottom: 20px;
 }

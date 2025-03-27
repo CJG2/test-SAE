@@ -84,6 +84,7 @@ export async function exerciceLectureSyllabe(modalBody) {
 
     const titre = document.createElement("h2");
     titre.textContent = "Lecture de Syllabes";
+    titre.id = "titre-exercice-syllabes";
     const instructions = document.createElement("p");
     instructions.textContent =
       "Trouve le mot qui correspond à la syllabe donnée.";
