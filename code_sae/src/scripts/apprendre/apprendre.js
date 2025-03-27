@@ -74,12 +74,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const description_Son = document.querySelector("#exoSon #description");
   const descriptionParagraphe_S = document.createElement("p");
-  descriptionParagraphe_S.textContent = listeDescription[1];
+  descriptionParagraphe_S.textContent = listeDescription[0];
   description_Son.appendChild(descriptionParagraphe_S);
 
   const description_Ecrire = document.querySelector("#exoEcrire #description");
   const descriptionParagraphe_E = document.createElement("p");
-  descriptionParagraphe_E.textContent = listeDescription[2];
+  descriptionParagraphe_E.textContent = listeDescription[1];
   description_Ecrire.appendChild(descriptionParagraphe_E);
 
   const ecrire_apprendre = document.querySelector("#exoEcrire");
@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "#exoLecture #description"
   );
   const descriptionParagraphe_L = document.createElement("p");
-  descriptionParagraphe_L.textContent = listeDescription[3];
+  descriptionParagraphe_L.textContent = listeDescription[2];
   description_Lecture.appendChild(descriptionParagraphe_L);
 
   const lectureDeSyllabe = document.querySelector("#exoLecture");
