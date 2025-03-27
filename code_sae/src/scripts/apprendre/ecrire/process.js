@@ -25,6 +25,7 @@ function removeAccents(str) {
  * @returns {*}
  */
 export async function checkWordMatch(word, modalBody) {
+    alert("Vérification en cours...");
     const drawingCanvas = document.getElementById("drawingCanvas");
     const imageData = drawingCanvas.toDataURL();
     // Charger le son
