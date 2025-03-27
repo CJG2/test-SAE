@@ -10,7 +10,6 @@ import logOut_Logo from "./../assets/icons/logOut.png";
 import progress_Logo from "./../assets/icons/progression.png";
 import logoApplication from "./../assets/icons/logo.png";
 import profil_Logo from "./../assets/icons/profil.png";
-import feedback_Logo from "./../assets/icons/feedback.png";
 
 //images de la page apprendre
 import alphabetIcon_Logo from "./../assets/icons/alphabetIcon.png";
@@ -64,11 +63,6 @@ export function loadImages() {
     profilNav_Logo.src = profil_Logo;
   }
 
-  let feedbackNav_Logo = document.querySelector("#feedback-navigation");
-  if (feedbackNav_Logo) {
-    feedbackNav_Logo.src = feedback_Logo;
-  }
-
   let logoApplicationGeneral = document.querySelector("#logoApplication");
   if (logoApplicationGeneral) {
     logoApplicationGeneral.src = logoApplication;
@@ -104,11 +98,6 @@ export function loadImages() {
   let profilNav_LogoResp = document.querySelector("#profil-nav");
   if (profilNav_LogoResp) {
     profilNav_LogoResp.src = profil_Logo;
-  }
-
-  let feedbackNav_LogoResp = document.querySelector("#feedback-nav");
-  if (feedbackNav_LogoResp) {
-    feedbackNav_LogoResp.src = feedback_Logo;
   }
 
   // partie apprendre

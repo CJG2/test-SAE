@@ -16,7 +16,6 @@ module.exports = {
     profil: "./src/scripts/profil/profil.js", // Point d'entrée pour profil.html
     miniJeux: "./src/scripts/mini_jeux/miniJeux.js", // Point d'entrée pour miniJeux.html
     progression: "./src/scripts/progression/progression.js", // Point d'entrée pour progression.html
-    feedback: "./src/scripts/feedback/feedback.js", // Point d'entrée pour feedback.html
   },
   output: {
     filename: "[name].bundle.js", // Génère des fichiers JS nommés d'après les points d'entrée
@@ -94,12 +93,6 @@ module.exports = {
       filename: "miniJeux.html", // Destination de la page dans dist
       chunks: ["miniJeux", "app"], // Inclure uniquement les fichiers JS de 'miniJeux' et 'app'
       favicon: "./src/assets/icons/miniJeux.png",
-    }),
-    new HtmlWebpackPlugin({
-      template: "./src/public/feedback.html", // Source HTML pour la page feedback
-      filename: "feedback.html", // Destination de la page dans dist
-      chunks: ["feedback", "app"], // Inclure uniquement les fichiers JS de 'feedback' et 'app'
-      favicon: "./src/assets/icons/feedback.png",
     }),
     new webpack.ProvidePlugin({
       Buffer: ["buffer", "Buffer"], // Fournit 'Buffer' globalement

@@ -635,6 +635,7 @@ async function profilEnfant(enfant)
 
   form.appendChild(document.createElement("hr"));
   form.appendChild(genreDiv);
+  form.appendChild(document.createElement("hr"));
 
   //Option dys
   const labelDys = document.createElement("label");
@@ -659,8 +660,8 @@ async function profilEnfant(enfant)
     if (checkboxDysOui.checked) checkboxDysNon.checked = false;
   });
 
-  divCheckOui.appendChild(checkboxDysOui);
-  divCheckOui.appendChild(labelOui);
+  //divCheckOui.appendChild(checkboxDysOui);
+  //divCheckOui.appendChild(labelOui);
 
   const divCheckNon = document.createElement("div");
   divCheckNon.className = "divCheckBox";
@@ -678,17 +679,17 @@ async function profilEnfant(enfant)
     if (checkboxDysNon.checked) checkboxDysOui.checked = false;
   });
 
-  divCheckNon.appendChild(checkboxDysNon);
-  divCheckNon.appendChild(labelNon);
+  //divCheckNon.appendChild(checkboxDysNon);
+  //divCheckNon.appendChild(labelNon);
 
-  checkBoxContainer.appendChild(divCheckOui);
-  checkBoxContainer.appendChild(divCheckNon);
+  //checkBoxContainer.appendChild(divCheckOui);
+  //checkBoxContainer.appendChild(divCheckNon);
 
-  form.appendChild(labelDys);
+  //form.appendChild(labelDys);
   form.appendChild(document.createElement("br"));
   form.appendChild(document.createElement("br"));
 
-  form.appendChild(checkBoxContainer);
+  //form.appendChild(checkBoxContainer);
   form.appendChild(document.createElement("br"));
   form.appendChild(document.createElement("br"));
 
@@ -724,7 +725,7 @@ async function profilEnfant(enfant)
     profilEnfant(enfant);
   });
 
-  form.appendChild(document.createElement("hr"));
+  //form.appendChild(document.createElement("hr"));
   form.appendChild(buttonsProfilDiv);
 
   form.addEventListener("submit", function (event) {
