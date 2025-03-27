@@ -11,7 +11,7 @@
     cursor: pointer;
     min-height: 250px; /* Ajuste pour petits écrans */
     height: auto; /* Évite d'étirer inutilement */
-    font-size: clamp(5rem, 10vw, 10rem); /* Taille de police adaptative */
+    font-size: 2000%;
     overflow: hidden; /* Évite tout débordement */
 }
 
