@@ -59,18 +59,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Création des descriptions des exercices
   const listeDescription = [
-    "Apprends le son de chaque lettre de l'alphabet, et savoir les reconnaître que ce soit en majuscule ou en minuscule.",
     "Trouve le son correspondant à la bonne lettre.",
     "Apprends à écrire de manière intéractive les mots qui te sont présentés.",
     "Apprends à lire les syllabes des mots qui te sont présentés.",
   ];
-
-  const description_Alphabet = document.querySelector(
-    "#exoAlphabet #description"
-  );
-  const descriptionParagraphe_A = document.createElement("p");
-  descriptionParagraphe_A.textContent = listeDescription[0];
-  description_Alphabet.appendChild(descriptionParagraphe_A);
 
   const alphabet_apprendre = document.querySelector("#exoAlphabet");
   alphabet_apprendre.addEventListener("click", (e) => {
