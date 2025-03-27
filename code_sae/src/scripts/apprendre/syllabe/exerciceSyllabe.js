@@ -53,7 +53,7 @@ export async function exerciceLectureSyllabe(modalBody) {
         syllabe,
         mots: [selectedWord, ...distracteurs].sort(() => 0.5 - Math.random()),
         bonneReponse: selectedWord.mot,
-        imageSrc: `../../../assets/images/${normalizeString(
+        imageSrc: `./../assets/images/${normalizeString(
           selectedWord.mot
         )}.png`,
       };
